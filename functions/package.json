@@ -14,13 +14,12 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@prismicio/client": "^7.3.1",
+    "@prismicio/client": "^7.8.1",
+    "@prismicio/helpers": "^2.0.0",
     "express": "^4.19.2",
     "firebase-admin": "^11.8.0",
     "firebase-functions": "^4.9.0",
-    "node-fetch": "^3.3.2",
-    "prismic-dom": "^2.2.7",
-    "prismic-javascript": "^3.0.2"
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "eslint": "^8.15.0",
