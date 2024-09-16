@@ -51,6 +51,7 @@ h1 {
 #nav-tabs {
     width: 80%;
     margin: auto;
+    border-color: #dcf0f9;
 }
 
 #nav-tabs:hover {
@@ -77,10 +78,24 @@ h1 {
     border: none;
 }
 
+.active {
+    --bs-nav-tabs-link-active-bg: #dcf0f9;
+}
+
 /* Panels */
 
-.panel {
-    margin: 0 0.6rem;
+.inner-panel {
+    /* margin: 0 0.6rem; */
+    padding: 3.2rem;
+    background-color: #19214e;
+}
+
+#sidebar {
+    background-color: #0f1432;
+}
+
+.side-panel {
+    margin-right: 3rem;
     padding: 3.2rem;
     background-color: #19214e;
 }

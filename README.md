@@ -30,7 +30,7 @@ The site is hosted on [Google Firebase](https://firebase.google.com/). The live 
 - [GitHub](https://github.com/) to store the project repository and back up git commits
 - [Bootstrap v5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/) to assist in the structure and design of the site
 - [Prismic Headless CMS](https://prismic.io/) to manage my written content
-- [Google Fonts](https://fonts.google.com/) for the headings, links and date fonts
+- [Google Fonts](https://fonts.google.com/) for the headings, links and other text fonts
 - [Justinmind](https://www.justinmind.com/) to create the wireframes
 
 ## Known Bugs
