@@ -6,6 +6,7 @@ window.onload = async function(){
     }).then(function(res) {
         // Loop through post data from Prismic and add to post object
         // then add object to posts array
+        res.sort((a,b)=>{return b.uid-a.uid});
         let allPosts = [];
         res.forEach((i) => {
             let post = {};
@@ -64,10 +65,10 @@ window.onload = async function(){
             article += '<article id="' + id + '" class="inner-panel">';
             article += '<h3>' + titles + '</h3>';
             article += '<h4 class="entry-date">' + dateWritten + '</h4>';
+            article += '<p class="type">' + type + '</p>';
             paragraphs.forEach((paragraph) => {
                 article += '<p>' + paragraph + '</p>';
             })
-            article += '<p class="type">' + type + '</p>';
             article += '<p class="tag">';
             hashtags.forEach((tag) => {
                 article += tag + '&nbsp;&nbsp;';
