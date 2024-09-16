@@ -11,18 +11,20 @@ window.onload = async function(){
             let post = {};
             let id = i.uid;
             let title = i.data.title;
-            let rawDate = new Date(i.data.date_created);
+            let rawDate = new Date(i.data.date_written);
             let dayNum = rawDate.getDate();
             let day = ordinalSuffix(dayNum);
             let month = rawDate.toLocaleString('default', { month: 'long' });
             let year = rawDate.getFullYear();
             let dateWritten = day + " " + month + " " + year;
             let content = i.data.content;
+            let type = i.data.type;
             let tags = i.data.tags.split(',');
             post.id = id;
             post.title = title;
             post.dateWritten = dateWritten;
             post.content = content;
+            post.type = type;
             post.tags = tags;
             allPosts.push(post);
         });
@@ -49,6 +51,7 @@ window.onload = async function(){
                 paragraphs.push(paragraph);
             });
             let dateWritten = post.dateWritten;
+            let type = post.type;
             // Loop through tags and add hash
             let tags = post.tags;
             let hashtags = [];
@@ -64,6 +67,7 @@ window.onload = async function(){
             paragraphs.forEach((paragraph) => {
                 article += '<p>' + paragraph + '</p>';
             })
+            article += '<p class="type">' + type + '</p>';
             article += '<p class="tag">';
             hashtags.forEach((tag) => {
                 article += tag + '&nbsp;&nbsp;';
@@ -78,4 +82,16 @@ window.onload = async function(){
         articleDiv.innerHTML = article;
         quickNav.innerHTML = quickNavLinks;
     });
-}
+};
+
+function ordinalSuffix(day){
+    if (day % 10 == 1 && day != 11){
+        return day + 'st';
+    } else if (day % 10 == 2 && day != 12){
+        return day + 'nd';
+    } else if (day % 10 == 3 && day != 13){
+        return day + 'rd';
+    } else {
+        return day + 'th';
+    }
+};
