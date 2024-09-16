@@ -63,15 +63,15 @@ window.onload = async function(){
 
             // Add data to article HTML
             article += '<article id="' + id + '" class="inner-panel">';
-            article += '<h3>' + titles + '</h3>';
-            article += '<h4 class="entry-date">' + dateWritten + '</h4>';
-            article += '<p class="type">' + type + '</p>';
+            article += '<h3 class="post-title">' + titles + '</h3>';
+            article += '<h4 class="entry-date">' + dateWritten + '&ensp;—&ensp;<span class="type">' + type + '</span></h4>';
+            // article += '<p class="type">' + type + '</p>';
             paragraphs.forEach((paragraph) => {
-                article += '<p>' + paragraph + '</p>';
+                article += '<p class="paragraph">' + paragraph + '</p>';
             })
             article += '<p class="tag">';
             hashtags.forEach((tag) => {
-                article += tag + '&nbsp;&nbsp;';
+                article += tag + '&ensp;';
             })
             article += '</p>';
             article += '</article>';

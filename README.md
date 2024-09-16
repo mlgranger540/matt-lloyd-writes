@@ -46,3 +46,5 @@ This [stackoverflow post](https://stackoverflow.com/questions/60237167/firebase-
 ### Content and Media
 
 All written content on the website was written by myself.
+
+The Google Font [Seaweed Script](https://fonts.google.com/specimen/Seaweed+Script) was used for the title, [Cinzel](https://fonts.google.com/specimen/Cinzel) for the navbar links and some sub-headings, and [Mate](https://fonts.google.com/specimen/Mate) for the body text.

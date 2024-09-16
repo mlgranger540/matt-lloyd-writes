@@ -7,12 +7,22 @@
 }
 
 body {
-    background-color: #182255;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #0f1432;
+    font-family: Mate, 'Times New Roman', Times, serif;
+    color: #e7f7fe;
 }
 
 p {
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
+}
+
+ul {
+    padding-left: 0;
+}
+
+a {
+    color: #a6dff8;
+    text-decoration: none;
 }
 
 .row {
@@ -22,6 +32,97 @@ p {
 
 /* Header */
 
+header {
+    width: 100%;
+    margin: 2.5rem 0 2rem 0;
+}
+
 h1 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0.5rem 0rem 1rem 0rem;
+    padding: 1.2rem;
+    font-family: 'Seaweed Script', 'Times New Roman', Times, serif;
+    font-size: 4.2rem;
+    /* font-style: italic; */
+    text-align: center;
+}
+
+/* Navbar */
+
+#nav-tabs {
+    width: 80%;
+    margin: auto;
+}
+
+#nav-tabs:hover {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+/* .nav-item {
+    background-color: #19214e;
+} */
+
+.nav-link {
+    padding: 0.9rem 0;
+    --bs-nav-link-color: #a6dff8;
+    font-family: Cinzel, 'Times New Roman', Times, serif;
+    font-size: 1.6rem;
+    transition-property: color, background-color, border-bottom;
+}
+
+.nav-link:hover {
+    background-color: #19214e;
+    --bs-nav-link-hover-color: #d6f1fd;
+    border: none;
+}
+
+/* Panels */
+
+.panel {
+    margin: 0 0.6rem;
+    padding: 3.2rem;
+    background-color: #19214e;
+}
+
+/* Articles */
+
+.post-title {
+    font-size: 2rem;
+}
+
+.paragraph {
+    line-height: 1.8rem;
+    letter-spacing: 0.6px;
+}
+
+.entry-date {
+    margin: 0.7rem 0 1.2rem 0;
+    font-size: 1.25rem;
+    font-style: italic;
+}
+
+.type {
+    font-family: Cinzel, 'Times New Roman', Times, serif;
+    font-size: 1.05rem;
+    font-style: normal;
+    text-transform: capitalize;
+}
+
+.separator {
+    margin: 2.2rem 0;
+}
+
+/* Sidebar */
+
+.side-list {
+    font-size: 1.2rem;
+    list-style-type: none;
+}
+
+
+/* Footer */
+
+#footer-row {
+    padding: 1.6rem 0;
 }
