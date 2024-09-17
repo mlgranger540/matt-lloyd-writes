@@ -77,7 +77,7 @@ window.onload = async function(){
 
             // Add data to article HTML
             article += '<article id="' + id + '" class="inner-panel">';
-            article += '<h3 class="post-title">' + titles + '</h3>';
+            article += '<h3 class="post-title"><a class="title-link" href="./post/' + id + '">' + titles + '</a></h3>';
             article += '<h4 class="entry-date">' + dateWritten + '&ensp;—&ensp;<span class="type">' + type + '</span></h4>';
             // article += '<p class="type">' + type + '</p>';
             article += '<div class="content">';

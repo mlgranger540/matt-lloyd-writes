@@ -47,7 +47,7 @@ app.use((req, res, next) => {
 
 app.get("/getPosts", async (req, res)=>{
     const documents = await client.getAllByType("post");
-    console.log(documents)
+    console.log(documents);
     res.send(documents);
 });
 
