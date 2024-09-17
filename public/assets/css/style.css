@@ -38,7 +38,7 @@ header {
 }
 
 h1 {
-    margin: 0.5rem 0rem 1rem 0rem;
+    margin: 0.8rem 0;
     padding: 1.2rem;
     font-family: 'Seaweed Script', 'Times New Roman', Times, serif;
     font-size: 4.2rem;
@@ -84,7 +84,7 @@ h1 {
 
 /* Panels */
 
-.inner-panel {
+.panel {
     /* margin: 0 0.6rem; */
     padding: 3.2rem;
     background-color: #19214e;
@@ -103,17 +103,13 @@ h1 {
 /* Articles */
 
 .post-title {
-    font-size: 2rem;
-}
-
-.paragraph {
-    line-height: 1.8rem;
-    letter-spacing: 0.6px;
+    font-size: 2.15rem;
 }
 
 .entry-date {
-    margin: 0.7rem 0 1.2rem 0;
+    margin: 0.7rem 0;
     font-size: 1.25rem;
+    color: #abd0e1;
     font-style: italic;
 }
 
@@ -124,8 +120,36 @@ h1 {
     text-transform: capitalize;
 }
 
-.separator {
+.content {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+    letter-spacing: 0.6px;
+}
+
+.description {
+    font-family: Merriweather, 'Times New Roman', Times, serif;
+    font-size: 0.9rem;
+    color: #8dd1f1;
+    /* font-style: italic; */
+    letter-spacing: 0.05rem;
+}
+
+.tag {
+    margin-top: 1.2rem;
+    font-size: 1.05rem;
+    color: #abd0e1;
+    font-style: italic;
+    letter-spacing: 0.05rem;
+}
+
+hr {
     margin: 2.2rem 0;
+}
+
+.short-separator {
+    width: 20%;
+    margin: auto;
 }
 
 /* Sidebar */

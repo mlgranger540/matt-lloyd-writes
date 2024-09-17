@@ -1,6 +1,6 @@
 # Matt Lloyd Writes Website
 
-Matt Lloyd Writes is an author website for me to post pieces of my writing such as short stories, snippets from my books, and poems, as well as an author profile and information about my upcoming books so my readers can find out more about me and my work.
+Matt Lloyd Writes is an author website for me to post pieces of my writing such as short stories, excerpts from my books, and poems, as well as an author profile and information about my upcoming books so my readers can find out more about me and my work.
 
 ## Design
 
