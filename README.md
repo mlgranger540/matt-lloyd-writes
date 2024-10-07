@@ -6,6 +6,20 @@ Matt Lloyd Writes is an author website for me to post pieces of my writing such 
 
 ## Features
 
+### Header
+
+### Side Bar
+
+### Home Page
+
+### Writing Page
+
+### My Books
+
+### About the Author
+
+### Stats
+
 ### Features to Add
 
 ## Content Management System
@@ -30,6 +44,7 @@ The site is hosted on [Google Firebase](https://firebase.google.com/). The live 
 - [GitHub](https://github.com/) to store the project repository and back up git commits
 - [Bootstrap v5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/) to assist in the structure and design of the site
 - [Prismic Headless CMS](https://prismic.io/) to manage my written content
+- [Express JS framework](https://expressjs.com/) to connect to Prismic as well as enable page routing
 - [Google Fonts](https://fonts.google.com/) for the headings, links and other text fonts
 - [Justinmind](https://www.justinmind.com/) to create the wireframes
 
@@ -42,6 +57,8 @@ None... so far ;)
 ### Code
 
 This [stackoverflow post](https://stackoverflow.com/questions/60237167/firebase-functions-https-403-forbidden/69158098#69158098) helped fix a 403 Forbidden error when requesting my content from Prismic on the live deployed site, which was due to Firebase not automatically allowing Cloud Function invoking permissions to all users.
+
+I used the [Express Routing docs](https://expressjs.com/en/guide/routing.html) as well as the [Prismic Express docs](https://prismic.io/docs/express-fetch) to help with setting up page routing and get requests for my posts from Prismic.
 
 ### Content and Media
 
