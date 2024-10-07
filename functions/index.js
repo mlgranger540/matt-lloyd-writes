@@ -45,6 +45,14 @@ app.use((req, res, next) => {
     next();
   });
 
+app.get("/", (req, res) => {
+    res.sendFile("index.html", {root : __dirname + "/../public/"});
+});
+
+app.get("/writing", (req, res) => {
+    res.sendFile("writing.html", {root : __dirname + "/../public/"});
+});
+
 app.get("/post/:uid", (req, res) => {
     res.sendFile("post.html", {root : __dirname + "/../public/"});
 });
