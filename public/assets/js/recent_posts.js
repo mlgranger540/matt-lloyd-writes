@@ -20,6 +20,12 @@ window.onload = async function(){
             let month = rawDate.toLocaleString('default', { month: 'long' });
             let year = rawDate.getFullYear();
             let dateWritten = day + " " + month + " " + year;
+            let rawDateEd = new Date(i.data.date_edited);
+            let dayEdNum = rawDateEd.getDate();
+            let dayEd = ordinalSuffix(dayEdNum);
+            let monthEd = rawDateEd.toLocaleString('default', { month: 'short' });
+            let yearEd = rawDateEd.getFullYear();
+            dateEdited = dayEd + " " + monthEd + " " + yearEd;
             let content = i.data.content;
             let description = i.data.description;
             let type = i.data.type;
@@ -28,6 +34,7 @@ window.onload = async function(){
             post.number = number;
             post.title = title;
             post.dateWritten = dateWritten;
+            post.dateEdited = dateEdited;
             post.content = content;
             post.description = description;
             post.type = type;
@@ -52,6 +59,7 @@ window.onload = async function(){
                 titles.push(title);
             });
             let dateWritten = allPosts[i].dateWritten;
+            let dateEdited = allPosts[i].dateEdited;
             let type = allPosts[i].type;
             // Loop through content objects
             let contentObjs = allPosts[i].content;
@@ -78,8 +86,11 @@ window.onload = async function(){
             // Add data to article HTML
             article += '<article id="' + id + '" class="inner-panel">';
             article += '<h3 class="post-title"><a class="title-link" href="./post/' + id + '">' + titles + '</a></h3>';
-            article += '<h4 class="entry-date">' + dateWritten + '&ensp;—&ensp;<span class="type">' + type + '</span></h4>';
-            // article += '<p class="type">' + type + '</p>';
+            article += '<h4 class="entry-date">' + dateWritten;
+            if (dateEdited !== '1st Jan 1970'){
+                article += '<span class="edit-date">&ensp;(ed. ' + dateEdited + ')</span>';
+            }
+            article += '&ensp;—&ensp;<span class="type">' + type + '</span></h4>';
             article += '<div class="content">';
             paragraphs.forEach((paragraph) => {
                 article += '<p class="paragraph">' + paragraph + '</p>';
