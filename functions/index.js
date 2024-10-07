@@ -45,10 +45,18 @@ app.use((req, res, next) => {
     next();
   });
 
-app.get("/getPosts", async (req, res)=>{
+app.get("/post/:uid", (req, res) => {
+    res.sendFile("post.html", {root : __dirname + "/../public/"});
+});
+
+app.get("/getPosts", async (req, res) => {
     const documents = await client.getAllByType("post");
-    console.log(documents);
     res.send(documents);
+});
+
+app.get("/getPost/post/:uid", async (req, res) => {
+    const document = await client.getByUID("post", req.params.uid);
+    res.send(document);
 });
 
 exports.mlw_app = functions.https.onRequest(app);
