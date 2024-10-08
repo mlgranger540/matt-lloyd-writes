@@ -166,6 +166,22 @@ hr {
     margin: auto;
 }
 
+/* Bookshelves */
+
+.book-panel {
+    display: inline-block;
+    width: 30%;
+    background-color: #a6cdde;
+}
+
+#book-tile-1 {
+    margin-right: 4%;
+}
+
+#book-tile-3 {
+    margin-left: 4%;
+}
+
 /* Sidebar */
 
 .side-list {

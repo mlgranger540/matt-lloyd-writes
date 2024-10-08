@@ -53,10 +53,10 @@ window.onload = async function(){
             let number = allPosts[i].number;
             // Loop through title objects
             let titleObjs = allPosts[i].title;
-            let titles = [];
-            titleObjs.forEach((title) => {
-                title = title.text;
-                titles.push(title);
+            let title = [];
+            titleObjs.forEach((ttl) => {
+                ttl = ttl.text;
+                title.push(ttl);
             });
             let dateWritten = allPosts[i].dateWritten;
             let dateEdited = allPosts[i].dateEdited;
@@ -85,7 +85,7 @@ window.onload = async function(){
 
             // Add data to article HTML
             article += '<article id="' + id + '" class="inner-panel">';
-            article += '<h3 class="post-title"><a class="title-link" href="./post/' + id + '">' + titles + '</a></h3>';
+            article += '<h3 class="post-title"><a class="title-link" href="./post/' + id + '">' + title + '</a></h3>';
             article += '<h4 class="entry-date">' + dateWritten;
             if (dateEdited !== '1st Jan 1970'){
                 article += '<span class="edit-date">&ensp;(ed. ' + dateEdited + ')</span>';
@@ -109,7 +109,7 @@ window.onload = async function(){
             article += '<div><hr></div>';
 
             // Create quick nav links
-            quickNavLinks += '<li><a href="#' + id + '">' + titles + '</a></li>';
+            quickNavLinks += '<li><a href="#' + id + '">' + title + '</a></li>';
         }
         articleDiv.innerHTML = article;
         quickNav.innerHTML = quickNavLinks;

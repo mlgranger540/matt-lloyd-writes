@@ -54,11 +54,23 @@ app.get("/writing", (req, res) => {
     res.sendFile("writing.html", {root : __dirname + "/../public/"});
 });
 
+app.get("/my-books", (req, res) => {
+    res.sendFile("my-books.html", {root : __dirname + "/../public/"});
+});
+
+app.get("/about-the-author", (req, res) => {
+    res.sendFile("about.html", {root : __dirname + "/../public/"});
+});
+
+app.get("/stats-for-nerds", (req, res) => {
+    res.sendFile("stats.html", {root : __dirname + "/../public/"});
+});
+
 app.get("/post/:uid", (req, res) => {
     res.sendFile("post.html", {root : __dirname + "/../public/"});
 });
 
-// Get Routes for Prismic Posts
+// GET Routes for Prismic Data
 app.get("/getPosts", async (req, res) => {
     const documents = await client.getAllByType("post");
     res.send(documents);
@@ -67,6 +79,11 @@ app.get("/getPosts", async (req, res) => {
 app.get("/getPost/post/:uid", async (req, res) => {
     const document = await client.getByUID("post", req.params.uid);
     res.send(document);
+});
+
+app.get("/getAllBookDetails", async (req, res) => {
+    const documents = await client.getAllByType("book_details");
+    res.send(documents);
 });
 
 exports.mlw_app = functions.https.onRequest(app);
