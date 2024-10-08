@@ -43,8 +43,9 @@ app.use((req, res, next) => {
         prismic,
     };
     next();
-  });
+});
 
+// Page Routes
 app.get("/", (req, res) => {
     res.sendFile("index.html", {root : __dirname + "/../public/"});
 });
@@ -57,6 +58,7 @@ app.get("/post/:uid", (req, res) => {
     res.sendFile("post.html", {root : __dirname + "/../public/"});
 });
 
+// Get Routes for Prismic Posts
 app.get("/getPosts", async (req, res) => {
     const documents = await client.getAllByType("post");
     res.send(documents);
