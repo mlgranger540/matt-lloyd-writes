@@ -168,19 +168,34 @@ hr {
 
 /* Bookshelves */
 
-.book-panel {
-    display: inline-block;
-    width: 30%;
-    background-color: #a6cdde;
+.bookshelf {
+    margin-bottom: 3%;
 }
 
 #book-tile-1 {
-    margin-right: 4%;
+    padding: 0 2% 0 0;
+}
+
+#book-tile-2 {
+    padding: 0 1%;
 }
 
 #book-tile-3 {
-    margin-left: 4%;
+    padding: 0 0 0 2%;
 }
+
+.book-panel {
+    display: inline-block;
+    width: 100%;
+    margin: auto;
+    padding: 7%;
+    background-color: #a6cdde;
+}
+
+.book-title {
+    padding: 0.9rem 0;
+}
+
 
 /* Sidebar */
 

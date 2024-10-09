@@ -7,22 +7,24 @@ window.onload = async function(){
         // Loop through book details data from Prismic and add to book object
         // then add object to books array
         let allBooks = [];
-        res.forEach((i) => {
+        res.forEach((x) => {
             let book = {};
-            let id = i.uid;
-            let title = i.data.book_title;
-            let rating = i.data.rating;
-            let genres = i.data.genres.split(',');
-            let themes = i.data.themes.split(',');
-            let archetype = i.data.story_archetype;
-            let mainChars = i.data.main_characters.split(',');
-            let majChars = i.data.major_characters.split(',');
-            let summary = i.data.summary;
-            let pov = i.data.pov;
-            let tense = i.data.tense;
-            let wordCount = i.data.word_count;
-            let pageCount = i.data.page_count;
-            let status = i.data.status;
+            let id = x.uid;
+            let title = x.data.book_title;
+            let rating = x.data.rating;
+            let genres = x.data.genres;
+            let themes = x.data.themes;
+            let archetype = x.data.story_archetype;
+            let mainChars = x.data.main_characters;
+            let majChars = x.data.major_characters;
+            let summary = x.data.summary;
+            let pov = x.data.pov;
+            let tense = x.data.tense;
+            let rawWordCount = x.data.word_count;
+            let wordCount = commaify(rawWordCount);
+            let rawPageCount = x.data.page_count;
+            let pageCount = commaify(rawPageCount);
+            let status = x.data.status;
             book.id = id;
             book.title = title;
             book.rating = rating;
@@ -40,49 +42,95 @@ window.onload = async function(){
             allBooks.push(book);
         });
         
-        // Add posts to post section
+        // Add books to book section
         let booksDiv = document.getElementById("books-div");
-        let bookTile = '';
-        // Loop to add books to page
-        allBooks.forEach((book) => {
-            console.log(book);
-            let id = book.id;
+        let bookshelf = '';
+        let noOfBooks = allBooks.length;
+        bookshelf += '<div class="bookshelf row">';
+        // Loop to add three books to each shelf
+        let j = 1;
+        for (let i = 0; i < noOfBooks; i++) {
+            let bookTile = '';
+            // Check if three books have been added
+            // if so, start new bookshelf
+            if (j === 4) {
+                bookshelf += '</div><div class="bookshelf row">';
+                j = 1;
+            }
+            let id = allBooks[i].id;
             // Loop through title objects
-            let titleObjs = book.title;
+            let titleObjs = allBooks[i].title;
             let title = [];
             titleObjs.forEach((ttl) => {
                 ttl = ttl.text;
                 title.push(ttl);
             });
-            let rating = book.rating;
-            let genres = book.genres;
-            let themes = book.themes;
+            let rating = allBooks[i].rating;
+            let genres = allBooks[i].genres;
+            let themes = allBooks[i].themes;
             // Loop through archetype objects
-            let archeObjs = book.archetype;
+            let archeObjs = allBooks[i].archetype;
             let archetypes = [];
             archeObjs.forEach((arche) => {
                 arche = arche.text;
                 archetypes.push(arche);
             });
-            let mainChars = book.mainChars;
-            let majChars = book.majorChars;
+            let mainChars = allBooks[i].mainChars;
+            let majChars = allBooks[i].majChars;
             // Loop through summary objects
-            let summObjs = book.summary;
+            let summObjs = allBooks[i].summary;
             let summary = [];
             summObjs.forEach((summ) => {
                 summ = summ.text;
                 summary.push(summ);
             });
-            let pov = book.pov;
-            let tense = book.tense;
-            let wordCount = book.wordCount;
-            let pageCount = book.pageCount;
-            let status = book.status;
+            let pov = allBooks[i].pov;
+            let tense = allBooks[i].tense;
+            let wordCount = allBooks[i].wordCount;
+            let pageCount = allBooks[i].pageCount;
+            let status = allBooks[i].status;
 
-            // Add data to article HTML
-            bookTile += '<article id="' + id + '" class="inner-panel">';
-            bookTile += '<h3 class="post-title"><a class="title-link" href="./post/' + id + '">' + title + '</a></h3>';
-        });
-        // booksDiv.innerHTML = bookTile;
-    })
-}
+            // Add to book tile HTML
+            bookTile += '<div id="book-tile-' + j + '" class="col-4">';
+            bookTile += '<div id=">' + id + '" class="book-panel">';
+            bookTile += '<h3 class="book-title">' + title + '</h3>';
+            bookTile += '<p class="book-details">Rating: ' + rating + '</p>';
+            bookTile += '<p class="book-details">Genres: ' + genres + '</p>';
+            bookTile += '<p class="book-details">Themes: ' + themes + '</p>';
+            bookTile += '<p class="book-details">Story Archetype: ' + archetypes + '</p>';
+            bookTile += '<p class="book-details">POV/Tense: ' + pov + ' / ' + tense + '</p>';
+            bookTile += '<p class="book-details">Main Characters: ' + mainChars + '</p>';
+            bookTile += '<p class="book-details">Major Characters: ' + majChars + '</p>';
+            bookTile += '<p class="book-details">Summary: ' + summary + '</p>';
+            bookTile += '<hr>'
+            bookTile += '<p class="book-details">Word Count: ' + wordCount + '</p>';
+            bookTile += '<p class="book-details">Page Count: ' + pageCount + '</p>';
+            bookTile += '<p class="book-details">Status: ' + status + '</p>';
+            bookTile += '</div></div>'
+
+            // Add book tile to bookshelf
+            bookshelf += bookTile;
+            j++;
+        };
+        bookshelf += '</div>';
+        booksDiv.innerHTML = bookshelf;
+    });
+};
+
+function commaify(num){
+    let numStr = num.toString();
+    if (numStr / 1000000 >1){
+        var numEnd = numStr.slice(-3);
+        var numMid = numStr.slice(-6,-3);
+        var numBeg = numStr.slice(0,-6);
+        var commaNum = numBeg + ',' + numMid + ',' + numEnd;
+        return(commaNum);
+    } else if (numStr / 1000 >1){
+        var numEnd = numStr.slice(-3);
+        var numBeg = numStr.slice(0,-3);
+        var commaNum = numBeg + ',' + numEnd;
+        return commaNum;
+    } else {
+        return numStr;
+    }
+};
