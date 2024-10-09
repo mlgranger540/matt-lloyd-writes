@@ -4,6 +4,8 @@ window.onload = async function(){
         // You parse the data into a useable format using `.json()`
         return response.json();
     }).then(function(res) {
+        // Sort book data alphabetically by uid
+        res.sort((a,b)=>{return a.uid.localeCompare(b.uid)});
         // Loop through book details data from Prismic and add to book object
         // then add object to books array
         let allBooks = [];
@@ -118,18 +120,26 @@ window.onload = async function(){
 };
 
 function commaify(num){
+    // Convert number to string
     let numStr = num.toString();
-    if (numStr / 1000000 >1){
+    // Check if number has at least 7 digits
+    if (numStr / 1000000 > 1){
+        // Slice string in groups of 3
         var numEnd = numStr.slice(-3);
         var numMid = numStr.slice(-6,-3);
         var numBeg = numStr.slice(0,-6);
+        // Recombine with comma separators
         var commaNum = numBeg + ',' + numMid + ',' + numEnd;
         return(commaNum);
-    } else if (numStr / 1000 >1){
+    // Check if number has at least 4 digits
+    } else if (numStr / 1000 > 1){
+        // Slice string in groups of 3
         var numEnd = numStr.slice(-3);
         var numBeg = numStr.slice(0,-3);
+        // Recombine with comma separator
         var commaNum = numBeg + ',' + numEnd;
         return commaNum;
+    // If number has less than 4 digits, no change
     } else {
         return numStr;
     }
