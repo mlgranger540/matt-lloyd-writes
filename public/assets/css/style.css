@@ -69,13 +69,14 @@ h1 {
     --bs-nav-link-color: #a6dff8;
     font-family: Cinzel, 'Times New Roman', Times, serif;
     font-size: 1.6rem;
-    transition-property: color, background-color, border-bottom;
+    transition: color, background-color, border-bottom;
 }
 
 .nav-link:hover {
     background-color: #19214e;
+    --bs-nav-tabs-link-hover-border-color: #19214e;
     --bs-nav-link-hover-color: #d6f1fd;
-    border: none;
+    border-bottom: #d6f1fd;
 }
 
 .active {
