@@ -48,7 +48,7 @@ As it says on the tin, this page will include all the stats for my work - includ
 
 - Different sections for each type of post on the writing page
 
-- Change the sort of things i.e. by title, genres, word count etc.
+- Ability to sort/filter things i.e. by title, genres/tags, word count etc.
 
 ## Content Management System
 
@@ -84,13 +84,15 @@ None... so far ;)
 
 ### Code
 
-This [stackoverflow post](https://stackoverflow.com/questions/60237167/firebase-functions-https-403-forbidden/69158098#69158098) helped fix a 403 Forbidden error when requesting my content from Prismic on the live deployed site, which was due to Firebase not automatically allowing Cloud Function invoking permissions to all users.
+This [Stack Overflow post](https://stackoverflow.com/questions/60237167/firebase-functions-https-403-forbidden/69158098#69158098) helped fix a 403 Forbidden error when requesting my content from Prismic on the live deployed site, which was due to Firebase not automatically allowing Cloud Function invoking permissions to all users.
 
 I used the [Express Routing docs](https://expressjs.com/en/guide/routing.html) as well as the [Prismic Express docs](https://prismic.io/docs/express-fetch) to help with setting up page routing and get requests for my posts from Prismic.
 
-These stackoverflow posts [[1](https://stackoverflow.com/questions/4313841/insert-a-string-at-a-specific-index), [2](https://stackoverflow.com/questions/1798465/remove-last-3-characters-of-a-string)] as well as the [W3 Schools Guidance](https://www.w3schools.com/jsref/jsref_slice_string.asp) helped when I was trying to create a function to add thousand separators to large numbers.
+This [Stack Overflow post](https://stackoverflow.com/questions/62380765/how-to-remove-html-url-endings-and-configure-redirects-in-firebase) helped when trying to remove .html from URLs in the deployed site (`./writing` etc worked in local but not on the live site).
 
-This [stackoverflow post](https://stackoverflow.com/questions/8900732/sort-objects-in-an-array-alphabetically-on-one-property-of-the-array) helped when trying to sort an array of objects alphabetically by one of the properties.
+These Stack Overflow posts [[1](https://stackoverflow.com/questions/4313841/insert-a-string-at-a-specific-index), [2](https://stackoverflow.com/questions/1798465/remove-last-3-characters-of-a-string)] as well as the [W3 Schools Guidance](https://www.w3schools.com/jsref/jsref_slice_string.asp) helped when I was trying to create a function to add thousand separators to large numbers.
+
+This [Stack Overflow post](https://stackoverflow.com/questions/8900732/sort-objects-in-an-array-alphabetically-on-one-property-of-the-array) helped when trying to sort an array of objects alphabetically by one of the properties.
 
 ### Content and Media
 
