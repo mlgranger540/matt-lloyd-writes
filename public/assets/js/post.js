@@ -92,9 +92,14 @@ window.onload = async function(){
         article += '</article>';
         article += '<div><hr></div>';
         articleDiv.innerHTML = article;
-    })
+    });
+
+    // Add current year to copyright line
+    var year = new Date().getFullYear();
+    document.getElementById("year").innerHTML = year;
 };
 
+// Add ordinal suffixes to numbers in date
 function ordinalSuffix(day){
     if (day % 10 == 1 && day != 11){
         return day + 'st';

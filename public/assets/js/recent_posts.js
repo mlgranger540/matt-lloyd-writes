@@ -68,13 +68,6 @@ window.onload = async function(){
                 paragraph = paragraph.text;
                 paragraphs.push(paragraph);
             });
-            // Loop through description objects
-            let descObjs = allPosts[i].description;
-            let descParas = [];
-            descObjs.forEach((line) => {
-                line = line.text;
-                descParas.push(line);
-            });
             // Loop through tags and add hash
             let tags = allPosts[i].tags;
             let hashtags = [];
@@ -95,7 +88,6 @@ window.onload = async function(){
             // Loop through paragraphs and add first four
             // But when encountering empty line, break
             for (let i = 0; i < 4; i++) {
-                console.log(paragraphs[i]);
                 if (paragraphs[i] === " ") {
                     break;
                 } else {
@@ -119,8 +111,13 @@ window.onload = async function(){
         articleDiv.innerHTML = article;
         quickNav.innerHTML = quickNavLinks;
     });
+
+    // Add current year to copyright line
+    var year = new Date().getFullYear();
+    document.getElementById("year").innerHTML = year;
 };
 
+// Add ordinal suffixes to numbers in date
 function ordinalSuffix(day){
     if (day % 10 == 1 && day != 11){
         return day + 'st';
