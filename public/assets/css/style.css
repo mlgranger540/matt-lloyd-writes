@@ -162,6 +162,20 @@ hr {
     margin: 2.2rem 0;
 }
 
+.tbc-dots {
+    letter-spacing: 0.25rem;
+}
+
+.read-more {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 1.05rem;
+}
+
+.read-more-link:hover {
+    color: #fff;
+}
+
 .short-separator {
     width: 15%;
     margin: auto;

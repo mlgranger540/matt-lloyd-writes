@@ -69,7 +69,7 @@ window.onload = async function(){
 
         // Add data to article HTML
         article += '<article id="' + id + '" class="inner-panel">';
-        article += '<h3 class="post-title"><a class="title-link" href="./post/' + id + '">' + titles + '</a></h3>';
+        article += '<h3 class="post-title"><a class="title-link" href="/post/' + id + '">' + titles + '</a></h3>';
         article += '<h4 class="entry-date">' + dateWritten;
         if (dateEdited !== '1st Jan 1970'){
             article += '<span class="edit-date">&ensp;(ed. ' + dateEdited + ')</span>';

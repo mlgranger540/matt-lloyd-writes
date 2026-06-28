@@ -81,25 +81,30 @@ window.onload = async function(){
             tags.forEach((tag) => {
                 tag = '#' + tag;
                 hashtags.push(tag);
-            })
+            });
 
             // Add data to article HTML
             article += '<article id="' + id + '" class="inner-panel">';
-            article += '<h3 class="post-title"><a class="title-link" href="./post/' + id + '">' + title + '</a></h3>';
+            article += '<h3 class="post-title"><a class="title-link" href="/post/' + id + '">' + title + '</a></h3>';
             article += '<h4 class="entry-date">' + dateWritten;
             if (dateEdited !== '1st Jan 1970'){
                 article += '<span class="edit-date">&ensp;(ed. ' + dateEdited + ')</span>';
             }
             article += '&ensp;—&ensp;<span class="type">' + type + '</span></h4>';
             article += '<div class="content">';
-            paragraphs.forEach((paragraph) => {
-                article += '<p class="paragraph">' + paragraph + '</p>';
-            });
+            // Loop through paragraphs and add first four
+            // But when encountering empty line, break
+            for (let i = 0; i < 4; i++) {
+                console.log(paragraphs[i]);
+                if (paragraphs[i] === " ") {
+                    break;
+                } else {
+                    article += '<p class="paragraph">' + paragraphs[i] + '</p>';
+                };
+            };
+            article += '<p class="tbc-dots">...</p>'
             article += '</div>';
-            article += '<div class="short-separator"><hr></div>';
-            descParas.forEach((paragraph) => {
-                article += '<p class="description">' + paragraph + '</p>';
-            });
+            article += '<p class="read-more"><a class="read-more-link" href="/post/' + id + '">Read More</a></p>';
             article += '<p class="tag">';
             hashtags.forEach((tag) => {
                 article += tag + ' &ensp;';
