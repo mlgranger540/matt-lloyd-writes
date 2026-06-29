@@ -83,6 +83,7 @@ h1 {
     --bs-nav-tabs-link-active-bg: #dcf0f9;
 }
 
+
 /* Panels */
 
 .panel {
@@ -210,7 +211,6 @@ hr {
 .book-title {
     padding: 0.9rem 0;
 }
-
 
 /* Sidebar */
 

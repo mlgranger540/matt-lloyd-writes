@@ -4,7 +4,19 @@
         "cleanUrls": true,
         "rewrites": [
             {
-                "source": "/route",
+                "source": "/post/**",
+                "destination": "/post.html"
+            },
+            {
+                "source": "/getPost/**",
+                "function": "mlw_app"
+            },
+            {
+                "source": "/getPosts",
+                "function": "mlw_app"
+            },
+            {
+                "source": "/getAllBookDetails",
                 "function": "mlw_app"
             },
             {

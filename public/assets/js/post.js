@@ -90,13 +90,12 @@ window.onload = async function(){
         });
         article += '</p>';
         article += '</article>';
-        article += '<div><hr></div>';
         articleDiv.innerHTML = article;
     });
 
     // Add current year to copyright line
     var year = new Date().getFullYear();
-    document.getElementById("year").innerHTML = year;
+    document.getElementById("year").innerHTML = year + " ";
 };
 
 // Add ordinal suffixes to numbers in date
