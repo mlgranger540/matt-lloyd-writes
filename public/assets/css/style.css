@@ -221,8 +221,17 @@ hr {
     background-color: #a6cdde;
 }
 
-.book-title {
-    padding: 0.9rem 0;
+.book-cover {
+    max-width: 100%;
+}
+
+.title-and-series {
+    margin: 1.25rem 0 1rem 0;
+}
+
+.series {
+    text-transform: uppercase;
+    margin: 0;
 }
 
 

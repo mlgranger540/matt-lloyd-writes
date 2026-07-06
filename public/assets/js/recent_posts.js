@@ -183,7 +183,7 @@ window.onload = async function(){
                 currentPage--;
                 displayPage(currentPage);
                 updatePagination();
-                window.scrollTo(0, 0);
+                articleDiv.scrollIntoView();
             }
         });
 
@@ -193,7 +193,7 @@ window.onload = async function(){
                 currentPage++;
                 displayPage(currentPage);
                 updatePagination();
-                window.scrollTo(0, 0);
+                articleDiv.scrollIntoView();
             }
         });
 
@@ -206,7 +206,7 @@ window.onload = async function(){
                     currentPage = page;
                     displayPage(currentPage);
                     updatePagination();
-                    window.scrollTo(0, 0);
+                    articleDiv.scrollIntoView();
                 }
             });
         });

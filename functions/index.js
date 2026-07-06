@@ -81,8 +81,8 @@ app.get("/getPost/post/:uid", async (req, res) => {
     res.send(document);
 });
 
-app.get("/getAllBookDetails", async (req, res) => {
-    const documents = await client.getAllByType("book_details");
+app.get("/getAllBooks", async (req, res) => {
+    const documents = await client.getAllByType("book");
     res.send(documents);
 });
 

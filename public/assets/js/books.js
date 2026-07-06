@@ -1,25 +1,32 @@
 window.onload = async function(){
-    const bookData = await fetch("/getAllBookDetails").then(function(response) {
+    const bookData = await fetch("/getAllBooks").then(function(response) {
         // The response is a Response instance.
         // You parse the data into a useable format using `.json()`
         return response.json();
     }).then(function(res) {
         // Sort book data alphabetically by uid
         res.sort((a,b)=>{return a.uid.localeCompare(b.uid)});
-        // Loop through book details data from Prismic and add to book object
+        // Loop through book data from Prismic and add to book object
         // then add object to books array
         let allBooks = [];
         res.forEach((x) => {
+            console.log(x);
             let book = {};
             let id = x.uid;
+            let coverSrc = x.data.cover.url;
+            let coverAlt = x.data.cover.alt;
             let title = x.data.book_title;
+            let seriesName = x.data.series_name;
+            let bookNumber = x.data.book_number;
+            let audience = x.data.audience;
             let rating = x.data.rating;
             let genres = x.data.genres;
             let themes = x.data.themes;
             let archetype = x.data.story_archetype;
             let mainChars = x.data.main_characters;
             let majChars = x.data.major_characters;
-            let summary = x.data.summary;
+            let antagonists = x.data.antagonists;
+            let synopsis = x.data.synopsis;
             let pov = x.data.pov;
             let tense = x.data.tense;
             let rawWordCount = x.data.word_count;
@@ -28,14 +35,20 @@ window.onload = async function(){
             let pageCount = commaify(rawPageCount);
             let status = x.data.status;
             book.id = id;
+            book.coverSrc = coverSrc;
+            book.coverAlt = coverAlt;
             book.title = title;
+            book.seriesName = seriesName;
+            book.bookNumber = bookNumber;
+            book.audience = audience;
             book.rating = rating;
             book.genres = genres;
             book.themes = themes;
             book.archetype = archetype;
             book.mainChars = mainChars;
             book.majChars = majChars;
-            book.summary = summary;
+            book.antagonists = antagonists;
+            book.synopsis = synopsis;
             book.pov = pov;
             book.tense = tense;
             book.wordCount = wordCount;
@@ -60,6 +73,8 @@ window.onload = async function(){
                 j = 1;
             }
             let id = allBooks[i].id;
+            let coverSrc = allBooks[i].coverSrc;
+            let coverAlt = allBooks[i].coverAlt;
             // Loop through title objects
             let titleObjs = allBooks[i].title;
             let title = [];
@@ -67,24 +82,22 @@ window.onload = async function(){
                 ttl = ttl.text;
                 title.push(ttl);
             });
+            let seriesName = allBooks[i].seriesName;
+            let bookNumber = allBooks[i].bookNumber;
+            let audience = allBooks[i].audience;
             let rating = allBooks[i].rating;
             let genres = allBooks[i].genres;
             let themes = allBooks[i].themes;
-            // Loop through archetype objects
-            let archeObjs = allBooks[i].archetype;
-            let archetypes = [];
-            archeObjs.forEach((arche) => {
-                arche = arche.text;
-                archetypes.push(arche);
-            });
+            let archetype = allBooks[i].archetype;
             let mainChars = allBooks[i].mainChars;
             let majChars = allBooks[i].majChars;
-            // Loop through summary objects
-            let summObjs = allBooks[i].summary;
-            let summary = [];
-            summObjs.forEach((summ) => {
-                summ = summ.text;
-                summary.push(summ);
+            let antagonists = allBooks[i].antagonists;
+            // Loop through synopsis objects
+            let synopsisObjs = allBooks[i].synopsis;
+            let synopsis = [];
+            synopsisObjs.forEach((syn) => {
+                syn = syn.text;
+                synopsis.push(syn);
             });
             let pov = allBooks[i].pov;
             let tense = allBooks[i].tense;
@@ -95,15 +108,22 @@ window.onload = async function(){
             // Add to book tile HTML
             bookTile += '<div id="book-tile-' + j + '" class="col-4">';
             bookTile += '<div id=">' + id + '" class="book-panel">';
-            bookTile += '<h3 class="book-title">' + title + '</h3>';
+            bookTile += '<img class="book-cover" src="' + coverSrc + '" alt="' + coverAlt + '"></img>';
+            bookTile += '<div class="title-and-series"><h3 class="book-title">' + title + '</h3>';
+            if (seriesName !== null) {
+                bookTile += '<p class="series">Book ' + bookNumber + ' – ' + seriesName + '</p>';
+            }
+            bookTile += '</div>';
+            bookTile += '<p class="book-details">Audience: ' + audience + '</p>';
             bookTile += '<p class="book-details">Rating: ' + rating + '</p>';
             bookTile += '<p class="book-details">Genres: ' + genres + '</p>';
             bookTile += '<p class="book-details">Themes: ' + themes + '</p>';
-            bookTile += '<p class="book-details">Story Archetype: ' + archetypes + '</p>';
+            bookTile += '<p class="book-details">Story Archetype: ' + archetype + '</p>';
+            bookTile += '<p class="book-details">Synopsis: ' + synopsis + '</p>';
             bookTile += '<p class="book-details">POV/Tense: ' + pov + ' / ' + tense + '</p>';
             bookTile += '<p class="book-details">Main Characters: ' + mainChars + '</p>';
             bookTile += '<p class="book-details">Major Characters: ' + majChars + '</p>';
-            bookTile += '<p class="book-details">Summary: ' + summary + '</p>';
+            bookTile += '<p class="book-details">Antagonists: ' + antagonists + '</p>';
             bookTile += '<hr>'
             bookTile += '<p class="book-details">Word Count: ' + wordCount + '</p>';
             bookTile += '<p class="book-details">Page Count: ' + pageCount + '</p>';
