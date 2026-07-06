@@ -45,7 +45,7 @@ window.onload = async function(){
         let quickNav = document.getElementById("quick-nav");
         let article = '';
         let quickNavLinks = '';
-        // Loop to add five most recent posts to page
+        // Loop to add all posts to page
         for (let i = 0; i < allPosts.length; i++) {
             let id = allPosts[i].id;
             // Loop through title objects
@@ -105,10 +105,10 @@ window.onload = async function(){
             // Create quick nav links
             quickNavLinks += '<li class="quick-nav-link"><a href="#' + id + '">' + title + '</a></li>';
         }
-        // Add pagination div
+        // Create pagination div
         let paginationDiv = '';
-        paginationDiv += '<div id="pagination" class="pagination"><a id="prev" href="#">Previous</a>';
-        paginationDiv += '<div id="page-link-div"></div><a id="next" href="#">Next</a>';
+        paginationDiv += '<div id="pagination" class="pagination"><button id="prev" class="pagination-link" href="#">Previous</button>';
+        paginationDiv += '<div id="page-link-div" class="pagination-link"></div><button id="next" class="pagination-link" href="#">Next</button>';
         paginationDiv += '<div class="break"></div><div id="pagination-row-2"><p id="page-numbers"></p></div>';
 
         // Add articles, pagination and quick nav links to page
@@ -121,6 +121,7 @@ window.onload = async function(){
         const prevButton = document.getElementById('prev');
         const nextButton = document.getElementById('next');
         const pageNumbers = document.getElementById('page-numbers');
+        // Make arrays from posts and quick nav links
         const posts = Array.from(articleDiv.getElementsByClassName('inner-panel'));
         const quickNavArray = Array.from(quickNav.getElementsByClassName('quick-nav-link'));
 
@@ -131,7 +132,7 @@ window.onload = async function(){
         // Add page number links for number of pages
         let pageLinkDiv = document.getElementById('page-link-div');
         for (let i = 0; i < totalPages; i++) {
-            pageLinkDiv.innerHTML += '<a class="page-link" href="#" data-page="' + (i+1) + '">' + (i+1) + '</a>';
+            pageLinkDiv.innerHTML += '<button class="pagination-link page-link" href="#" data-page="' + (i+1) + '">' + (i+1) + '</button>';
         }
         const pageLinks = document.querySelectorAll('.page-link');
 
@@ -158,29 +159,41 @@ window.onload = async function(){
         // Function to update pagination buttons and page numbers 
         function updatePagination() {
             pageNumbers.textContent = `Page ${currentPage} of ${totalPages}`;
-            prevButton.disabled = currentPage === 1;
-            nextButton.disabled = currentPage === totalPages;
+            // Toggle Previous/Next buttons disabled when there are no more pages
+            if (currentPage === 1) {
+                prevButton.disabled = true;
+            } else {
+                prevButton.disabled = false;
+            }
+            if (currentPage === totalPages) {
+                nextButton.disabled = true;
+            } else {
+                nextButton.disabled = false;
+            }
+            // Make page link show active for current page
             pageLinks.forEach((link) => {
                 const page = parseInt(link.getAttribute('data-page')); 
                 link.classList.toggle('active', page === currentPage); 
             });
         }
 
-        // Event listener for "Previous" button
+        // Event listener for Previous button
         prevButton.addEventListener('click', () => {
             if (currentPage > 1) {
                 currentPage--;
                 displayPage(currentPage);
                 updatePagination();
+                window.scrollTo(0, 0);
             }
         });
 
-        // Event listener for "Next" button
+        // Event listener for Next button
         nextButton.addEventListener('click', () => {
             if (currentPage < totalPages) {
                 currentPage++;
                 displayPage(currentPage);
                 updatePagination();
+                window.scrollTo(0, 0);
             }
         });
 
@@ -193,6 +206,7 @@ window.onload = async function(){
                     currentPage = page;
                     displayPage(currentPage);
                     updatePagination();
+                    window.scrollTo(0, 0);
                 }
             });
         });
