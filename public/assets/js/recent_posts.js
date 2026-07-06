@@ -12,7 +12,6 @@ window.onload = async function(){
         res.forEach((i) => {
             let post = {};
             let id = i.uid;
-            let number = i.data.number;
             let title = i.data.title;
             let rawDate = new Date(i.data.date_written);
             let dayNum = rawDate.getDate();
@@ -31,7 +30,6 @@ window.onload = async function(){
             let type = i.data.type;
             let tags = i.data.tags.split(',');
             post.id = id;
-            post.number = number;
             post.title = title;
             post.dateWritten = dateWritten;
             post.dateEdited = dateEdited;
@@ -48,9 +46,8 @@ window.onload = async function(){
         let article = '';
         let quickNavLinks = '';
         // Loop to add five most recent posts to page
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < allPosts.length; i++) {
             let id = allPosts[i].id;
-            let number = allPosts[i].number;
             // Loop through title objects
             let titleObjs = allPosts[i].title;
             let title = [];
@@ -102,20 +99,128 @@ window.onload = async function(){
                 article += tag + ' &ensp;';
             });
             article += '</p>';
-            article += '</article>';
             article += '<div><hr></div>';
+            article += '</article>';
 
             // Create quick nav links
-            quickNavLinks += '<li><a href="#' + id + '">' + title + '</a></li>';
+            quickNavLinks += '<li class="quick-nav-link"><a href="#' + id + '">' + title + '</a></li>';
         }
+        // Add pagination div
+        let paginationDiv = '';
+        paginationDiv += '<div id="pagination" class="pagination"><a id="prev" href="#">Previous</a>';
+        paginationDiv += '<div id="page-link-div"></div><a id="next" href="#">Next</a>';
+        paginationDiv += '<div class="break"></div><div id="pagination-row-2"><p id="page-numbers"></p></div>';
+
+        // Add articles, pagination and quick nav links to page
         articleDiv.innerHTML = article;
+        articleDiv.innerHTML += paginationDiv;
         quickNav.innerHTML = quickNavLinks;
-    });
+
+        const postsPerPage = 5;
+        const pagination = document.getElementById('pagination');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        const pageNumbers = document.getElementById('page-numbers');
+        const posts = Array.from(articleDiv.getElementsByClassName('inner-panel'));
+        const quickNavArray = Array.from(quickNav.getElementsByClassName('quick-nav-link'));
+
+        // Calculate the total number of pages 
+        const totalPages = Math.ceil(posts.length / postsPerPage);
+        let currentPage = 1;
+
+        // Add page number links for number of pages
+        let pageLinkDiv = document.getElementById('page-link-div');
+        for (let i = 0; i < totalPages; i++) {
+            pageLinkDiv.innerHTML += '<a class="page-link" href="#" data-page="' + (i+1) + '">' + (i+1) + '</a>';
+        }
+        const pageLinks = document.querySelectorAll('.page-link');
+
+        // Function to display posts for a specific page 
+        function displayPage(page) {
+            const startIndex = (page - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+            posts.forEach((post, index) => {
+                if (index >= startIndex && index < endIndex) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+            quickNavArray.forEach((link, index) => {
+                if (index >= startIndex && index < endIndex) {
+                    link.style.display = 'block';
+                } else {
+                    link.style.display = 'none';
+                }
+            });
+        }
+
+        // Function to update pagination buttons and page numbers 
+        function updatePagination() {
+            pageNumbers.textContent = `Page ${currentPage} of ${totalPages}`;
+            prevButton.disabled = currentPage === 1;
+            nextButton.disabled = currentPage === totalPages;
+            pageLinks.forEach((link) => {
+                const page = parseInt(link.getAttribute('data-page')); 
+                link.classList.toggle('active', page === currentPage); 
+            });
+        }
+
+        // Event listener for "Previous" button
+        prevButton.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                displayPage(currentPage);
+                updatePagination();
+            }
+        });
+
+        // Event listener for "Next" button
+        nextButton.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayPage(currentPage);
+                updatePagination();
+            }
+        });
+
+        // Event listener for page number buttons
+        pageLinks.forEach((link) => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = parseInt(link.getAttribute('data-page'));
+                if (page !== currentPage) {
+                    currentPage = page;
+                    displayPage(currentPage);
+                    updatePagination();
+                }
+            });
+        });
+
+        // Initial page load 
+        displayPage(currentPage); 
+        updatePagination();
+    })
+
+    var sidebar = document.getElementById("side-panel-1");
+    var offsetTop = sidebar.offsetTop;
+    
+    // When scrolling past sidebar, make sticky
+    // When scrolling back up, unstick
+    function stick(){
+        if (window.scrollY >= offsetTop) {
+            sidebar.classList.add("sticky");
+        } else {
+            sidebar.classList.remove("sticky");
+        }
+    }
+
+    window.addEventListener("scroll", stick);
 
     // Add current year to copyright line
     var year = new Date().getFullYear();
     document.getElementById("year").innerHTML = year + " ";
-};
+}
 
 // Add ordinal suffixes to numbers in date
 function ordinalSuffix(day){
@@ -128,4 +233,5 @@ function ordinalSuffix(day){
     } else {
         return day + 'th';
     }
-};
+}
+

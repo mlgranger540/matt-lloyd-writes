@@ -1,5 +1,5 @@
 window.onload = async function(){
-    const postsData = await fetch(`/getPost${window.location.pathname}`).then(function(response) {
+    const postData = await fetch(`/getPost${window.location.pathname}`).then(function(response) {
         // The response is a Response instance.
         // You parse the data into a useable format using `.json()`
         return response.json();
@@ -65,7 +65,7 @@ window.onload = async function(){
         tags2.forEach((tag) => {
             tag = '#' + tag;
             hashtags.push(tag);
-        })
+        });
 
         // Add data to article HTML
         article += '<article id="' + id + '" class="inner-panel">';
@@ -91,12 +91,12 @@ window.onload = async function(){
         article += '</p>';
         article += '</article>';
         articleDiv.innerHTML = article;
-    });
+    })
 
     // Add current year to copyright line
     var year = new Date().getFullYear();
     document.getElementById("year").innerHTML = year + " ";
-};
+}
 
 // Add ordinal suffixes to numbers in date
 function ordinalSuffix(day){
@@ -109,4 +109,4 @@ function ordinalSuffix(day){
     } else {
         return day + 'th';
     }
-};
+}

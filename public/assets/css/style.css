@@ -182,6 +182,19 @@ hr {
     margin: auto;
 }
 
+/* Sidebar */
+
+.sticky {
+    position: sticky;
+    top: 0;
+}
+
+.side-list {
+    font-size: 1.2rem;
+    list-style-type: none;
+}
+
+
 /* Bookshelves */
 
 .bookshelf {
@@ -212,11 +225,78 @@ hr {
     padding: 0.9rem 0;
 }
 
-/* Sidebar */
 
-.side-list {
-    font-size: 1.2rem;
-    list-style-type: none;
+/* Pagination */
+
+#pagination {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.pagination a {
+    margin: 0 auto;
+    text-align: center;
+    color: #a6dff8;
+}
+
+#prev {
+    margin: 0.25rem 0.5rem 0.25rem 0;
+}
+
+#prev:hover {
+    color: #fff;
+}
+
+#next {
+    margin: 0.25rem 0 0.25rem 0.5rem;
+}
+
+#next:hover {
+    color: #fff;
+}
+
+#page-link-div {
+    text-align: center;
+    align-content: center;
+}
+
+.page-link {
+    display: inline;
+    border: 0;
+    margin: 0 0.15rem;
+    padding: 0.2rem 0.5rem;
+    background: none;
+    color: #a6dff8;
+}
+
+.page-link.active {
+    background-color: #dcf0f9;
+    color: #0f1432;
+    border: 0;
+}
+
+.page-link:hover {
+    background: none;
+    color: #fff;
+}
+
+.page-link.active:hover {
+    background-color: #dcf0f9;
+    color: #0f1432;
+}
+
+.page-link:focus {
+    --bs-pagination-focus-box-shadow: none;
+}
+
+.break {
+    width: 100%;
+}
+
+#page-numbers {
+    margin: 0 auto;
+    margin: 0.25rem 0;
 }
 
 

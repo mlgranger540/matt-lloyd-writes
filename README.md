@@ -94,6 +94,8 @@ These Stack Overflow posts [[1](https://stackoverflow.com/questions/4313841/inse
 
 This [Stack Overflow post](https://stackoverflow.com/questions/8900732/sort-objects-in-an-array-alphabetically-on-one-property-of-the-array) helped when trying to sort an array of objects alphabetically by one of the properties.
 
+This [guide](https://www.geeksforgeeks.org/javascript/create-a-pagination-using-html-css-and-javascript/) helped me to create the pagination on my pages.
+
 ### Content and Media
 
 All written content on the website was written by myself.
