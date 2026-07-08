@@ -8,15 +8,23 @@
                 "destination": "/post.html"
             },
             {
+                "source": "/getAllPosts",
+                "function": "mlw_app"
+            },
+            {
                 "source": "/getPost/**",
                 "function": "mlw_app"
             },
             {
-                "source": "/getPosts",
+                "source": "/book/**",
+                "destination": "/book.html"
+            },
+            {
+                "source": "/getAllBooks",
                 "function": "mlw_app"
             },
             {
-                "source": "/getAllBookDetails",
+                "source": "/getBook/**",
                 "function": "mlw_app"
             },
             {

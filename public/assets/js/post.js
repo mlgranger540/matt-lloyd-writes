@@ -20,7 +20,7 @@ window.onload = async function(){
         let dayEd = ordinalSuffix(dayEdNum);
         let monthEd = rawDateEd.toLocaleString('default', { month: 'short' });
         let yearEd = rawDateEd.getFullYear();
-        dateEdited = dayEd + " " + monthEd + " " + yearEd;
+        let dateEdited = dayEd + " " + monthEd + " " + yearEd;
         let content = res.data.content;
         let description = res.data.description;
         let type = res.data.type;
@@ -90,6 +90,7 @@ window.onload = async function(){
         });
         article += '</p>';
         article += '</article>';
+        
         articleDiv.innerHTML = article;
     })
 

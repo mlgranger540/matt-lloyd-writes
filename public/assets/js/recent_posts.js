@@ -1,5 +1,5 @@
 window.onload = async function(){
-    const postsData = await fetch("/getPosts").then(function(response) {
+    const postsData = await fetch("/getAllPosts").then(function(response) {
         // The response is a Response instance.
         // You parse the data into a useable format using `.json()`
         return response.json();

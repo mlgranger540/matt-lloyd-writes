@@ -70,8 +70,12 @@ app.get("/post/:uid", (req, res) => {
     res.sendFile("post.html", {root : __dirname + "/../public/"});
 });
 
+app.get("/book/:uid", (req, res) => {
+    res.sendFile("book.html", {root : __dirname + "/../public/"});
+});
+
 // GET Routes for Prismic Data
-app.get("/getPosts", async (req, res) => {
+app.get("/getAllPosts", async (req, res) => {
     const documents = await client.getAllByType("post");
     res.send(documents);
 });
@@ -84,6 +88,11 @@ app.get("/getPost/post/:uid", async (req, res) => {
 app.get("/getAllBooks", async (req, res) => {
     const documents = await client.getAllByType("book");
     res.send(documents);
+});
+
+app.get("/getBook/book/:uid", async (req, res) => {
+    const document = await client.getByUID("book", req.params.uid);
+    res.send(document);
 });
 
 exports.mlw_app = functions.https.onRequest(app);

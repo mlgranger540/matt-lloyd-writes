@@ -16,13 +16,15 @@ window.onload = async function(){
             let coverSrc = x.data.cover.url;
             let coverAlt = x.data.cover.alt;
             let title = x.data.book_title;
-            let seriesName = x.data.series_name;
+            let series = x.data.series;
             let bookNumber = x.data.book_number;
             let audience = x.data.audience;
             let rating = x.data.rating;
             let genres = x.data.genres;
             let themes = x.data.themes;
-            let archetype = x.data.story_archetype;
+            let tropes = x.data.tropes;
+            let archetypes = x.data.story_archetypes;
+            let setting = x.data.setting;
             let mainChars = x.data.main_characters;
             let majChars = x.data.major_characters;
             let antagonists = x.data.antagonists;
@@ -38,13 +40,15 @@ window.onload = async function(){
             book.coverSrc = coverSrc;
             book.coverAlt = coverAlt;
             book.title = title;
-            book.seriesName = seriesName;
+            book.series = series;
             book.bookNumber = bookNumber;
             book.audience = audience;
             book.rating = rating;
             book.genres = genres;
             book.themes = themes;
-            book.archetype = archetype;
+            book.tropes = tropes;
+            book.archetypes = archetypes;
+            book.setting = setting;
             book.mainChars = mainChars;
             book.majChars = majChars;
             book.antagonists = antagonists;
@@ -82,13 +86,39 @@ window.onload = async function(){
                 ttl = ttl.text;
                 title.push(ttl);
             });
-            let seriesName = allBooks[i].seriesName;
+            let series = allBooks[i].series;
             let bookNumber = allBooks[i].bookNumber;
             let audience = allBooks[i].audience;
             let rating = allBooks[i].rating;
-            let genres = allBooks[i].genres;
-            let themes = allBooks[i].themes;
-            let archetype = allBooks[i].archetype;
+            // Loop through genre objects
+            let genreObjs = allBooks[i].genres;
+            let genres = [];
+            genreObjs.forEach((genre) => {
+                genre = genre.genre;
+                genres.push(genre);
+            });
+            // Loop through theme objects
+            let themeObjs = allBooks[i].themes;
+            let themes = [];
+            themeObjs.forEach((theme) => {
+                theme = theme.theme;
+                themes.push(theme);
+            });
+            // Loop through trope objects
+            let tropeObjs = allBooks[i].tropes;
+            let tropes = [];
+            tropeObjs.forEach((trope) => {
+                trope = trope.trope;
+                tropes.push(trope);
+            });
+            // Loop through archetype objects
+            let archeObjs = allBooks[i].archetypes;
+            let archetypes = [];
+            archeObjs.forEach((arche) => {
+                arche = arche.story_archetype;
+                archetypes.push(arche);
+            });
+            let setting = allBooks[i].setting;
             let mainChars = allBooks[i].mainChars;
             let majChars = allBooks[i].majChars;
             let antagonists = allBooks[i].antagonists;
@@ -105,30 +135,25 @@ window.onload = async function(){
             let pageCount = allBooks[i].pageCount;
             let status = allBooks[i].status;
 
-            // Add to book tile HTML
-            bookTile += '<div id="book-tile-' + j + '" class="col-4">';
-            bookTile += '<div id=">' + id + '" class="book-panel">';
-            bookTile += '<img class="book-cover" src="' + coverSrc + '" alt="' + coverAlt + '"></img>';
-            bookTile += '<div class="title-and-series"><h3 class="book-title">' + title + '</h3>';
-            if (seriesName !== null) {
-                bookTile += '<p class="series">Book ' + bookNumber + ' – ' + seriesName + '</p>';
+            // Add content to book tile HTML
+            bookTile += '<div id="book-tile-' + j + '" class="col-md-4 col-12">';
+            bookTile += '<div id="' + id + '" class="book-panel"><div id="cover-container">';
+            if (coverSrc === undefined ) {
+                bookTile += '<a href="/book/' + id + '"><img class="book-cover" src="./assets/images/book-cover-placeholder.png" alt="Placeholder book cover image"></img></a>';
+            } else {
+                bookTile += '<a href="/book/' + id + '"><img class="book-cover" src="' + coverSrc + '" alt="' + coverAlt + '"></img></a>';
             }
             bookTile += '</div>';
-            bookTile += '<p class="book-details">Audience: ' + audience + '</p>';
-            bookTile += '<p class="book-details">Rating: ' + rating + '</p>';
-            bookTile += '<p class="book-details">Genres: ' + genres + '</p>';
-            bookTile += '<p class="book-details">Themes: ' + themes + '</p>';
-            bookTile += '<p class="book-details">Story Archetype: ' + archetype + '</p>';
-            bookTile += '<p class="book-details">Synopsis: ' + synopsis + '</p>';
-            bookTile += '<p class="book-details">POV/Tense: ' + pov + ' / ' + tense + '</p>';
-            bookTile += '<p class="book-details">Main Characters: ' + mainChars + '</p>';
-            bookTile += '<p class="book-details">Major Characters: ' + majChars + '</p>';
-            bookTile += '<p class="book-details">Antagonists: ' + antagonists + '</p>';
-            bookTile += '<hr>'
-            bookTile += '<p class="book-details">Word Count: ' + wordCount + '</p>';
-            bookTile += '<p class="book-details">Page Count: ' + pageCount + '</p>';
-            bookTile += '<p class="book-details">Status: ' + status + '</p>';
-            bookTile += '</div></div>'
+            bookTile += '<div class="title-and-series"><h3 class="book-title"><a class="book-title-link" href="/book/' + id + '">' + title + '</a></h3>';
+            if (series !== null) {
+                bookTile += '<p class="series">Book ' + bookNumber + ' – ' + series + '</p>';
+            }
+            bookTile += '</div>';
+            bookTile += '<p>Audience & Rating:&ensp;' + audience + ' (' + rating + ')</p>';
+            bookTile += '<p>Genres:&ensp;' + genres.join(", ") + '</p>';
+            bookTile += '<p>Themes:&ensp;' + themes.join(", ") + '</p>';
+            bookTile += '<p>Status:&ensp;' + status + '</p>';
+            bookTile += '</div></div>';
 
             // Add book tile to bookshelf
             bookshelf += bookTile;
@@ -136,7 +161,7 @@ window.onload = async function(){
         };
         bookshelf += '</div>';
         booksDiv.innerHTML = bookshelf;
-    });
+    })
 
     // Add current year to copyright line
     var year = new Date().getFullYear();
