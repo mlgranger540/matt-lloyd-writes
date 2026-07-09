@@ -56,8 +56,8 @@ window.onload = async function(){
         // Add book to book section
         let bookLeftColumn = document.getElementById("book-left-column");
         let bookRightColumn = document.getElementById("book-right-column");
-        let bookLeftArray = '';
-        let bookRightArray = '';
+        let bookLeftContent = '';
+        let bookRightContent = '';
         let id = book.id;
         let coverSrc = book.coverSrc;
         let coverAlt = book.coverAlt;
@@ -118,40 +118,40 @@ window.onload = async function(){
         let status = book.status;
 
         // Add content to book left column HTML
-        bookLeftArray += '<div id="cover-container">';
+        bookLeftContent += '<div id="cover-container">';
         if (coverSrc === undefined ) {
-            bookLeftArray += '<img class="book-cover-thumb" src="../assets/images/book-cover-placeholder.png" alt="Placeholder book cover image"></img>';
+            bookLeftContent += '<img class="book-cover-thumb" src="../assets/images/book-cover-placeholder.png" alt="Placeholder book cover image"></img>';
         } else {
-            bookLeftArray += '<img class="book-cover-thumb" src="' + coverSrc + '" alt="' + coverAlt + '"></img>';
+            bookLeftContent += '<img class="book-cover-thumb" src="' + coverSrc + '" alt="' + coverAlt + '"></img>';
         }
-        bookLeftArray += '</div>';
-        bookLeftArray += '<div class="book-detail-column">';
-        bookLeftArray += '<p class="book-details">Audience & Rating:&ensp;' + audience + ' (' + rating + ')</p>';
-        bookLeftArray += '<p class="book-details">Genres:&ensp;' + genres.join(", ") + '</p>';
-        bookLeftArray += '<p class="book-details">Themes:&ensp;' + themes.join(", ") + '</p>';
-        bookLeftArray += '<p class="book-details">POV & Tense:&ensp;' + pov + ' / ' + tense + '</p>';
-        bookLeftArray += '</div>';
+        bookLeftContent += '</div>';
+        bookLeftContent += '<div class="book-detail-column">';
+        bookLeftContent += '<p class="book-details">Audience & Rating:&ensp;' + audience + ' (' + rating + ')</p>';
+        bookLeftContent += '<p class="book-details">Genres:&ensp;' + genres.join(", ") + '</p>';
+        bookLeftContent += '<p class="book-details">Themes:&ensp;' + themes.join(", ") + '</p>';
+        bookLeftContent += '<p class="book-details">POV & Tense:&ensp;' + pov + ' / ' + tense + '</p>';
+        bookLeftContent += '</div>';
 
-        bookLeftColumn.innerHTML = bookLeftArray;
+        bookLeftColumn.innerHTML = bookLeftContent;
 
         // Add content to book right column HTML
-        bookRightArray += '<div class="title-and-series"><h3 class="book-title-large">' + title + '</h3>';
+        bookRightContent += '<div class="title-and-series"><h3 class="book-title-large">' + title + '</h3>';
         if (series !== null) {
-            bookRightArray += '<p class="series">Book ' + bookNumber + ' – ' + series + '</p>';
+            bookRightContent += '<p class="series">Book ' + bookNumber + ' – ' + series + '</p>';
         }
-        bookRightArray += '</div>';
-        bookRightArray += '<p class="synopsis">Synopsis:&ensp;' + synopsis + '</p>';
-        bookRightArray += '<p class="story-details">Archetypes:&ensp;' + archetypes.join(", ") + '</p>';
-        bookRightArray += '<p class="story-details">Tropes:&ensp;' + tropes.join(", ") + '</p>';
-        bookRightArray += '<p class="story-details">Setting:&ensp;' + setting + '</p>';
-        bookRightArray += '<p class="story-details">Main Characters:&ensp;' + mainChars + '</p>';
-        bookRightArray += '<p class="story-details">Major Characters:&ensp;' + majChars + '</p>';
-        bookRightArray += '<p class="story-details">Antagonists:&ensp;' + antagonists + '</p>';
-        bookRightArray += '<hr>'
-        bookRightArray += '<p class="book-details stats">Word Count:&ensp;' + wordCount + ' &ensp; | &ensp;Page Count:&ensp;' + pageCount + '</p>';
-        bookRightArray += '<p class="book-details stats">Status:&ensp;' + status + '</p>';
+        bookRightContent += '</div>';
+        bookRightContent += '<p class="synopsis">Synopsis:&ensp;' + synopsis + '</p>';
+        bookRightContent += '<p class="story-details">Archetypes:&ensp;' + archetypes.join(", ") + '</p>';
+        bookRightContent += '<p class="story-details">Tropes:&ensp;' + tropes.join(", ") + '</p>';
+        bookRightContent += '<p class="story-details">Setting:&ensp;' + setting + '</p>';
+        bookRightContent += '<p class="story-details">Main Characters:&ensp;' + mainChars + '</p>';
+        bookRightContent += '<p class="story-details">Major Characters:&ensp;' + majChars + '</p>';
+        bookRightContent += '<p class="story-details">Antagonists:&ensp;' + antagonists + '</p>';
+        bookRightContent += '<hr>'
+        bookRightContent += '<p class="book-details stats">Word Count:&ensp;' + wordCount + ' &ensp; | &ensp;Page Count:&ensp;' + pageCount + '</p>';
+        bookRightContent += '<p class="book-details stats">Status:&ensp;' + status + '</p>';
 
-        bookRightColumn.innerHTML = bookRightArray;
+        bookRightColumn.innerHTML = bookRightContent;
     })
 
     // Add current year to copyright line

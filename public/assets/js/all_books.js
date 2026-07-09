@@ -4,139 +4,202 @@ window.onload = async function(){
         // You parse the data into a useable format using `.json()`
         return response.json();
     }).then(function(res) {
-        // Sort book data alphabetically by uid
-        res.sort((a,b)=>{return a.uid.localeCompare(b.uid)});
-        // Loop through book data from Prismic and add to book object
-        // then add object to books array
-        let allBooks = [];
+        let allSeries = [];
+        let allSingleBooks = [];
         res.forEach((x) => {
             console.log(x);
-            let book = {};
-            let id = x.uid;
-            let coverSrc = x.data.cover.url;
-            let coverAlt = x.data.cover.alt;
-            let title = x.data.book_title;
-            let series = x.data.series;
-            let bookNumber = x.data.book_number;
-            let audience = x.data.audience;
-            let rating = x.data.rating;
-            let genres = x.data.genres;
-            let themes = x.data.themes;
-            let tropes = x.data.tropes;
-            let archetypes = x.data.story_archetypes;
-            let setting = x.data.setting;
-            let mainChars = x.data.main_characters;
-            let majChars = x.data.major_characters;
-            let antagonists = x.data.antagonists;
-            let synopsis = x.data.synopsis;
-            let pov = x.data.pov;
-            let tense = x.data.tense;
-            let rawWordCount = x.data.word_count;
-            let wordCount = commaify(rawWordCount);
-            let rawPageCount = x.data.page_count;
-            let pageCount = commaify(rawPageCount);
-            let status = x.data.status;
-            book.id = id;
-            book.coverSrc = coverSrc;
-            book.coverAlt = coverAlt;
-            book.title = title;
-            book.series = series;
-            book.bookNumber = bookNumber;
-            book.audience = audience;
-            book.rating = rating;
-            book.genres = genres;
-            book.themes = themes;
-            book.tropes = tropes;
-            book.archetypes = archetypes;
-            book.setting = setting;
-            book.mainChars = mainChars;
-            book.majChars = majChars;
-            book.antagonists = antagonists;
-            book.synopsis = synopsis;
-            book.pov = pov;
-            book.tense = tense;
-            book.wordCount = wordCount;
-            book.pageCount = pageCount;
-            book.status = status;
-            allBooks.push(book);
+            // Check if book is part of series
+            // If yes, add data to book object and add object to series array
+            if (x.data.series !== null) {
+                let book = {};
+                let id = x.uid;
+                let coverSrc = x.data.cover.url;
+                let coverAlt = x.data.cover.alt;
+                let title = x.data.book_title;
+                let series = x.data.series;
+                let bookNumber = x.data.book_number;
+                let audience = x.data.audience;
+                let rating = x.data.rating;
+                let genres = x.data.genres;
+                let themes = x.data.themes;
+                let status = x.data.status;
+                book.id = id;
+                book.coverSrc = coverSrc;
+                book.coverAlt = coverAlt;
+                book.title = title;
+                book.series = series;
+                book.bookNumber = bookNumber;
+                book.audience = audience;
+                book.rating = rating;
+                book.genres = genres;
+                book.themes = themes;
+                book.status = status;
+                allSeries.push(book);
+            // If not, add data to book object and add object to single book array
+            } else {
+                let book = {};
+                let id = x.uid;
+                let coverSrc = x.data.cover.url;
+                let coverAlt = x.data.cover.alt;
+                let title = x.data.book_title;
+                let series = x.data.series;
+                let bookNumber = x.data.book_number;
+                let audience = x.data.audience;
+                let rating = x.data.rating;
+                let genres = x.data.genres;
+                let themes = x.data.themes;
+                let status = x.data.status;
+                book.id = id;
+                book.coverSrc = coverSrc;
+                book.coverAlt = coverAlt;
+                book.title = title;
+                book.series = series;
+                book.bookNumber = bookNumber;
+                book.audience = audience;
+                book.rating = rating;
+                book.genres = genres;
+                book.themes = themes;
+                book.status = status;
+                allSingleBooks.push(book);
+            }
+            // Sort series alphabetically by series name, then by book number
+            allSeries.sort((a,b) => {
+                if (a.series.localeCompare(b.series) === 0) {
+                    return a.bookNumber - b.bookNumber;
+                } else {
+                    return a.series.localeCompare(b.series);
+                }
+            });
+            // Sort single books alphabetically by uid
+            allSingleBooks.sort((a,b) => {return a.id.localeCompare(b.id)});
         });
         
-        // Add books to book section
-        let booksDiv = document.getElementById("books-div");
-        let bookshelf = '';
-        let noOfBooks = allBooks.length;
-        bookshelf += '<div class="bookshelf row">';
-        // Loop to add three books to each shelf
+        // Add series and their books to series book section
+        let seriesDiv = document.getElementById("series-div");
+        let seriesBookshelf = '';
+        let noOfSeriesBooks = allSeries.length;
+        seriesBookshelf += '<div class="row"><h2 class="book-section-heading">Book Series</h2></div><hr>';
+        seriesBookshelf += '<div class="bookshelf row">';
+        seriesBookshelf += '<h3 class="series-title">' + allSeries[0].series + '</h3>';
         let j = 1;
-        for (let i = 0; i < noOfBooks; i++) {
+        for (let i = 0; i < noOfSeriesBooks; i++) {
             let bookTile = '';
             // Check if three books have been added
             // if so, start new bookshelf
-            if (j === 4) {
-                bookshelf += '</div><div class="bookshelf row">';
-                j = 1;
+            if (i > 0) {
+                if (j === 5 || allSeries[i].series.localeCompare(allSeries[i-1].series) !== 0) {
+                    seriesBookshelf += '</div><div class="bookshelf row">';
+                    seriesBookshelf += '<h3 class="series-title">' + allSeries[i].series + '</h3>';
+                    j = 1;
+                }
             }
-            let id = allBooks[i].id;
-            let coverSrc = allBooks[i].coverSrc;
-            let coverAlt = allBooks[i].coverAlt;
+            let id = allSeries[i].id;
+            let coverSrc = allSeries[i].coverSrc;
+            let coverAlt = allSeries[i].coverAlt;
             // Loop through title objects
-            let titleObjs = allBooks[i].title;
+            let titleObjs = allSeries[i].title;
             let title = [];
             titleObjs.forEach((ttl) => {
                 ttl = ttl.text;
                 title.push(ttl);
             });
-            let series = allBooks[i].series;
-            let bookNumber = allBooks[i].bookNumber;
-            let audience = allBooks[i].audience;
-            let rating = allBooks[i].rating;
+            let series = allSeries[i].series;
+            let bookNumber = allSeries[i].bookNumber;
+            let audience = allSeries[i].audience;
+            let rating = allSeries[i].rating;
             // Loop through genre objects
-            let genreObjs = allBooks[i].genres;
+            let genreObjs = allSeries[i].genres;
             let genres = [];
             genreObjs.forEach((genre) => {
                 genre = genre.genre;
                 genres.push(genre);
             });
             // Loop through theme objects
-            let themeObjs = allBooks[i].themes;
+            let themeObjs = allSeries[i].themes;
             let themes = [];
             themeObjs.forEach((theme) => {
                 theme = theme.theme;
                 themes.push(theme);
             });
-            // Loop through trope objects
-            let tropeObjs = allBooks[i].tropes;
-            let tropes = [];
-            tropeObjs.forEach((trope) => {
-                trope = trope.trope;
-                tropes.push(trope);
-            });
-            // Loop through archetype objects
-            let archeObjs = allBooks[i].archetypes;
-            let archetypes = [];
-            archeObjs.forEach((arche) => {
-                arche = arche.story_archetype;
-                archetypes.push(arche);
-            });
-            let setting = allBooks[i].setting;
-            let mainChars = allBooks[i].mainChars;
-            let majChars = allBooks[i].majChars;
-            let antagonists = allBooks[i].antagonists;
-            // Loop through synopsis objects
-            let synopsisObjs = allBooks[i].synopsis;
-            let synopsis = [];
-            synopsisObjs.forEach((syn) => {
-                syn = syn.text;
-                synopsis.push(syn);
-            });
-            let pov = allBooks[i].pov;
-            let tense = allBooks[i].tense;
-            let wordCount = allBooks[i].wordCount;
-            let pageCount = allBooks[i].pageCount;
-            let status = allBooks[i].status;
+            let status = allSeries[i].status;
 
             // Add content to book tile HTML
-            bookTile += '<div id="book-tile-' + j + '" class="col-md-4 col-12">';
+            bookTile += '<div id="book-tile-' + j + '" class="col-lg-3 col-md-6 col-12">';
+            bookTile += '<div id="' + id + '" class="book-panel"><div id="cover-container">';
+            if (coverSrc === undefined ) {
+                bookTile += '<a href="/book/' + id + '"><img class="book-cover" src="./assets/images/book-cover-placeholder.png" alt="Placeholder book cover image"></img></a>';
+            } else {
+                bookTile += '<a href="/book/' + id + '"><img class="book-cover" src="' + coverSrc + '" alt="' + coverAlt + '"></img></a>';
+            }
+            bookTile += '</div>';
+            bookTile += '<div class="title-and-series"><h3 class="book-title"><a class="book-title-link" href="/book/' + id + '">' + title + '</a></h3>';
+            if (series !== null) {
+                bookTile += '<p class="series-white">Book ' + bookNumber + ' – ' + series + '</p>';
+            }
+            bookTile += '</div>';
+            bookTile += '<p>Audience & Rating:&ensp;' + audience + ' (' + rating + ')</p>';
+            bookTile += '<p>Genres:&ensp;' + genres.join(", ") + '</p>';
+            bookTile += '<p>Themes:&ensp;' + themes.join(", ") + '</p>';
+            bookTile += '<p>Status:&ensp;' + status + '</p>';
+            bookTile += '</div></div>';
+
+            // Add book tile to bookshelf
+            seriesBookshelf += bookTile;
+            j++;
+        };
+        seriesBookshelf += '</div>';
+        // Add bookshelf to series div
+        seriesDiv.innerHTML = seriesBookshelf;
+
+
+        // Add books to single book section
+        let booksDiv = document.getElementById("books-div");
+        let singleBookshelf = '';
+        let noOfSingleBooks = allSingleBooks.length;
+        singleBookshelf += '<div class="bookshelf row"><h2 class="book-section-heading">Single Books</h2></div><hr>';
+        singleBookshelf += '<div class="bookshelf row">';
+        // Loop through book array and add three books to each shelf
+        let k = 1;
+        for (let i = 0; i < noOfSingleBooks; i++) {
+            let bookTile = '';
+            // Check if three books have been added
+            // if so, start new bookshelf
+            if (k === 5) {
+                singleBookshelf += '</div><div class="bookshelf row">';
+                k = 1;
+            }
+            let id = allSingleBooks[i].id;
+            let coverSrc = allSingleBooks[i].coverSrc;
+            let coverAlt = allSingleBooks[i].coverAlt;
+            // Loop through title objects
+            let titleObjs = allSingleBooks[i].title;
+            let title = [];
+            titleObjs.forEach((ttl) => {
+                ttl = ttl.text;
+                title.push(ttl);
+            });
+            let series = allSingleBooks[i].series;
+            let bookNumber = allSingleBooks[i].bookNumber;
+            let audience = allSingleBooks[i].audience;
+            let rating = allSingleBooks[i].rating;
+            // Loop through genre objects
+            let genreObjs = allSingleBooks[i].genres;
+            let genres = [];
+            genreObjs.forEach((genre) => {
+                genre = genre.genre;
+                genres.push(genre);
+            });
+            // Loop through theme objects
+            let themeObjs = allSingleBooks[i].themes;
+            let themes = [];
+            themeObjs.forEach((theme) => {
+                theme = theme.theme;
+                themes.push(theme);
+            });
+            let status = allSingleBooks[i].status;
+
+            // Add content to book tile HTML
+            bookTile += '<div id="book-tile-' + k + '" class="col-lg-3 col-md-6 col-12">';
             bookTile += '<div id="' + id + '" class="book-panel"><div id="cover-container">';
             if (coverSrc === undefined ) {
                 bookTile += '<a href="/book/' + id + '"><img class="book-cover" src="./assets/images/book-cover-placeholder.png" alt="Placeholder book cover image"></img></a>';
@@ -156,40 +219,15 @@ window.onload = async function(){
             bookTile += '</div></div>';
 
             // Add book tile to bookshelf
-            bookshelf += bookTile;
-            j++;
-        };
-        bookshelf += '</div>';
-        booksDiv.innerHTML = bookshelf;
+            singleBookshelf += bookTile;
+            k++;
+        }
+        singleBookshelf += '</div>';
+        // Add bookshelf to books div
+        booksDiv.innerHTML = singleBookshelf;
     })
 
     // Add current year to copyright line
     var year = new Date().getFullYear();
     document.getElementById("year").innerHTML = year + " ";
-};
-
-function commaify(num){
-    // Convert number to string
-    let numStr = num.toString();
-    // Check if number has at least 7 digits
-    if (numStr / 1000000 > 1){
-        // Slice string in groups of 3
-        var numEnd = numStr.slice(-3);
-        var numMid = numStr.slice(-6,-3);
-        var numBeg = numStr.slice(0,-6);
-        // Recombine with comma separators
-        var commaNum = numBeg + ',' + numMid + ',' + numEnd;
-        return(commaNum);
-    // Check if number has at least 4 digits
-    } else if (numStr / 1000 > 1){
-        // Slice string in groups of 3
-        var numEnd = numStr.slice(-3);
-        var numBeg = numStr.slice(0,-3);
-        // Recombine with comma separator
-        var commaNum = numBeg + ',' + numEnd;
-        return commaNum;
-    // If number has less than 4 digits, no change
-    } else {
-        return numStr;
-    }
-};
+}

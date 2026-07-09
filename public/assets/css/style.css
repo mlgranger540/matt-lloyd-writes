@@ -197,8 +197,25 @@ hr {
 
 /* Bookshelves */
 
+#series-div {
+    margin-bottom: 3%;
+}
+
 .bookshelf {
     margin-bottom: 3%;
+}
+
+.book-section-heading {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    text-align: center;
+}
+
+.series-title {
+    padding: 0.5% 0;
+    text-align: center;
+    font-family: Cinzel, 'Times New Roman', Times, serif;
+    background-color: rgba(73, 127, 150, 0.9)
 }
 
 #book-tile-1 {
@@ -206,10 +223,14 @@ hr {
 }
 
 #book-tile-2 {
-    padding: 0 1%;
+    padding: 0 1.5% 0 1%;
 }
 
 #book-tile-3 {
+    padding: 0 1% 0 1.5%;
+}
+
+#book-tile-4 {
     padding: 0 0 0 2%;
 }
 
@@ -218,8 +239,12 @@ hr {
     width: 100%;
     margin: auto;
     padding: 7%;
-    background-color: #a6cdde;
+    /* background-color: #a6cdde; */
+    background-color: #93c6db;
+    color: #fff;
 }
+
+/* Book Details - My Books Page */
 
 #cover-container {
     display: flex;
@@ -230,7 +255,7 @@ hr {
 #cover-container a {
     display: flex;
     width: 100%;
-    height: 30vw;
+    height: 22vw;
 }
 
 .book-cover {
@@ -246,14 +271,24 @@ hr {
     color: #e7f7fe;
 }
 
+
+/* Book/Series Pages */
+
 .title-and-series {
     margin: 1.25rem 0 1rem 0;
 }
 
 .series {
+    margin: 0;
     color: #a6dff8;
     text-transform: uppercase;
+}
+
+.series-white {
     margin: 0;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 #book-left-column {
@@ -342,9 +377,9 @@ button:disabled {
 }
 
 .page-link.active {
+    border: 0;
     background-color: #dcf0f9;
     color: #0f1432;
-    border: 0;
 }
 
 .page-link:hover {
@@ -394,6 +429,10 @@ button:disabled {
     #nav-tabs {
         width: 90%;
     }
+
+    #cover-container a {
+        height: 25vw;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -402,9 +441,9 @@ button:disabled {
     }
 
     h1 {
-        font-size: 4rem;
         margin: 0.5rem;
         padding: 0.8rem;
+        font-size: 4rem;
     }
 
     #nav-tabs {
@@ -439,6 +478,18 @@ button:disabled {
         font-size: 1rem;
         line-height: 1.6rem;
     }
+
+    #book-tile-1, #book-tile-3 {
+        padding: 0 2% 0 0;
+    }
+
+    #book-tile-2, #book-tile-4 {
+        padding: 0 0 2% 0;
+    }
+
+    #cover-container a {
+        height: 50vw;
+    }
 }
 
 @media only screen and (max-width: 426px) {
@@ -447,8 +498,8 @@ button:disabled {
     }
 
     h1 {
-        font-size: 3.8rem;
         margin: 0rem;
+        font-size: 3.8rem;
     }
 
     #nav-tabs {
@@ -460,7 +511,7 @@ button:disabled {
     }
 
     .panel {
-        padding: 2.5rem;
+        padding: 2.2rem;
     }
 
     .post-title {
@@ -484,7 +535,7 @@ button:disabled {
         line-height: 1.5rem;
     }
 
-    #book-tile-1, #book-tile-2, #book-tile-3 {
+    #book-tile-1, #book-tile-2, #book-tile-3, #book-tile-4 {
         padding: 2%;
     }
 
