@@ -52,7 +52,7 @@ This page will include a bit about my and my background and other interests, as 
 
 ### Stats for Nerds
 
-As it says on the tin, this page will include all the stats for my work - including total word counts of everything I've posted, and counts of various categories, numbers of stories posted per year, number of each type of post, etc etc.
+As it says on the tin, this page will include all the stats for my work for all the nerds (*\*waves*\*) to enjoy. There will be stats related to my posts, including total word counts of all my posts, and counts of various categories, numbers of stories posted per year, number of each type of post, etc etc. There will also be stats about my books such as the number of series and standalone, number of books per genre/audience/rating/POV etc, total word counts across these, etc etc. Just all the juicy stats goodness ;)
 
 ### Features to Add
 
@@ -118,6 +118,10 @@ This [Stack Overflow post](https://stackoverflow.com/questions/8900732/sort-obje
 This [guide](https://www.geeksforgeeks.org/javascript/create-a-pagination-using-html-css-and-javascript/) helped me to create the pagination on my pages.
 
 This [Stack Overflow post](https://stackoverflow.com/questions/413439/how-to-dynamically-change-a-web-pages-title) helped with changing the page title dynamically on the single post and book pages.
+
+This [Stack Overflow post](https://stackoverflow.com/questions/4076321/javascript-age-calculation) helped me to create a function to work out my current age.
+
+I used the [W3 Schools guidance](https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp) to create the dropdown in the navbar, as well as this [Stack Overflow post](https://stackoverflow.com/questions/61628295/make-dropdown-menu-same-width-as-button-parent) to help make the dropdown the same width as the parent button.
 
 Not related to the actual website, but this [Stack Overflow post](https://stackoverflow.com/questions/17602611/inspect-a-hover-element) taught me how to force an element to show as hover when inspecting, which is very helpful when trying to style on hover effects!
 

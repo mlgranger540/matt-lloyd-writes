@@ -271,7 +271,7 @@ hr {
 
 /* My Books Page */
 
-#books-info-div {
+#info-div {
     margin-bottom: 0.6rem;
 }
 
@@ -390,6 +390,10 @@ hr {
 
 /* Book/Series Pages */
 
+#book-div {
+    margin-bottom: 0.6rem;
+}
+
 .title-and-series {
     margin: 1.25rem 0 1rem 0;
 }
@@ -444,6 +448,29 @@ hr {
 
 .stats {
     text-align: center;
+}
+
+
+/* About the Author */
+
+.picture-panel {
+    padding: 2rem;
+    background-color: #19214e;
+}
+
+.portrait {
+    width: 100%;
+}
+
+
+/* Stats */
+
+#stats-heading {
+    text-align: center;
+}
+
+#stats-right-column {
+    text-align: right;
 }
 
 
