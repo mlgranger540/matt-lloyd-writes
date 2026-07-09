@@ -8,7 +8,7 @@ window.onload = async function(){
         let post = {};
         let id = res.uid;
         let number = res.data.number;
-        let title = res.data.title;
+        let rawTitle = res.data.title;
         let rawDate = new Date(res.data.date_written);
         let dayNum = rawDate.getDate();
         let day = ordinalSuffix(dayNum);
@@ -24,27 +24,29 @@ window.onload = async function(){
         let content = res.data.content;
         let description = res.data.description;
         let type = res.data.type;
-        let tags = res.data.tags.split(',');
+        let rawTags = res.data.tags.split(',');
         post.id = id;
         post.number = number;
-        post.title = title;
+        post.rawTitle = rawTitle;
         post.dateWritten = dateWritten;
         post.dateEdited = dateEdited;
         post.content = content;
         post.description = description;
         post.type = type;
-        post.tags = tags;
+        post.rawTags = rawTags;
 
         // Add post to post section
         let articleDiv = document.getElementById("article-div");
         let article = '';
         // Loop through title objects
-        let titleObjs = post.title;
-        let titles = [];
-        titleObjs.forEach((title) => {
-            title = title.text;
-            titles.push(title);
+        let titleObjs = post.rawTitle;
+        let title = [];
+        titleObjs.forEach((ttl) => {
+            ttl = ttl.text;
+            title.push(ttl);
         });
+        // Update page title with selected post title
+        document.title = title + " | Matt Lloyd Writes";
         // Loop through content objects
         let contentObjs = post.content;
         let paragraphs = [];
@@ -60,16 +62,16 @@ window.onload = async function(){
             descParas.push(line);
         });
         // Loop through tags and add hash
-        let tags2 = post.tags;
+        let tags = post.rawTags;
         let hashtags = [];
-        tags2.forEach((tag) => {
+        tags.forEach((tag) => {
             tag = '#' + tag;
             hashtags.push(tag);
         });
 
         // Add data to article HTML
         article += '<article id="' + id + '" class="inner-panel">';
-        article += '<h3 class="post-title"><a class="title-link" href="/post/' + id + '">' + titles + '</a></h3>';
+        article += '<h3 class="post-title"><a class="title-link" href="/post/' + id + '">' + title + '</a></h3>';
         article += '<h4 class="entry-date">' + dateWritten;
         if (dateEdited !== '1st Jan 1970'){
             article += '<span class="edit-date">&ensp;(ed. ' + dateEdited + ')</span>';

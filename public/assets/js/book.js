@@ -6,61 +6,58 @@ window.onload = async function(){
     }).then(function(x) {
         // Add book data from Prismic to book object
         let book = {};
-        let rawID = x.uid;
-        let rawCoverSrc = x.data.cover.url;
-        let rawCoverAlt = x.data.cover.alt;
+        let id = x.uid;
+        let coverSrc = x.data.cover.url;
+        let coverAlt = x.data.cover.alt;
         let rawTitle = x.data.book_title;
-        let rawSeries = x.data.series;
-        let rawBookNumber = x.data.book_number;
-        let rawAudience = x.data.audience;
-        let rawRating = x.data.rating;
+        let series = x.data.series;
+        let bookNumber = x.data.book_number;
+        let audience = x.data.audience;
+        let rating = x.data.rating;
         let rawGenres = x.data.genres;
         let rawThemes = x.data.themes;
         let rawTropes = x.data.tropes;
         let rawArchetypes = x.data.story_archetypes;
-        let rawSetting = x.data.setting;
-        let rawMainChars = x.data.main_characters;
-        let rawMajChars = x.data.major_characters;
-        let rawAntagonists = x.data.antagonists;
+        let setting = x.data.setting;
+        let mainChars = x.data.main_characters;
+        let majChars = x.data.major_characters;
+        let antagonists = x.data.antagonists;
         let rawSynopsis = x.data.synopsis;
-        let rawPOV = x.data.pov;
-        let rawTense = x.data.tense;
+        let pov = x.data.pov;
+        let tense = x.data.tense;
         let rawWordCount = x.data.word_count;
-        let commaWordCount = commaify(rawWordCount);
+        let wordCount = commaify(rawWordCount);
         let rawPageCount = x.data.page_count;
-        let commaPageCount = commaify(rawPageCount);
-        let rawStatus = x.data.status;
-        book.id = rawID;
-        book.coverSrc = rawCoverSrc;
-        book.coverAlt = rawCoverAlt;
+        let pageCount = commaify(rawPageCount);
+        let status = x.data.status;
+        book.id = id;
+        book.coverSrc = coverSrc;
+        book.coverAlt = coverAlt;
         book.title = rawTitle;
-        book.series = rawSeries;
-        book.bookNumber = rawBookNumber;
-        book.audience = rawAudience;
-        book.rating = rawRating;
+        book.series = series;
+        book.bookNumber = bookNumber;
+        book.audience = audience;
+        book.rating = rating;
         book.genres = rawGenres;
         book.themes = rawThemes;
         book.tropes = rawTropes;
         book.archetypes = rawArchetypes;
-        book.setting = rawSetting;
-        book.mainChars = rawMainChars;
-        book.majChars = rawMajChars;
-        book.antagonists = rawAntagonists;
+        book.setting = setting;
+        book.mainChars = mainChars;
+        book.majChars = majChars;
+        book.antagonists = antagonists;
         book.synopsis = rawSynopsis;
-        book.pov = rawPOV;
-        book.tense = rawTense;
-        book.wordCount = commaWordCount;
-        book.pageCount = commaPageCount;
-        book.status = rawStatus;
+        book.pov = pov;
+        book.tense = tense;
+        book.wordCount = wordCount;
+        book.pageCount = pageCount;
+        book.status = status;
         
         // Add book to book section
         let bookLeftColumn = document.getElementById("book-left-column");
         let bookRightColumn = document.getElementById("book-right-column");
         let bookLeftContent = '';
         let bookRightContent = '';
-        let id = book.id;
-        let coverSrc = book.coverSrc;
-        let coverAlt = book.coverAlt;
         // Loop through title objects
         let titleObjs = book.title;
         let title = [];
@@ -68,10 +65,8 @@ window.onload = async function(){
             ttl = ttl.text;
             title.push(ttl);
         });
-        let series = book.series;
-        let bookNumber = book.bookNumber;
-        let audience = book.audience;
-        let rating = book.rating;
+        // Update page title with selected book title
+        document.title = title + " | Matt Lloyd Writes";
         // Loop through genre objects
         let genreObjs = book.genres;
         let genres = [];
@@ -100,10 +95,6 @@ window.onload = async function(){
             arche = arche.story_archetype;
             archetypes.push(arche);
         });
-        let setting = book.setting;
-        let mainChars = book.mainChars;
-        let majChars = book.majChars;
-        let antagonists = book.antagonists;
         // Loop through synopsis objects
         let synopsisObjs = book.synopsis;
         let synopsis = [];
@@ -111,11 +102,6 @@ window.onload = async function(){
             syn = syn.text;
             synopsis.push(syn);
         });
-        let pov = book.pov;
-        let tense = book.tense;
-        let wordCount = book.wordCount;
-        let pageCount = book.pageCount;
-        let status = book.status;
 
         // Add content to book left column HTML
         bookLeftContent += '<div id="cover-container">';
