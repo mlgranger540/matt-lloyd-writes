@@ -48,7 +48,7 @@ window.onload = async function(){
         let seriesDiv = document.getElementById("series-div");
         let seriesBookshelf = '';
         let noOfSeriesBooks = allSeries.length;
-        seriesBookshelf += '<div class="row"><h2 class="book-section-heading">Book Series</h2><hr id="series-separator" class="med-separator"></div>';
+        seriesBookshelf += '<div class="row"><h2 class="book-section-heading">Book Series</h2><hr id="book-heading-separator" class="med-separator"></div>';
         seriesBookshelf += '<div class="bookshelf row">';
         seriesBookshelf += '<h3 class="series-title">' + allSeries[0].series + '</h3>';
         let j = 1;

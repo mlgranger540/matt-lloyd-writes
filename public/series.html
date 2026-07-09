@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html id="top" lang="en">
 <head>
     <!-- Metadata -->
     <meta charset="UTF-8">
@@ -17,9 +17,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="assets/favicon/site.webmanifest">
-    <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
     <!-- Script -->
-    <script src="../assets/js/series.js"></script>
+    <script src="assets/js/series.js"></script>
 </head>
 
 <body>
@@ -63,8 +63,8 @@
 
     <!-- Main Section -->
     <div class="container-fluid">
-            <!-- Series Bookshelves -->
         <div id="content-row" class="row">
+            <!-- Series Bookshelves -->
             <div class="col-xl-1 d-lg-block d-none"></div>
             <div id="series-div" class="panel col-xl-10 col-lg-12">
                 <div class="bookshelf row">
@@ -74,15 +74,27 @@
             <div class="col-xl-1 d-lg-block d-none"></div>
         </div>
     </div>
+    <!-- Back to top button -->
+    <div class="container-fluid">
+        <div id="content-row" class="row">
+            <div class="col-xl-1 d-lg-block d-none"></div>
+            <div id="back-to-top" class="col-xl-10 col-lg-12">
+                <a class="top-link" href="#top">Back to top</a>
+            </div>
+            <div class="col-xl-1 d-lg-block d-none"></div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
-        <div id="footer-row" class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
-                <h5>©<span id="year"></span>Matt Lloyd Granger</h5>
+        <div class="container-fluid">
+            <div id="footer-row" class="row">
+                <div class="col-xl-2 col-md-1 d-sm-block d-none"></div>
+                <div class="col-xl-8 col-md-10">
+                    <h5>©<span id="year"></span>Matt Lloyd Granger</h5>
+                </div>
+                <div class="col-xl-2 col-md-1 d-sm-block d-none"></div>
             </div>
-            <div class="col-2"></div>
         </div>
     </footer>
 

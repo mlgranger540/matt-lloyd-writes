@@ -42,7 +42,7 @@ window.onload = async function(){
         let booksDiv = document.getElementById("books-div");
         let singleBookshelf = '';
         let noOfSingleBooks = allSingleBooks.length;
-        singleBookshelf += '<div class="bookshelf row"><h2 class="book-section-heading">Standalone Books</h2><hr class="med-separator"></div>';
+        singleBookshelf += '<div class="row"><h2 class="book-section-heading">Standalone Books</h2><hr id="book-heading-separator" class="med-separator"></div>';
         singleBookshelf += '<div class="bookshelf row">';
         // Loop through book array and add four books to each shelf
         let k = 1;
