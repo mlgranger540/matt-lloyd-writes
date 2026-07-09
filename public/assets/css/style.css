@@ -110,6 +110,14 @@ h1 {
     color: #19214e !important;
 }
 
+.active-drop-sublink {
+    background-color: #dcf0f9;
+    color: #19214e;
+    --bs-nav-tabs-link-hover-border-color: #dcf0f9;
+    border-top: 0;
+    border-bottom: #dcf0f9;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -263,13 +271,23 @@ hr {
 }
 
 .book-section-heading {
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     padding-bottom: 0;
     text-align: center;
 }
 
+.med-separator {
+    width: 60%;
+    margin: auto;
+}
+
+#series-separator {
+    margin-bottom: 2%;
+}
+
 .series-title {
     padding: 0.5% 0;
+    margin-bottom: 0.8rem;
     text-align: center;
     font-family: Cinzel, 'Times New Roman', Times, serif;
     background-color: rgba(73, 127, 150, 0.9)
