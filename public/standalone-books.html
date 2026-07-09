@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="author, writer, books, novels, writing, creative writing, sci-fi, fantasy, romance, young adult, new adult, teen">
     <meta name="author" content="Matt Lloyd Granger">
-    <title>About the Author | Matt Lloyd Writes</title>
+    <title>My Books | Matt Lloyd Writes</title>
     <!-- Stylesheets -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,9 +17,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="assets/favicon/site.webmanifest">
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
     <!-- Script -->
-    <script src="assets/js/recent_posts.js"></script>
+    <script src="../assets/js/all_books.js"></script>
 </head>
 
 <body>
@@ -36,22 +36,10 @@
                         <a class="nav-link" href="./writing">Writing</a>
                     </li>
                     <li class="nav-item">
-                        <div class="nav-link my-dropdown">
-                            <button class="drop-button">
-                                <a href="./my-books">My Books </a>
-                            </button>
-                            <ul class="dropdown-content">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="./series">Series</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="./standalone-books">Standalone</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <a class="active nav-link" href="./my-books" aria-current="page">My Books </a>
                     </li>
                     <li class="nav-item">
-                        <a class="active nav-link" href="./about" aria-current="page">About the Author</a>
+                        <a class="nav-link" href="./about">About the Author</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./stats">Stats for Nerds</a>
@@ -60,6 +48,20 @@
             </div>
         </nav>
     </header>
+
+    <!-- Main Section -->
+    <div class="container-fluid">
+            <!-- Standalone Book Bookshelves -->
+        <div id="content-row" class="row">
+            <div class="col-xl-1 d-lg-block d-none"></div>
+            <div id="books-div" class="panel col-xl-10 col-lg-12">
+                <div class="bookshelf row">
+                    <h3 class="text-center">Loading books...</h3>
+                </div>
+            </div>
+            <div class="col-xl-1 d-lg-block d-none"></div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>

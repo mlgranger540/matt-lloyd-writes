@@ -83,6 +83,63 @@ h1 {
     --bs-nav-tabs-link-active-bg: #dcf0f9;
 }
 
+/* Dropdown in Navbar */
+
+.my-dropdown {
+    position: relative;
+}
+
+.my-dropdown .drop-button {
+    background: none;
+    font-family: inherit;
+    margin: 0;
+}
+
+.my-dropdown:hover .drop-button a {
+    color: #d6f1fd;
+}
+
+.active-drop, .active-drop:hover {
+    background-color: #dcf0f9;
+    color: #19214e;
+    --bs-nav-tabs-link-hover-border-color: #dcf0f9;
+    border-bottom: #dcf0f9;
+}
+
+.active-drop-link, .active-drop-link:hover {
+    color: #19214e !important;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    border-top: 1px solid #19214e;
+    background-color: #0f1432;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    list-style-type: none;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 0.9rem 0;
+    text-decoration: none;
+}
+
+.my-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content .nav-link {
+    border-radius: 0;
+    border-bottom: 0;
+}
+
+.active-drop-content {
+    border-top: 1px solid #dcf0f9;
+}
+
 
 /* Panels */
 

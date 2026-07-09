@@ -36,7 +36,19 @@
                         <a class="nav-link" href="./writing">Writing</a>
                     </li>
                     <li class="nav-item">
-                        <a class="active nav-link" href="./my-books" aria-current="page">My Books</a>
+                        <div class="active-drop nav-link my-dropdown">
+                            <button class="drop-button">
+                                <a class="active-drop-link" aria-current="page" href="./my-books">My Books </a>
+                            </button>
+                            <ul class="active-drop-content dropdown-content">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./series">Series</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./standalone-books">Standalone</a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./about">About the Author</a>
@@ -60,7 +72,7 @@
                 </div>
             </div>
             <div class="col-xl-1 d-lg-block d-none"></div>
-            <!-- Single Book Bookshelves -->
+            <!-- Standalone Book Bookshelves -->
         <div id="content-row" class="row">
             <div class="col-xl-1 d-lg-block d-none"></div>
             <div id="books-div" class="panel col-xl-10 col-lg-12"></div>

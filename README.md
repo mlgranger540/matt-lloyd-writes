@@ -117,6 +117,10 @@ This [Stack Overflow post](https://stackoverflow.com/questions/8900732/sort-obje
 
 This [guide](https://www.geeksforgeeks.org/javascript/create-a-pagination-using-html-css-and-javascript/) helped me to create the pagination on my pages.
 
+This [Stack Overflow post](https://stackoverflow.com/questions/413439/how-to-dynamically-change-a-web-pages-title) helped with changing the page title dynamically on the single post and book pages.
+
+Not related to the actual website, but this [Stack Overflow post](https://stackoverflow.com/questions/17602611/inspect-a-hover-element) taught me how to force an element to show as hover when inspecting, which is very helpful when trying to style on hover effects!
+
 ### Content and Media
 
 All written and visual content on the website was created by myself.
