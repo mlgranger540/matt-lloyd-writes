@@ -131,4 +131,4 @@ Not related to the actual website, but this [Stack Overflow post](https://stacko
 
 All written and visual content on the website was created by myself.
 
-The Google Font [Seaweed Script](https://fonts.google.com/specimen/Seaweed+Script) was used for the title, [Cinzel](https://fonts.google.com/specimen/Cinzel) for the navbar links and some sub-headings, and [Mate](https://fonts.google.com/specimen/Mate) for the body text.
+The Google Font [Seaweed Script](https://fonts.google.com/specimen/Seaweed+Script) was used for the title, [Cinzel](https://fonts.google.com/specimen/Cinzel) for the navbar links and some sub-headings, [Merriweather](https://fonts.google.com/specimen/Merriweather) for post descriptions, and [Mate](https://fonts.google.com/specimen/Mate) for the body text.

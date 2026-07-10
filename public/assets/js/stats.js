@@ -7,7 +7,6 @@ window.onload = async function(){
     const bookData = await fetch("/getAllBooks").then(function(response) {
         return response.json();
     });
-
     console.log(postData);
 
     let allBooks = [];
@@ -46,9 +45,6 @@ window.onload = async function(){
     let statsDiv = document.getElementById("book-div");
     let statsContent = '';
 
-    // Update page heading
-    statsContent += '<div class="row"><h2 id="stats-heading">Stats for Nerds</h2>';
-
     let noOfSingleBooks = 0;
     let noOfSeries = 0;
     let noOfBooks = 0;
@@ -64,7 +60,6 @@ window.onload = async function(){
             noOfSingleBooks++;
         }
     }
-
     // When new series name is encountered, increase series count
     for (i = 0; i < seriesNames.length; i++) {
         if (i > 0) {
@@ -72,14 +67,32 @@ window.onload = async function(){
                 noOfSeries++;
             }
         } 
-    }  
-
-    // Add content to left column HTML
-    statsContent += '<div class="col-2"></div>';
-    statsContent += '<div id="stats-left-column" class="col-4">';
-    statsContent += '<p class="content">Number of Standalone Books:&ensp;' + noOfSingleBooks + '</p>';
-    statsContent += '<p class="content">Number of Series:&ensp;' + noOfSeries + '</p>';
-    statsContent += '<p class="content">Total Number of Books:&ensp;' + noOfBooks + '</p></div>';
+    }
+    
+    // Build array of all genres across all books
+    let allGenres = [];
+    for (let i = 0; i < noOfBooks; i++) {
+        let genreObjs = allBooks[i].genres;
+        genreObjs.forEach((genre) => {
+            genre = genre.genre;
+            allGenres.push(genre);
+        });
+    }
+    // Count how many of each genre appear and add to new array
+    let genreCountObj = {};
+    allGenres.forEach((genre) => {
+        genreCountObj[genre] = (genreCountObj[genre] || 0) + 1;
+    });
+    // Map genres and counts to new array of objects
+    let genreCount = Object.entries(genreCountObj).map(([key, value]) => ({ genre: key, count: value }));
+    // Sort by count and then alphabetically
+    genreCount.sort((a,b) => {
+        if (b.count - a.count === 0) {
+            return a.genre.localeCompare(b.genre);
+        } else {
+            return b.count - a.count;
+        }
+    });
 
     // Add together all book word counts, then commaify
     let rawTotalWordCount = 0;
@@ -88,11 +101,25 @@ window.onload = async function(){
     }
     let totalWordCount = commaify(rawTotalWordCount);
 
+    // Update page heading
+    statsContent += '<div class="row"><h2 id="stats-heading">Stats for Nerds</h2>';
+    // Add content to left column HTML
+    statsContent += '<div class="col-2"></div>';
+    statsContent += '<div id="stats-left-column" class="col-4">';
+    statsContent += '<p class="content">Number of Standalone Books:&ensp;' + noOfSingleBooks + '</p>';
+    statsContent += '<p class="content">Number of Series:&ensp;' + noOfSeries + '</p>';
+    statsContent += '<p class="content">Total Number of Books:&ensp;' + noOfBooks + '</p>';
+    statsContent += '<p class="content">Books per Genre:&ensp;';
+    for (i = 0; i < genreCount.length; i++) {
+        statsContent += '<p class="content">' + genreCount[i].genre + ':&ensp;' + genreCount[i].count + '</p>';
+    }
+    statsContent += '</div>';
     // Add content to right column HTML
     statsContent += '<div id="stats-right-column" class="col-4">'
     statsContent += '<p class="content">Total Word Count:&ensp;' + totalWordCount + '</p></div>';
     statsContent += '<div class="col-2"></div>';
 
+    // Add both columns to stats div
     statsDiv.innerHTML = statsContent;
 
     // Add current year to copyright line
