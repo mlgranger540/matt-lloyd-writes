@@ -123,6 +123,8 @@ This [Stack Overflow post](https://stackoverflow.com/questions/4076321/javascrip
 
 I used the [W3 Schools guidance](https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp) to create the dropdown in the navbar, as well as this [Stack Overflow post](https://stackoverflow.com/questions/61628295/make-dropdown-menu-same-width-as-button-parent) to help make the dropdown the same width as the parent button.
 
+These guides [[1](https://web-highlights.com/blog/turn-your-website-into-a-beautiful-thumbnail-link-preview/), [2](https://www.digitalocean.com/community/tutorials/how-to-add-twitter-card-and-open-graph-social-metadata-to-your-webpage-with-html)] as well as the [Open Graph Docs](https://ogp.me/) helped me to create link previews for my website. This [website](https://www.opengraph.xyz/) is also helpful for testing the previews.
+
 Not related to the actual website, but this [Stack Overflow post](https://stackoverflow.com/questions/17602611/inspect-a-hover-element) taught me how to force an element to show as hover when inspecting, which is very helpful when trying to style on hover effects!
 
 ### Content and Media
