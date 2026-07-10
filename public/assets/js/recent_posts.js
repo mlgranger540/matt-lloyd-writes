@@ -13,6 +13,7 @@ window.onload = async function(){
             let post = {};
             let id = i.uid;
             let title = i.data.title;
+            let type = i.data.type;
             let rawDate = new Date(i.data.date_written);
             let dayNum = rawDate.getDate();
             let day = ordinalSuffix(dayNum);
@@ -24,18 +25,20 @@ window.onload = async function(){
             let dayEd = ordinalSuffix(dayEdNum);
             let monthEd = rawDateEd.toLocaleString('default', { month: 'short' });
             let yearEd = rawDateEd.getFullYear();
-            dateEdited = dayEd + " " + monthEd + " " + yearEd;
+            let dateEdited = dayEd + " " + monthEd + " " + yearEd;
             let content = i.data.content;
-            let description = i.data.description;
-            let type = i.data.type;
-            let tags = i.data.tags.split(',');
+            let rawWordCount = i.data.word_count;
+            let wordCount = commaify(rawWordCount);
+            let genres = i.data.genres;
+            let tags = i.data.tags;
             post.id = id;
             post.title = title;
+            post.type = type;
             post.dateWritten = dateWritten;
             post.dateEdited = dateEdited;
             post.content = content;
-            post.description = description;
-            post.type = type;
+            post.wordCount = wordCount;
+            post.genres = genres;
             post.tags = tags;
             allPosts.push(post);
         });
@@ -65,10 +68,19 @@ window.onload = async function(){
                 paragraph = paragraph.text;
                 paragraphs.push(paragraph);
             });
-            // Loop through tags and add hash
+            // Loop through genres and tags, add hash and push to hashtags array
+            let genres = allPosts[i].genres;
             let tags = allPosts[i].tags;
             let hashtags = [];
+            genres.forEach((gen) => {
+                if (gen.genre !== null) {
+                    gen = gen.genre;
+                    gen = '#' + gen;
+                    hashtags.push(gen);
+                };
+            })
             tags.forEach((tag) => {
+                tag = tag.tag;
                 tag = '#' + tag;
                 hashtags.push(tag);
             });
@@ -246,6 +258,32 @@ function ordinalSuffix(day){
         return day + 'rd';
     } else {
         return day + 'th';
+    }
+}
+
+function commaify(num){
+    // Convert number to string
+    let numStr = num.toString();
+    // Check if number has at least 7 digits
+    if (numStr / 1000000 > 1){
+        // Slice string in groups of 3
+        var numEnd = numStr.slice(-3);
+        var numMid = numStr.slice(-6,-3);
+        var numBeg = numStr.slice(0,-6);
+        // Recombine with comma separators
+        var commaNum = numBeg + ',' + numMid + ',' + numEnd;
+        return(commaNum);
+    // Check if number has at least 4 digits
+    } else if (numStr / 1000 > 1){
+        // Slice string in groups of 3
+        var numEnd = numStr.slice(-3);
+        var numBeg = numStr.slice(0,-3);
+        // Recombine with comma separator
+        var commaNum = numBeg + ',' + numEnd;
+        return commaNum;
+    // If number has less than 4 digits, no change
+    } else {
+        return numStr;
     }
 }
 
