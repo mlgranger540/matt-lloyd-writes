@@ -277,7 +277,7 @@ hr {
 }
 
 .text {
-    padding: 0 8vw;
+    padding: 0 7vw;
 }
 
 .book-button-div {
@@ -569,6 +569,12 @@ button:disabled {
 
 /* Media Queries */
 
+@media only screen and (max-width: 1440px) {
+    .text {
+        padding: 0 6vw;
+    }
+}
+
 @media only screen and (max-width: 1025px) {
     #nav-tabs {
         width: 90%;
@@ -576,6 +582,10 @@ button:disabled {
 
     #cover-container a {
         height: 25vw;
+    }
+
+    .books-button {
+        width: 38%;
     }
 }
 
@@ -602,6 +612,10 @@ button:disabled {
         padding: 2.8rem;
     }
 
+    .welcome-text {
+        padding: 0;
+    }
+
     .post-title {
         font-size: 1.9rem;
     }
@@ -621,6 +635,18 @@ button:disabled {
     .content {
         font-size: 1rem;
         line-height: 1.6rem;
+    }
+
+    .text {
+        padding: 0;
+    }
+
+    .books-button {
+        width: 48%;
+    }
+
+    .books-button a {
+        font-size: 1.2rem;
     }
 
     #book-tile-1, #book-tile-3 {
@@ -677,6 +703,18 @@ button:disabled {
     .content {
         font-size: 0.95rem;
         line-height: 1.5rem;
+    }
+
+    #info-div {
+        margin-bottom: 0;
+    }
+
+    .books-button {
+        width: 80%;
+    }
+
+    .books-button a {
+        font-size: 1.1rem;
     }
 
     #book-tile-1, #book-tile-2, #book-tile-3, #book-tile-4 {

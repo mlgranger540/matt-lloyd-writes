@@ -104,8 +104,8 @@ window.onload = async function(){
     // Update page heading
     statsContent += '<div class="row"><h2 id="stats-heading">Stats for Nerds</h2>';
     // Add content to left column HTML
-    statsContent += '<div class="col-2"></div>';
-    statsContent += '<div id="stats-left-column" class="col-4">';
+    statsContent += '<div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
+    statsContent += '<div id="stats-left-column" class="col-xl-4 col-lg-5 col-md-6 col-12">';
     statsContent += '<p class="content">Number of Standalone Books:&ensp;' + noOfSingleBooks + '</p>';
     statsContent += '<p class="content">Number of Series:&ensp;' + noOfSeries + '</p>';
     statsContent += '<p class="content">Total Number of Books:&ensp;' + noOfBooks + '</p>';
@@ -115,9 +115,9 @@ window.onload = async function(){
     }
     statsContent += '</div>';
     // Add content to right column HTML
-    statsContent += '<div id="stats-right-column" class="col-4">'
+    statsContent += '<div id="stats-right-column" class="col-xl-4 col-lg-5 col-md-6 col-12">'
     statsContent += '<p class="content">Total Word Count:&ensp;' + totalWordCount + '</p></div>';
-    statsContent += '<div class="col-2"></div>';
+    statsContent += '<div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
 
     // Add both columns to stats div
     statsDiv.innerHTML = statsContent;
