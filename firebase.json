@@ -1,53 +1,54 @@
 {
-    "hosting": {
-        "public": "public",
-        "cleanUrls": true,
-        "rewrites": [
-            {
-                "source": "/post/**",
-                "destination": "/post.html"
-            },
-            {
-                "source": "/getAllPosts",
-                "function": "mlw_app"
-            },
-            {
-                "source": "/getPost/**",
-                "function": "mlw_app"
-            },
-            {
-                "source": "/book/**",
-                "destination": "/book.html"
-            },
-            {
-                "source": "/getAllBooks",
-                "function": "mlw_app"
-            },
-            {
-                "source": "/getBook/**",
-                "function": "mlw_app"
-            },
-            {
-                "source": "**",
-                "function": "mlw_app"
-            }],
-        "ignore": [
-            "firebase.json",
-            "**/.*",
-            "**/node_modules/**"
-        ]
-    },
-    "functions": [
-        {
-            "source": "functions",
-            "codebase": "default",
-            "ignore": [
-                "node_modules",
-                ".git",
-                "firebase-debug.log",
-                "firebase-debug.*.log",
-                "*.local"
-            ]
-        }
+  "hosting": {
+    "public": "public",
+    "cleanUrls": true,
+    "rewrites": [
+      {
+        "source": "/post/**",
+        "destination": "/post.html"
+      },
+      {
+        "source": "/getAllPosts",
+        "function": "mlw_app"
+      },
+      {
+        "source": "/getPost/**",
+        "function": "mlw_app"
+      },
+      {
+        "source": "/book/**",
+        "destination": "/book.html"
+      },
+      {
+        "source": "/getAllBooks",
+        "function": "mlw_app"
+      },
+      {
+        "source": "/getBook/**",
+        "function": "mlw_app"
+      },
+      {
+        "source": "**",
+        "function": "mlw_app"
+      }
+    ],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
     ]
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ]
+    }
+  ]
 }
