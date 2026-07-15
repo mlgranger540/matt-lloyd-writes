@@ -10,6 +10,17 @@ window.onload = async function(){
     document.getElementById("age").innerHTML = mattAge + " year old ";
 }
 
+// If collapsed navbar content is visible, make it not visible on click
+// If it's not visible, make it visible
+function openNav(){
+    var collapsedNavbar = document.getElementById("collapsed-content");
+    if (collapsedNavbar.style.display === "block") {
+        collapsedNavbar.style.display = "none";
+    } else {
+        collapsedNavbar.style.display = "block";
+    }
+}
+
 function calcAge(birthday, currentDate) {
     birthday = new Date(birthday);
     currentDate = new Date(currentDate);

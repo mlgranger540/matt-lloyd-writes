@@ -755,23 +755,19 @@ button:disabled {
 
     .collapsible {
         display: flex;
+        flex-direction: column;
         position: relative;
         background-color: #19214e;
-        align-items: center;
-        justify-content: center;
     }
 
     #collapsed-content {
-        /* display: block; */
-        /* text-align: center; */
+        justify-items: center;
     }
 
     #collapsed-navbar {
-        display: inline-block;
-        /* margin: auto; */
+        display: block;
         position: absolute;
-        width: 60%;
-        top: 100%;
+        width: 65%;
     }
 
     #collapsed-navbar .nav-item {

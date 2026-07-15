@@ -261,7 +261,7 @@ function openNav(){
     } else {
         collapsedNavbar.style.display = "block";
     }
-};
+}
 
 // Add ordinal suffixes to numbers in date
 function ordinalSuffix(day){
