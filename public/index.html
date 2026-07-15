@@ -38,6 +38,8 @@
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
     <!-- Script -->
     <script src="assets/js/recent_posts.js"></script>
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/22fc12a701.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -77,6 +79,31 @@
                 </ul>
             </div>
         </nav>
+        <!-- Collapsible Navbar -->
+        <button type="button" class="collapsible" onclick="openNav()"><i class="fa-solid fa-bars"></i>
+            <div id="collapsed-content">
+                <ul id="collapsed-navbar">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./writing">Writing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./my-books">My Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./series">&emsp;Series</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./standalone-books">&emsp;Standalone</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about">About the Author</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./stats">Stats for Nerds</a>
+                    </li>
+                </ul>
+            </div>
+        </button>
     </header>
 
     <!-- Main Section -->

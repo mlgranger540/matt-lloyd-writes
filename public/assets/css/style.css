@@ -148,6 +148,22 @@ h1 {
     border-top: 1px solid #dcf0f9;
 }
 
+/* Collapsible Navbar for Mobile */
+
+.collapsible {
+    display: none;
+    width: 100%;
+    padding: 0.5rem 0;
+}
+
+#collapsed-content {
+    display: none;
+}
+
+i {
+    color: #e7f7fe;
+}
+
 
 /* Panels */
 
@@ -733,12 +749,40 @@ button:disabled {
         font-size: 3.8rem;
     }
 
-    #nav-tabs {
-        width: 70%;
+    nav {
+        display: none;
+    }
+
+    .collapsible {
+        display: flex;
+        position: relative;
+        background-color: #19214e;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #collapsed-content {
+        /* display: block; */
+        /* text-align: center; */
+    }
+
+    #collapsed-navbar {
+        display: inline-block;
+        /* margin: auto; */
+        position: absolute;
+        width: 60%;
+        top: 100%;
+    }
+
+    #collapsed-navbar .nav-item {
+        list-style-type: none;
+        background-color: #0f1432;
     }
 
     .nav-link {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 
     .panel {
@@ -768,6 +812,10 @@ button:disabled {
 
     #info-div {
         margin-bottom: 0;
+    }
+
+    .picture-panel {
+        padding-bottom: 0;
     }
 
     .books-button {
