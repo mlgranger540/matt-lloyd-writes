@@ -102,24 +102,39 @@ window.onload = async function(){
     let totalWordCount = commaify(rawTotalWordCount);
 
     // Update page heading
-    statsContent += '<div class="row"><h2 id="stats-heading">Stats for Nerds</h2>';
-    // Add content to left column HTML
+    statsContent += '<div class="row"><h2 id="stats-heading">Stats for Nerds</h2><hr id="book-heading-separator" class="med-separator">';
+    statsContent += '<div class="row"><h3 id="book-stats">Book Stats</h3>';
+    // Add content to left column HTML for book stats
     statsContent += '<div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
     statsContent += '<div id="stats-left-column" class="col-xl-4 col-lg-5 col-md-6 col-12">';
     statsContent += '<p class="content">Number of Standalone Books:&ensp;' + noOfSingleBooks + '</p>';
     statsContent += '<p class="content">Number of Series:&ensp;' + noOfSeries + '</p>';
-    statsContent += '<p class="content">Total Number of Books:&ensp;' + noOfBooks + '</p>';
-    statsContent += '<p class="content">Books per Genre:&ensp;';
-    for (i = 0; i < genreCount.length; i++) {
-        statsContent += '<p class="content">' + genreCount[i].genre + ':&ensp;' + genreCount[i].count + '</p>';
-    }
-    statsContent += '</div>';
-    // Add content to right column HTML
+    statsContent += '<p class="content">Total Number of Books:&ensp;' + noOfBooks + '</p></div>';
+
+    // Add content to right column HTML for book stats
     statsContent += '<div id="stats-right-column" class="col-xl-4 col-lg-5 col-md-6 col-12">'
     statsContent += '<p class="content">Total Word Count:&ensp;' + totalWordCount + '</p></div>';
-    statsContent += '<div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
+    statsContent += '<div class="col-xl-2 col-lg-1 d-md-block d-none"></div></div>';
 
-    // Add both columns to stats div
+    // Add content to second row for book stats
+    statsContent += '<div class="row"><div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
+    statsContent += '<p class="content col-xl-4 col-lg-5 col-md-6 col-12">Books per Genre:&ensp;</div>';
+    statsContent += '<div class="row"><div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
+    statsContent += '<div class="col-lg-3 col-md-3 col-6">';
+    let genresColumn1 = '';
+    for (i = 0; i < 11; i++) {
+        genresColumn1 += '<p class="stat-item">' + genreCount[i].genre + ':&ensp;' + genreCount[i].count + '</p>';
+    }
+    statsContent += genresColumn1;
+    statsContent += '</div><div class="col-lg-2 col-md-3 col-6">';
+    let genresColumn2 = '';
+    for (i = 11; i < genreCount.length; i++) {
+        genresColumn2 += '<p class="stat-item">' + genreCount[i].genre + ':&ensp;' + genreCount[i].count + '</p>';
+    }
+    statsContent += genresColumn2;
+    statsContent += '</div></div>';
+
+    // Add content to stats div
     statsDiv.innerHTML = statsContent;
 
     // Add current year to copyright line

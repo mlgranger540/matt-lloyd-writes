@@ -484,10 +484,19 @@ hr {
 
 #stats-heading {
     text-align: center;
+    margin-bottom: 1rem;
 }
 
 #stats-right-column {
     text-align: right;
+}
+
+#book-stats {
+    text-align: center;
+}
+
+.stat-item {
+    line-height: 1.1rem;
 }
 
 
@@ -708,6 +717,10 @@ button:disabled {
     #book-right-column {
         padding: 0 1rem;
     }
+
+    .stat-item {
+        font-size: 0.9rem;
+    }
 }
 
 @media only screen and (max-width: 426px) {
@@ -773,7 +786,7 @@ button:disabled {
         height: 90vw;
     }
 
-    .book-title-large {
+    .title-and-series {
         text-align: center;
     }
 
@@ -796,5 +809,9 @@ button:disabled {
     #book-right-column {
         width: 100%;
         padding: 0;
+    }
+
+    #stats-right-column {
+        text-align: left;
     }
 }

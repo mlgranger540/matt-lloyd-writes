@@ -48,7 +48,7 @@ window.onload = async function(){
         let k = 1;
         for (let i = 0; i < noOfSingleBooks; i++) {
             let bookTile = '';
-            // Check if three books have been added
+            // Check if four books have been added
             // if so, start new bookshelf
             if (k === 5) {
                 singleBookshelf += '</div><div class="bookshelf row">';
