@@ -81,6 +81,8 @@ h1 {
 
 .active {
     --bs-nav-tabs-link-active-bg: #dcf0f9;
+    background-color: #dcf0f9;
+    color: #19214e;
 }
 
 /* Dropdown in Navbar */
