@@ -7,8 +7,8 @@ window.onload = async function(){
         // Add post data from Prismic to post object
         let post = {};
         let id = res.uid;
-        let number = res.data.number;
         let rawTitle = res.data.title;
+        let type = res.data.type;
         let rawDate = new Date(res.data.date_written);
         let dayNum = rawDate.getDate();
         let day = ordinalSuffix(dayNum);
@@ -23,16 +23,19 @@ window.onload = async function(){
         let dateEdited = dayEd + " " + monthEd + " " + yearEd;
         let content = res.data.content;
         let description = res.data.description;
-        let type = res.data.type;
-        let rawTags = res.data.tags.split(',');
+        let rawWordCount = res.data.word_count;
+        let wordCount = commaify(rawWordCount);
+        let rawGenres = res.data.genres;
+        let rawTags = res.data.tags;
         post.id = id;
-        post.number = number;
         post.rawTitle = rawTitle;
+        post.type = type;
         post.dateWritten = dateWritten;
         post.dateEdited = dateEdited;
         post.content = content;
         post.description = description;
-        post.type = type;
+        post.wordCount = wordCount;
+        post.rawGenres = rawGenres;
         post.rawTags = rawTags;
 
         // Add post to post section
@@ -61,10 +64,19 @@ window.onload = async function(){
             line = line.text;
             descParas.push(line);
         });
-        // Loop through tags and add hash
+        // Loop through genres and tags, add hash and push to hashtags array
+        let genres = post.rawGenres;
         let tags = post.rawTags;
         let hashtags = [];
+        genres.forEach((gen) => {
+            if (gen.genre !== null) {
+                gen = gen.genre;
+                gen = '#' + gen;
+                hashtags.push(gen);
+            };
+        });
         tags.forEach((tag) => {
+            tag = tag.tag;
             tag = '#' + tag;
             hashtags.push(tag);
         });
@@ -82,11 +94,12 @@ window.onload = async function(){
             article += '<p class="paragraph">' + paragraph + '</p>';
         });
         article += '</div>';
+        article += '<p class="word-count">' + wordCount + ' words</p>';
         article += '<div class="short-separator"><hr></div>';
         descParas.forEach((paragraph) => {
             article += '<p class="description">' + paragraph + '</p>';
         });
-        article += '<p class="tag">';
+        article += '<p class="tags">';
         hashtags.forEach((tag) => {
             article += tag + ' &ensp;';
         });
@@ -111,5 +124,31 @@ function ordinalSuffix(day){
         return day + 'rd';
     } else {
         return day + 'th';
+    }
+}
+
+function commaify(num){
+    // Convert number to string
+    let numStr = num.toString();
+    // Check if number has at least 7 digits
+    if (numStr / 1000000 > 1){
+        // Slice string in groups of 3
+        var numEnd = numStr.slice(-3);
+        var numMid = numStr.slice(-6,-3);
+        var numBeg = numStr.slice(0,-6);
+        // Recombine with comma separators
+        var commaNum = numBeg + ',' + numMid + ',' + numEnd;
+        return(commaNum);
+    // Check if number has at least 4 digits
+    } else if (numStr / 1000 > 1){
+        // Slice string in groups of 3
+        var numEnd = numStr.slice(-3);
+        var numBeg = numStr.slice(0,-3);
+        // Recombine with comma separator
+        var commaNum = numBeg + ',' + numEnd;
+        return commaNum;
+    // If number has less than 4 digits, no change
+    } else {
+        return numStr;
     }
 }

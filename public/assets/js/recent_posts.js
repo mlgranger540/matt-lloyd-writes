@@ -68,6 +68,7 @@ window.onload = async function(){
                 paragraph = paragraph.text;
                 paragraphs.push(paragraph);
             });
+            let wordCount = allPosts[i].wordCount;
             // Loop through genres and tags, add hash and push to hashtags array
             let genres = allPosts[i].genres;
             let tags = allPosts[i].tags;
@@ -78,7 +79,7 @@ window.onload = async function(){
                     gen = '#' + gen;
                     hashtags.push(gen);
                 };
-            })
+            });
             tags.forEach((tag) => {
                 tag = tag.tag;
                 tag = '#' + tag;
@@ -103,10 +104,11 @@ window.onload = async function(){
                     article += '<p class="paragraph">' + paragraphs[i] + '</p>';
                 };
             };
+            article += '<p class="word-count-preview">' + wordCount + ' words</p>';
             article += '<p class="tbc-dots">...</p>'
             article += '</div>';
             article += '<p class="read-more"><a class="read-more-link" href="/post/' + id + '">Read More</a></p>';
-            article += '<p class="tag">';
+            article += '<p class="tags">';
             hashtags.forEach((tag) => {
                 article += tag + ' &ensp;';
             });
@@ -189,13 +191,15 @@ window.onload = async function(){
             });
         }
 
+        let pageTop = document.getElementById("top");
+
         // Event listener for Previous button
         prevButton.addEventListener('click', () => {
             if (currentPage > 1) {
                 currentPage--;
                 displayPage(currentPage);
                 updatePagination();
-                articleDiv.scrollIntoView();
+                pageTop.scrollIntoView();
             }
         });
 
@@ -205,7 +209,7 @@ window.onload = async function(){
                 currentPage++;
                 displayPage(currentPage);
                 updatePagination();
-                articleDiv.scrollIntoView();
+                pageTop.scrollIntoView();
             }
         });
 
@@ -218,7 +222,7 @@ window.onload = async function(){
                     currentPage = page;
                     displayPage(currentPage);
                     updatePagination();
-                    articleDiv.scrollIntoView();
+                    pageTop.scrollIntoView();
                 }
             });
         });
@@ -286,4 +290,3 @@ function commaify(num){
         return numStr;
     }
 }
-
