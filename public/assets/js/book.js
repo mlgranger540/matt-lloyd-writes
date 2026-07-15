@@ -133,6 +133,12 @@ window.onload = async function(){
         bookRightContent += '<p class="story-details">Main Characters:&ensp;' + mainChars + '</p>';
         bookRightContent += '<p class="story-details">Major Characters:&ensp;' + majChars + '</p>';
         bookRightContent += '<p class="story-details">Antagonists:&ensp;' + antagonists + '</p>';
+        bookRightContent += '<div id="hidden-detail-column" class="book-detail-column"><hr>';
+        bookRightContent += '<p class="book-details">Audience & Rating:&ensp;' + audience + ' (' + rating + ')</p>';
+        bookRightContent += '<p class="book-details">Genres:&ensp;' + genres.join(", ") + '</p>';
+        bookRightContent += '<p class="book-details">Themes:&ensp;' + themes.join(", ") + '</p>';
+        bookRightContent += '<p class="book-details">POV & Tense:&ensp;' + pov + ' / ' + tense + '</p>';
+        bookRightContent += '</div>';
         bookRightContent += '<hr>'
         bookRightContent += '<p class="book-details stats">Word Count:&ensp;' + wordCount + ' &ensp; | &ensp;Page Count:&ensp;' + pageCount + '</p>';
         bookRightContent += '<p class="book-details stats">Status:&ensp;' + status + '</p>';
