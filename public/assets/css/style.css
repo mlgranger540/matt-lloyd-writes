@@ -164,6 +164,7 @@ h1 {
 
 i {
     color: #e7f7fe;
+    font-size: 1.2rem;
 }
 
 
@@ -287,6 +288,12 @@ hr {
     margin: auto;
 }
 
+#link-to-all {
+    width: 100%;
+    padding: 0.4rem;
+    border-radius: 0;
+}
+
 /* Sidebar */
 
 .sticky {
@@ -319,10 +326,8 @@ hr {
     padding: 1rem;
     background-color: #93c6db;
     border-radius: 0.375rem;
-}
-
-.books-button a {
     color: #19214e;
+    text-align: center;
     font-size: 1.3rem;
     font-family: Cinzel, 'Times New Roman', Times, serif;
     font-weight: 500;
@@ -330,11 +335,9 @@ hr {
 
 .books-button:hover {
     background-color: rgba(73, 127, 150, 0.9);
-}
-
-.books-button:hover a {
     color: #fff;
 }
+
 
 /* Bookshelves */
 
@@ -702,9 +705,6 @@ button:disabled {
 
     .books-button {
         width: 48%;
-    }
-
-    .books-button a {
         font-size: 1.2rem;
     }
 
@@ -743,7 +743,7 @@ button:disabled {
 
 @media only screen and (max-width: 426px) {
     header {
-        margin: 1.8rem 0 1.5rem 0;
+        margin: 1rem 0;
     }
 
     h1 {
@@ -818,9 +818,6 @@ button:disabled {
 
     .books-button {
         width: 80%;
-    }
-
-    .books-button a {
         font-size: 1.1rem;
     }
 

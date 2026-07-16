@@ -48,8 +48,8 @@ window.onload = async function(){
         let quickNav = document.getElementById("quick-nav");
         let article = '';
         let quickNavLinks = '';
-        // Loop to add first six posts to page
-        for (let i = 0; i < 6; i++) {
+        // Loop to add all posts to page
+        for (let i = 0; i < allPosts.length; i++) {
             let id = allPosts[i].id;
             // Loop through title objects
             let titleObjs = allPosts[i].title;
@@ -119,14 +119,117 @@ window.onload = async function(){
             // Create quick nav links
             quickNavLinks += '<li class="quick-nav-link"><a href="#' + id + '">' + title + '</a></li>';
         }
-        // Create link to all
-        let linkToAll = '';
-        linkToAll += '<div class="row"><a id="link-to-all" class="books-button" href="./writing">More Posts</a></div>';
+        // Create pagination div
+        let paginationDiv = '';
+        paginationDiv += '<div id="pagination" class="pagination"><button id="prev" class="pagination-link" type="button" href="#">Previous</button>';
+        paginationDiv += '<div id="page-link-div" class="pagination-link"></div><button id="next" class="pagination-link" type="button" href="#">Next</button>';
+        paginationDiv += '<div class="break"></div><div id="pagination-row-2"><p id="page-numbers"></p></div>';
 
-        // Add articles and quick nav links to page
+        // Add articles, pagination and quick nav links to page
         articleDiv.innerHTML = article;
-        articleDiv.innerHTML += linkToAll;
+        articleDiv.innerHTML += paginationDiv;
         quickNav.innerHTML = quickNavLinks;
+
+        const postsPerPage = 5;
+        const pagination = document.getElementById('pagination');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        const pageNumbers = document.getElementById('page-numbers');
+        // Make arrays from posts and quick nav links
+        const posts = Array.from(articleDiv.getElementsByClassName('inner-panel'));
+        const quickNavArray = Array.from(quickNav.getElementsByClassName('quick-nav-link'));
+
+        // Calculate the total number of pages 
+        const totalPages = Math.ceil(posts.length / postsPerPage);
+        let currentPage = 1;
+
+        // Add page number links for number of pages
+        let pageLinkDiv = document.getElementById('page-link-div');
+        for (let i = 0; i < totalPages; i++) {
+            pageLinkDiv.innerHTML += '<button class="pagination-link page-link" type="button" href="#" data-page="' + (i+1) + '">' + (i+1) + '</button>';
+        }
+        const pageLinks = document.querySelectorAll('.page-link');
+
+        // Function to display posts for a specific page 
+        function displayPage(page) {
+            const startIndex = (page - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+            posts.forEach((post, index) => {
+                if (index >= startIndex && index < endIndex) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+            quickNavArray.forEach((link, index) => {
+                if (index >= startIndex && index < endIndex) {
+                    link.style.display = 'block';
+                } else {
+                    link.style.display = 'none';
+                }
+            });
+        }
+
+        // Function to update pagination buttons and page numbers 
+        function updatePagination() {
+            pageNumbers.textContent = `Page ${currentPage} of ${totalPages}`;
+            // Toggle Previous/Next buttons disabled when there are no more pages
+            if (currentPage === 1) {
+                prevButton.disabled = true;
+            } else {
+                prevButton.disabled = false;
+            }
+            if (currentPage === totalPages) {
+                nextButton.disabled = true;
+            } else {
+                nextButton.disabled = false;
+            }
+            // Make page link show active for current page
+            pageLinks.forEach((link) => {
+                const page = parseInt(link.getAttribute('data-page')); 
+                link.classList.toggle('active', page === currentPage); 
+            });
+        }
+
+        let pageTop = document.getElementById("top");
+
+        // Event listener for Previous button
+        prevButton.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                displayPage(currentPage);
+                updatePagination();
+                pageTop.scrollIntoView();
+            }
+        });
+
+        // Event listener for Next button
+        nextButton.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayPage(currentPage);
+                updatePagination();
+                pageTop.scrollIntoView();
+            }
+        });
+
+        // Event listener for page number buttons
+        pageLinks.forEach((link) => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = parseInt(link.getAttribute('data-page'));
+                if (page !== currentPage) {
+                    currentPage = page;
+                    displayPage(currentPage);
+                    updatePagination();
+                    pageTop.scrollIntoView();
+                }
+            });
+        });
+
+        // Initial page load 
+        displayPage(currentPage); 
+        updatePagination();
     })
 
     var sidebar = document.getElementById("side-panel-1");
