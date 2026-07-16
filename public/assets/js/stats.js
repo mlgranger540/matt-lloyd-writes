@@ -285,7 +285,7 @@ window.onload = async function(){
 
 // If collapsed navbar content is visible, make it not visible on click
 // If it's not visible, make it visible
-function openNav(){
+function openNav() {
     var collapsedNavbar = document.getElementById("collapsed-content");
     if (collapsedNavbar.style.display === "block") {
         collapsedNavbar.style.display = "none";
@@ -294,7 +294,15 @@ function openNav(){
     };
 }
 
-function commaify(num){
+// When clicking outside of collapsed navbar, close it, unless clicking a link
+function closeNav(event) {
+    var collapsedNavbar = document.getElementById("collapsed-content");
+    if (event.relatedTarget === null) {
+        collapsedNavbar.style.display = "none";
+    };
+}
+
+function commaify(num) {
     // Convert number to string
     let numStr = num.toString();
     // Check if number has at least 7 digits

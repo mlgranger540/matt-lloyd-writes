@@ -775,6 +775,7 @@ button:disabled {
         display: block;
         position: absolute;
         width: 65%;
+        z-index: 2;
     }
 
     #collapsed-navbar .nav-item {

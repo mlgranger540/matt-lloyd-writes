@@ -87,7 +87,7 @@ window.onload = async function(){
         article += '<h4 class="entry-date">' + dateWritten;
         if (dateEdited !== '1st Jan 1970'){
             article += '<span class="edit-date">&ensp;(ed. ' + dateEdited + ')</span>';
-        }
+        };
         article += '&ensp;—&ensp;<span class="type">' + type + '</span></h4>';
         article += '<div class="content">';
         paragraphs.forEach((paragraph) => {
@@ -116,17 +116,25 @@ window.onload = async function(){
 
 // If collapsed navbar content is visible, make it not visible on click
 // If it's not visible, make it visible
-function openNav(){
+function openNav() {
     var collapsedNavbar = document.getElementById("collapsed-content");
     if (collapsedNavbar.style.display === "block") {
         collapsedNavbar.style.display = "none";
     } else {
         collapsedNavbar.style.display = "block";
-    }
+    };
+}
+
+// When clicking outside of collapsed navbar, close it, unless clicking a link
+function closeNav(event) {
+    var collapsedNavbar = document.getElementById("collapsed-content");
+    if (event.relatedTarget === null) {
+        collapsedNavbar.style.display = "none";
+    };
 }
 
 // Add ordinal suffixes to numbers in date
-function ordinalSuffix(day){
+function ordinalSuffix(day) {
     if (day % 10 == 1 && day != 11){
         return day + 'st';
     } else if (day % 10 == 2 && day != 12){
@@ -135,10 +143,10 @@ function ordinalSuffix(day){
         return day + 'rd';
     } else {
         return day + 'th';
-    }
+    };
 }
 
-function commaify(num){
+function commaify(num) {
     // Convert number to string
     let numStr = num.toString();
     // Check if number has at least 7 digits
@@ -161,5 +169,5 @@ function commaify(num){
     // If number has less than 4 digits, no change
     } else {
         return numStr;
-    }
+    };
 }

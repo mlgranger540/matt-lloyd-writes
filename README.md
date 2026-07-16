@@ -56,11 +56,13 @@ As it says on the tin, this page will include all the stats for my work for all 
 
 ### Features to Add
 
-- About the Author and Stats pages
+- Finish About the Author and Stats pages
 
 - Different sections for each type of post on the writing page
 
-- Ability to sort/filter things i.e. by title, genres/tags, word count etc.
+- And/or ability to sort/filter things i.e. by title, date, genres/tags, word count etc.
+
+- Series page that shows the full information for all the books in the series
 
 ## Content Management System
 
@@ -93,13 +95,15 @@ The live site can be found on two domains, [matt-lloyd-writes.web.app](https://m
 - [Git](https://git-scm.com/) for version control
 - [GitHub](https://github.com/) to store the project repository and back up git commits
 - [Bootstrap v5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/) to assist in the structure and design of the site
-- [Prismic Headless CMS](https://prismic.io/) to manage my content
+- [Prismic Headless CMS](https://prismic.io/) to store, manage and publish my content
 - [Express JS framework](https://expressjs.com/) to connect to Prismic as well as enable page routing
 - [Google Fonts](https://fonts.google.com/) for the headings, links and other text fonts
 
 ## Known Bugs
 
 None... so far ;)
+
+(Well, the navbar will be janky on tablets because the dropdown is on hover which you can't do on a tablet... but having the full collapsible one just seems unnecessary, and I'm not sure how/if I can make it on click on tablet. But that's not so much a bug as just something I haven't figured out yet lol)
 
 ## Credits
 
@@ -111,21 +115,23 @@ I used the [Express Routing docs](https://expressjs.com/en/guide/routing.html) a
 
 This [Stack Overflow post](https://stackoverflow.com/questions/62380765/how-to-remove-html-url-endings-and-configure-redirects-in-firebase) helped when trying to remove .html from URLs in the deployed site (`./writing` etc worked in local but not on the live site).
 
-These Stack Overflow posts [[1](https://stackoverflow.com/questions/4313841/insert-a-string-at-a-specific-index), [2](https://stackoverflow.com/questions/1798465/remove-last-3-characters-of-a-string)] as well as the [W3 Schools Guidance](https://www.w3schools.com/jsref/jsref_slice_string.asp) helped when I was trying to create a function to add thousand separators to large numbers.
-
-This [Stack Overflow post](https://stackoverflow.com/questions/8900732/sort-objects-in-an-array-alphabetically-on-one-property-of-the-array) helped when trying to sort an array of objects alphabetically by one of the properties. Then [this one](https://stackoverflow.com/questions/33174147/sorting-an-array-twice) helped when trying to sort it by two properties!
-
-This [guide](https://www.geeksforgeeks.org/javascript/create-a-pagination-using-html-css-and-javascript/) helped me to create the pagination on my pages.
-
 This [Stack Overflow post](https://stackoverflow.com/questions/413439/how-to-dynamically-change-a-web-pages-title) helped with changing the page title dynamically on the single post and book pages.
-
-This [Stack Overflow post](https://stackoverflow.com/questions/4076321/javascript-age-calculation) helped me to create a function to work out my current age.
 
 I used the [W3 Schools guidance](https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp) to create the dropdown in the navbar, as well as this [Stack Overflow post](https://stackoverflow.com/questions/61628295/make-dropdown-menu-same-width-as-button-parent) to help make the dropdown the same width as the parent button.
 
-These guides [[1](https://web-highlights.com/blog/turn-your-website-into-a-beautiful-thumbnail-link-preview/), [2](https://www.digitalocean.com/community/tutorials/how-to-add-twitter-card-and-open-graph-social-metadata-to-your-webpage-with-html)] as well as the [Open Graph Docs](https://ogp.me/) helped me to create link previews for my website. This [website](https://www.opengraph.xyz/) is also helpful for testing the previews.
+These Stack Overflow posts [[1](https://stackoverflow.com/questions/71726629/close-dropdown-menu-when-clicking-outside), [2](https://stackoverflow.com/questions/497094/how-do-i-find-out-which-dom-element-has-the-focus), [3](https://stackoverflow.com/questions/11299832/document-activeelement-returns-body-in-onblur-handler)] as well as W3 Schools guidance on [`onblur`](https://www.w3schools.com/jsref/event_onblur.asp), [`onfocusout`](https://www.w3schools.com/jsref/event_onfocusout.asp), [`activeElement`](https://www.w3schools.com/jsref/prop_document_activeelement.asp) and [`relatedTarget`](https://www.w3schools.com/jsref/event_relatedtarget.asp) helped me to make the collapsible navbar dropdown close when clicked out of (but not when a link is clicked, as it was doing when I used `onblur` not `onfocusout` - the latter allowed me to use `relatedTarget` to check what the focus was moving to as `activeElement` was returning the whole body).
+
+This [Stack Overflow post](https://stackoverflow.com/questions/8900732/sort-objects-in-an-array-alphabetically-on-one-property-of-the-array) helped when trying to sort an array of objects alphabetically by one of the properties. Then [this one](https://stackoverflow.com/questions/33174147/sorting-an-array-twice) helped when trying to sort it by two properties!
 
 This [guide](https://www.geeksforgeeks.org/javascript/count-occurrences-of-all-items-in-an-array-in-javascript/) helped with trying to count how many times each genre was used across my books.
+
+This [guide](https://www.geeksforgeeks.org/javascript/create-a-pagination-using-html-css-and-javascript/) helped me to create the pagination on my pages.
+
+These Stack Overflow posts [[1](https://stackoverflow.com/questions/4313841/insert-a-string-at-a-specific-index), [2](https://stackoverflow.com/questions/1798465/remove-last-3-characters-of-a-string)] as well as the [W3 Schools Guidance](https://www.w3schools.com/jsref/jsref_slice_string.asp) helped when I was trying to create a function to add thousand separators to large numbers.
+
+This [Stack Overflow post](https://stackoverflow.com/questions/4076321/javascript-age-calculation) helped me to create a function to work out my current age.
+
+These guides [[1](https://web-highlights.com/blog/turn-your-website-into-a-beautiful-thumbnail-link-preview/), [2](https://www.digitalocean.com/community/tutorials/how-to-add-twitter-card-and-open-graph-social-metadata-to-your-webpage-with-html)] as well as the [Open Graph Docs](https://ogp.me/) helped me to create link previews for my website. This [website](https://www.opengraph.xyz/) is also helpful for testing the previews.
 
 Not related to the actual website, but this [Stack Overflow post](https://stackoverflow.com/questions/17602611/inspect-a-hover-element) taught me how to force an element to show as hover when inspecting, which is very helpful when trying to style on hover effects!
 

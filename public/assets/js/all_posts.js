@@ -41,7 +41,7 @@ window.onload = async function(){
             post.genres = genres;
             post.tags = tags;
             allPosts.push(post);
-        });
+        })
         
         // Add posts to post section
         let articleDiv = document.getElementById("article-div");
@@ -159,14 +159,14 @@ window.onload = async function(){
                     post.style.display = 'block';
                 } else {
                     post.style.display = 'none';
-                }
+                };
             });
             quickNavArray.forEach((link, index) => {
                 if (index >= startIndex && index < endIndex) {
                     link.style.display = 'block';
                 } else {
                     link.style.display = 'none';
-                }
+                };
             });
         }
 
@@ -183,7 +183,7 @@ window.onload = async function(){
                 nextButton.disabled = true;
             } else {
                 nextButton.disabled = false;
-            }
+            };
             // Make page link show active for current page
             pageLinks.forEach((link) => {
                 const page = parseInt(link.getAttribute('data-page')); 
@@ -200,8 +200,8 @@ window.onload = async function(){
                 displayPage(currentPage);
                 updatePagination();
                 pageTop.scrollIntoView();
-            }
-        });
+            };
+        })
 
         // Event listener for Next button
         nextButton.addEventListener('click', () => {
@@ -210,8 +210,8 @@ window.onload = async function(){
                 displayPage(currentPage);
                 updatePagination();
                 pageTop.scrollIntoView();
-            }
-        });
+            };
+        })
 
         // Event listener for page number buttons
         pageLinks.forEach((link) => {
@@ -223,9 +223,9 @@ window.onload = async function(){
                     displayPage(currentPage);
                     updatePagination();
                     pageTop.scrollIntoView();
-                }
+                };
             });
-        });
+        })
 
         // Initial page load 
         displayPage(currentPage); 
@@ -237,12 +237,12 @@ window.onload = async function(){
     
     // When scrolling past sidebar, make sticky
     // When scrolling back up, unstick
-    function stick(){
+    function stick() {
         if (window.scrollY >= offsetTop) {
             sidebar.classList.add("sticky");
         } else {
             sidebar.classList.remove("sticky");
-        }
+        };
     }
 
     window.addEventListener("scroll", stick);
@@ -254,17 +254,25 @@ window.onload = async function(){
 
 // If collapsed navbar content is visible, make it not visible on click
 // If it's not visible, make it visible
-function openNav(){
+function openNav() {
     var collapsedNavbar = document.getElementById("collapsed-content");
     if (collapsedNavbar.style.display === "block") {
         collapsedNavbar.style.display = "none";
     } else {
         collapsedNavbar.style.display = "block";
-    }
+    };
+}
+
+// When clicking outside of collapsed navbar, close it, unless clicking a link
+function closeNav(event) {
+    var collapsedNavbar = document.getElementById("collapsed-content");
+    if (event.relatedTarget === null) {
+        collapsedNavbar.style.display = "none";
+    };
 }
 
 // Add ordinal suffixes to numbers in date
-function ordinalSuffix(day){
+function ordinalSuffix(day) {
     if (day % 10 == 1 && day != 11){
         return day + 'st';
     } else if (day % 10 == 2 && day != 12){
@@ -273,10 +281,10 @@ function ordinalSuffix(day){
         return day + 'rd';
     } else {
         return day + 'th';
-    }
+    };
 }
 
-function commaify(num){
+function commaify(num) {
     // Convert number to string
     let numStr = num.toString();
     // Check if number has at least 7 digits
@@ -299,5 +307,5 @@ function commaify(num){
     // If number has less than 4 digits, no change
     } else {
         return numStr;
-    }
+    };
 }

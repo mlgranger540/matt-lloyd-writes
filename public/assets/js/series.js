@@ -33,16 +33,16 @@ window.onload = async function(){
                 book.themes = themes;
                 book.status = status;
                 allSeries.push(book);
-            }
+            };
             // Sort series alphabetically by series name, then by book number
             allSeries.sort((a,b) => {
                 if (a.series.localeCompare(b.series) === 0) {
                     return a.bookNumber - b.bookNumber;
                 } else {
                     return a.series.localeCompare(b.series);
-                }
+                };
             });
-        });
+        })
         
         // Add series and their books to series book section
         let seriesDiv = document.getElementById("series-div");
@@ -61,8 +61,8 @@ window.onload = async function(){
                     seriesBookshelf += '</div><div class="bookshelf row">';
                     seriesBookshelf += '<h3 class="series-title">' + allSeries[i].series + '</h3>';
                     j = 1;
-                }
-            }
+                };
+            };
             let id = allSeries[i].id;
             let coverSrc = allSeries[i].coverSrc;
             let coverAlt = allSeries[i].coverAlt;
@@ -100,12 +100,12 @@ window.onload = async function(){
                 bookTile += '<a href="/book/' + id + '"><img class="book-cover" src="./assets/images/book-cover-placeholder.png" alt="Placeholder book cover image"></img></a>';
             } else {
                 bookTile += '<a href="/book/' + id + '"><img class="book-cover" src="' + coverSrc + '" alt="' + coverAlt + '"></img></a>';
-            }
+            };
             bookTile += '</div>';
             bookTile += '<div class="title-and-series"><h3 class="book-title"><a class="book-title-link" href="/book/' + id + '">' + title + '</a></h3>';
             if (series !== null) {
                 bookTile += '<p class="series-white">Book ' + bookNumber + ' – ' + series + '</p>';
-            }
+            };
             bookTile += '</div>';
             bookTile += '<p>Audience & Rating:&ensp;' + audience + ' (' + rating + ')</p>';
             bookTile += '<p>Genres:&ensp;' + genres.join(", ") + '</p>';
@@ -116,7 +116,8 @@ window.onload = async function(){
             // Add book tile to bookshelf
             seriesBookshelf += bookTile;
             j++;
-        };
+        }
+
         seriesBookshelf += '</div>';
         // Add bookshelf to series div
         seriesDiv.innerHTML = seriesBookshelf;
@@ -129,11 +130,19 @@ window.onload = async function(){
 
 // If collapsed navbar content is visible, make it not visible on click
 // If it's not visible, make it visible
-function openNav(){
+function openNav() {
     var collapsedNavbar = document.getElementById("collapsed-content");
     if (collapsedNavbar.style.display === "block") {
         collapsedNavbar.style.display = "none";
     } else {
         collapsedNavbar.style.display = "block";
-    }
+    };
+}
+
+// When clicking outside of collapsed navbar, close it, unless clicking a link
+function closeNav(event) {
+    var collapsedNavbar = document.getElementById("collapsed-content");
+    if (event.relatedTarget === null) {
+        collapsedNavbar.style.display = "none";
+    };
 }

@@ -109,7 +109,7 @@ window.onload = async function(){
             bookLeftContent += '<img class="book-cover-thumb" src="../assets/images/book-cover-placeholder.png" alt="Placeholder book cover image"></img>';
         } else {
             bookLeftContent += '<img class="book-cover-thumb" src="' + coverSrc + '" alt="' + coverAlt + '"></img>';
-        }
+        };
         bookLeftContent += '</div>';
         bookLeftContent += '<div class="book-detail-column">';
         bookLeftContent += '<p class="book-details">Audience & Rating:&ensp;' + audience + ' (' + rating + ')</p>';
@@ -124,7 +124,7 @@ window.onload = async function(){
         bookRightContent += '<div class="title-and-series"><h3 class="book-title-large">' + title + '</h3>';
         if (series !== null) {
             bookRightContent += '<p class="series">Book ' + bookNumber + ' – ' + series + '</p>';
-        }
+        };
         bookRightContent += '</div>';
         bookRightContent += '<p class="synopsis">Synopsis:&ensp;' + synopsis + '</p>';
         bookRightContent += '<p class="story-details">Archetypes:&ensp;' + archetypes.join(", ") + '</p>';
@@ -154,16 +154,24 @@ window.onload = async function(){
 
 // If collapsed navbar content is visible, make it not visible on click
 // If it's not visible, make it visible
-function openNav(){
+function openNav() {
     var collapsedNavbar = document.getElementById("collapsed-content");
     if (collapsedNavbar.style.display === "block") {
         collapsedNavbar.style.display = "none";
     } else {
         collapsedNavbar.style.display = "block";
-    }
+    };
 }
 
-function commaify(num){
+// When clicking outside of collapsed navbar, close it, unless clicking a link
+function closeNav(event) {
+    var collapsedNavbar = document.getElementById("collapsed-content");
+    if (event.relatedTarget === null) {
+        collapsedNavbar.style.display = "none";
+    };
+}
+
+function commaify(num) {
     // Convert number to string
     let numStr = num.toString();
     // Check if number has at least 7 digits
@@ -186,5 +194,5 @@ function commaify(num){
     // If number has less than 4 digits, no change
     } else {
         return numStr;
-    }
+    };
 }

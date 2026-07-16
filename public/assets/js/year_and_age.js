@@ -12,13 +12,21 @@ window.onload = async function(){
 
 // If collapsed navbar content is visible, make it not visible on click
 // If it's not visible, make it visible
-function openNav(){
+function openNav() {
     var collapsedNavbar = document.getElementById("collapsed-content");
     if (collapsedNavbar.style.display === "block") {
         collapsedNavbar.style.display = "none";
     } else {
         collapsedNavbar.style.display = "block";
-    }
+    };
+}
+
+// When clicking outside of collapsed navbar, close it, unless clicking a link
+function closeNav(event) {
+    var collapsedNavbar = document.getElementById("collapsed-content");
+    if (event.relatedTarget === null) {
+        collapsedNavbar.style.display = "none";
+    };
 }
 
 function calcAge(birthday, currentDate) {
@@ -30,6 +38,6 @@ function calcAge(birthday, currentDate) {
     if (currentDate.getMonth() < birthday.getMonth() || 
         currentDate.getMonth() == birthday.getMonth() && currentDate.getDate() < birthday.getDate()) {
         years--;
-    }
+    };
     return years;
 }

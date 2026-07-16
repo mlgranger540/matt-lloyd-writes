@@ -33,10 +33,10 @@ window.onload = async function(){
                 book.themes = themes;
                 book.status = status;
                 allSingleBooks.push(book);
-            }
+            };
             // Sort single books alphabetically by uid
             allSingleBooks.sort((a,b) => {return a.id.localeCompare(b.id)});
-        });
+        })
         
         // Add books to book section
         let booksDiv = document.getElementById("books-div");
@@ -108,6 +108,7 @@ window.onload = async function(){
             singleBookshelf += bookTile;
             k++;
         }
+
         singleBookshelf += '</div>';
         // Add bookshelf to books div
         booksDiv.innerHTML = singleBookshelf;
@@ -120,11 +121,19 @@ window.onload = async function(){
 
 // If collapsed navbar content is visible, make it not visible on click
 // If it's not visible, make it visible
-function openNav(){
+function openNav() {
     var collapsedNavbar = document.getElementById("collapsed-content");
     if (collapsedNavbar.style.display === "block") {
         collapsedNavbar.style.display = "none";
     } else {
         collapsedNavbar.style.display = "block";
-    }
+    };
+}
+
+// When clicking outside of collapsed navbar, close it, unless clicking a link
+function closeNav(event) {
+    var collapsedNavbar = document.getElementById("collapsed-content");
+    if (event.relatedTarget === null) {
+        collapsedNavbar.style.display = "none";
+    };
 }
