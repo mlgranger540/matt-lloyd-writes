@@ -226,7 +226,6 @@ i {
     font-family: Cinzel, 'Times New Roman', Times, serif;
     font-size: 1.05rem;
     font-style: normal;
-    text-transform: capitalize;
 }
 
 .content {
@@ -508,16 +507,22 @@ hr {
     margin-bottom: 1rem;
 }
 
-#stats-right-column {
+.stats-right-column {
     text-align: right;
 }
 
-#book-stats {
-    text-align: center;
+.stats-subheading {
+    /* text-align: center; */
+    padding: 0.5rem 0;
+    color: #a6dff8;
 }
 
 .stat-item {
     line-height: 1.1rem;
+}
+
+#post-stats {
+    margin-bottom: 2rem;
 }
 
 
@@ -854,7 +859,7 @@ button:disabled {
         padding: 0;
     }
 
-    #stats-right-column {
+    .stats-right-column {
         text-align: left;
     }
 }
