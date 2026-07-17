@@ -42,7 +42,74 @@ window.onload = async function(){
             post.tags = tags;
             allPosts.push(post);
         })
-        
+
+        // Loop through posts and make array of all types
+        let allTypes = [];
+        allPosts.forEach((post) => {
+            allTypes.push(post.type);
+        })
+        // Then add to new array if type isn't already present
+        let typeOptions = [];
+        allTypes.forEach((type) => {
+            if (!typeOptions.includes(type)) {
+                typeOptions.push(type);
+            };
+        })
+
+        // Loop through posts and make array of all genres
+        let allGenres = [];
+        allPosts.forEach((post) => {
+            let genres = post.genres;
+            genres.forEach((gen) => {
+                if (gen.genre !== null) {
+                    gen = gen.genre;
+                    allGenres.push(gen);
+                };
+            });
+        })
+        // Then add to new array if genre isn't already present
+        let genreOptions = [];
+        allGenres.forEach((genre) => {
+            if (!genreOptions.includes(genre)) {
+                genreOptions.push(genre);
+            };
+        })
+
+        // Loop through posts and make array of all tags
+        let allTags = [];
+        allPosts.forEach((post) => {
+            let tags = post.tags;
+            tags.forEach((tag) => {
+                if (tag.tag !== null) {
+                    tag = tag.tag;
+                    allTags.push(tag);
+                };
+            });
+        })
+        // Then add to new array if tag isn't already present
+        let tagOptions = [];
+        allTags.forEach((tag) => {
+            if (!tagOptions.includes(tag)) {
+                tagOptions.push(tag);
+            };
+        })
+
+        // Add list of types to types dropdown
+        let typeList = document.getElementById("type-list");
+        typeOptions.forEach((option) => {
+            typeList.innerHTML += '<li class="list-item">' + option + '</li>';
+        })
+        // Add list of genres to genres dropdown
+        let genresList = document.getElementById("genres-list");
+        genreOptions.forEach((option) => {
+            genresList.innerHTML += '<li class="list-item">' + option + '</li>';
+        })
+        // Add list of tags to tags dropdown
+        let tagsList = document.getElementById("tags-list");
+        tagOptions.forEach((option) => {
+            tagsList.innerHTML += '<li class="list-item">' + option + '</li>';
+        })
+
         // Add posts to post section
         let articleDiv = document.getElementById("article-div");
         let quickNav = document.getElementById("quick-nav");
@@ -119,6 +186,7 @@ window.onload = async function(){
             // Create quick nav links
             quickNavLinks += '<li class="quick-nav-link"><a href="#' + id + '">' + title + '</a></li>';
         }
+
         // Create pagination div
         let paginationDiv = '';
         paginationDiv += '<div id="pagination" class="pagination"><button id="prev" class="pagination-link" type="button" href="#">Previous</button>';
@@ -231,6 +299,119 @@ window.onload = async function(){
         displayPage(currentPage); 
         updatePagination();
     })
+
+    // Get sort/filter buttons and dropdowns
+    let typeButton = document.getElementById("type-button");
+    let genresButton = document.getElementById("genres-button");
+    let tagsButton = document.getElementById("tags-button");
+    let sortButton = document.getElementById("sort-button");
+    let typeDropdown = document.getElementById("type-dropdown");
+    let genresDropdown = document.getElementById("genres-dropdown");
+    let tagsDropdown = document.getElementById("tags-dropdown");
+    let sortDropdown = document.getElementById("sort-dropdown");
+
+    // If type dropdown is open, close it and change caret; if it's closed, open it and change caret
+    // Also if any other dropdowns are open when opening type, close them and change their carets
+    function openTypeDropdown() {
+        if (typeDropdown.style.display === "block") {
+            typeDropdown.style.display = "none";
+            typeButton.innerHTML = 'Type&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        } else {
+            typeDropdown.style.display = "block";
+            typeButton.innerHTML = 'Type&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C7</span>';
+        };
+        if (genresDropdown.style.display === "block") {
+            genresDropdown.style.display = "none";
+            genresButton.innerHTML = 'Genres&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        };
+        if (tagsDropdown.style.display === "block") {
+            tagsDropdown.style.display = "none";
+            tagsButton.innerHTML = 'Tags&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        };
+        if (sortDropdown.style.display === "block") {
+            sortDropdown.style.display = "none";
+            sortButton.innerHTML = 'Sort&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        };
+    }
+
+    // If genres dropdown is open, close it and change caret; if it's closed, open it and change caret
+    // Also if any other dropdowns are open when opening genres, close them and change their carets
+    function openGenresDropdown() {
+        if (genresDropdown.style.display === "block") {
+            genresDropdown.style.display = "none";
+            genresButton.innerHTML = 'Genres&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        } else {
+            genresDropdown.style.display = "block";
+            genresButton.innerHTML = 'Genres&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C7</span>';
+        };
+        if (typeDropdown.style.display === "block") {
+            typeDropdown.style.display = "none";
+            typeButton.innerHTML = 'Type&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        };
+        if (tagsDropdown.style.display === "block") {
+            tagsDropdown.style.display = "none";
+            tagsButton.innerHTML = 'Tags&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        };
+        if (sortDropdown.style.display === "block") {
+            sortDropdown.style.display = "none";
+            sortButton.innerHTML = 'Sort&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        };
+    }
+
+    // If tags dropdown is open, close it and change caret; if it's closed, open it and change caret
+    // Also if any other dropdowns are open when opening tags, close them and change their carets
+    function openTagsDropdown() {
+        if (tagsDropdown.style.display === "block") {
+            tagsDropdown.style.display = "none";
+            tagsButton.innerHTML = 'Tags&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        } else {
+            tagsDropdown.style.display = "block";
+            tagsButton.innerHTML = 'Tags&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C7</span>';
+        };
+        if (typeDropdown.style.display === "block") {
+            typeDropdown.style.display = "none";
+            typeButton.innerHTML = 'Type&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        };
+        if (genresDropdown.style.display === "block") {
+            genresDropdown.style.display = "none";
+            genresButton.innerHTML = 'Genres&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        };
+        if (sortDropdown.style.display === "block") {
+            sortDropdown.style.display = "none";
+            sortButton.innerHTML = 'Sort&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        };
+    }
+
+    // If sort dropdown is open, close it and change caret; if it's closed, open it and change caret
+    // Also if any other dropdowns are open when opening sort, close them and change their carets
+    function openSortDropdown() {
+        if (sortDropdown.style.display === "block") {
+            sortDropdown.style.display = "none";
+            sortButton.innerHTML = 'Sort&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        } else {
+            sortDropdown.style.display = "block";
+            sortButton.innerHTML = 'Sort&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C7</span>';
+        };
+        if (typeDropdown.style.display === "block") {
+            typeDropdown.style.display = "none";
+            typeButton.innerHTML = 'Type&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        };
+        if (genresDropdown.style.display === "block") {
+            genresDropdown.style.display = "none";
+            genresButton.innerHTML = 'Genres&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        };
+        if (tagsDropdown.style.display === "block") {
+            tagsDropdown.style.display = "none";
+            tagsButton.innerHTML = 'Tags&ensp;<span class="material-symbols-outlined dropdown-caret">&#xE5C5</span>';
+        };
+    }
+
+    // Add event listeners for sort/filter buttons
+    typeButton.addEventListener("click", openTypeDropdown);
+    genresButton.addEventListener("click", openGenresDropdown);
+    tagsButton.addEventListener("click", openTagsDropdown);
+    sortButton.addEventListener("click", openSortDropdown);
+
 
     var sidebar = document.getElementById("side-panel-1");
     var offsetTop = sidebar.offsetTop;
