@@ -21,6 +21,7 @@ window.onload = async function(){
         let setting = x.data.setting;
         let mainChars = x.data.main_characters;
         let majChars = x.data.major_characters;
+        let relationships = x.data.relationships;
         let antagonists = x.data.antagonists;
         let rawSynopsis = x.data.synopsis;
         let pov = x.data.pov;
@@ -45,6 +46,7 @@ window.onload = async function(){
         book.setting = setting;
         book.mainChars = mainChars;
         book.majChars = majChars;
+        book.relationships = relationships;
         book.antagonists = antagonists;
         book.synopsis = rawSynopsis;
         book.pov = pov;
@@ -131,8 +133,15 @@ window.onload = async function(){
         bookRightContent += '<p class="story-details">Tropes:&ensp;' + tropes.join(", ") + '</p>';
         bookRightContent += '<p class="story-details">Setting:&ensp;' + setting + '</p>';
         bookRightContent += '<p class="story-details">Main Characters:&ensp;' + mainChars + '</p>';
-        bookRightContent += '<p class="story-details">Major Characters:&ensp;' + majChars + '</p>';
-        bookRightContent += '<p class="story-details">Antagonists:&ensp;' + antagonists + '</p>';
+        if (majChars !== null) {
+            bookRightContent += '<p class="story-details">Major Characters:&ensp;' + majChars + '</p>';
+        }
+        if (relationships !== null) {
+            bookRightContent += '<p class="story-details">Relationships:&ensp;' + relationships + '</p>';
+        }
+        if (antagonists !== null) {
+            bookRightContent += '<p class="story-details">Antagonists:&ensp;' + antagonists + '</p>';
+        }
         // Add hidden detail column that unhides only on mobile
         bookRightContent += '<div id="hidden-detail-column" class="book-detail-column"><hr>';
         bookRightContent += '<p class="book-details">Audience & Rating:&ensp;' + audience + ' (' + rating + ')</p>';
