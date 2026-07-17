@@ -513,8 +513,12 @@ hr {
 
 .stats-subheading {
     /* text-align: center; */
-    padding: 0.5rem 0;
+    padding: 0.5rem 0 0.2 0;
     color: #a6dff8;
+}
+
+.stats-content {
+    line-height: 1.6rem;
 }
 
 .stat-item {

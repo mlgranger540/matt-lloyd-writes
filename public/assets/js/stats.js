@@ -60,12 +60,6 @@ window.onload = async function(){
         allBooks.push(book);
     })
 
-    let statsDiv = document.getElementById("book-div");
-    let statsContent = '';
-
-    // Update page heading
-    statsContent += '<div class="row"><h2 id="stats-heading">Stats for Nerds</h2><hr id="book-heading-separator" class="med-separator">';
-
     let noOfPosts = allPosts.length;
     let noOfShortStories = 0;
     let noOfExcerpts = 0;
@@ -90,22 +84,25 @@ window.onload = async function(){
     let totalPostWordCount = commaify(rawPostWordCount);
 
 
-    // Make post stats section
-    statsContent += '<div id="post-stats"><div class="row"><div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
-    statsContent += '<h3 class="stats-subheading col-xl-8 col-lg-10 col-12">Post Stats</h3><div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
+    // Get post stats row div and make empty string for content
+    let postStatsRow = document.getElementById("post-stats-row");
+    let postStatsContent = '';
 
     // Add content to left column for post stats
-    statsContent += '<div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
-    statsContent += '<div class="col-xl-4 col-lg-5 col-md-6 col-12">';
-    statsContent += '<p class="content">Number of Short Stories:&ensp;' + noOfShortStories + '</p>';
-    statsContent += '<p class="content">Number of Novel Excerpts:&ensp;' + noOfExcerpts + '</p>';
-    statsContent += '<p class="content">Number of Poems:&ensp;' + noOfPoems + '</p>';
-    statsContent += '<p class="content">Total Number of Posts:&ensp;' + noOfPosts + '</p></div>';
+    postStatsContent += '<div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
+    postStatsContent += '<div class="col-xl-4 col-lg-5 col-md-6 col-12">';
+    postStatsContent += '<p class="content stats-content">Number of Short Stories:&ensp;' + noOfShortStories + '</p>';
+    postStatsContent += '<p class="content stats-content">Number of Novel Excerpts:&ensp;' + noOfExcerpts + '</p>';
+    postStatsContent += '<p class="content stats-content">Number of Poems:&ensp;' + noOfPoems + '</p>';
+    postStatsContent += '<p class="content stats-content">Total Number of Posts:&ensp;' + noOfPosts + '</p></div>';
 
     // Add content to right column for post stats
-    statsContent += '<div class="stats-right-column col-xl-4 col-lg-5 col-md-6 col-12">'
-    statsContent += '<p class="content">Total Word Count (Posts):&ensp;' + totalPostWordCount + '</p></div>';
-    statsContent += '<div class="col-xl-2 col-lg-1 d-md-block d-none"></div></div></div>';
+    postStatsContent += '<div class="stats-right-column col-xl-4 col-lg-5 col-md-6 col-12">'
+    postStatsContent += '<p class="content stats-content">Total Word Count (Posts):&ensp;' + totalPostWordCount + '</p></div>';
+    postStatsContent += '<div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
+
+    // Add both columns to post stats row HTML
+    postStatsRow.innerHTML = postStatsContent;
 
 
     let noOfBooks = allBooks.length;
@@ -213,68 +210,66 @@ window.onload = async function(){
     let totalPageCount = commaify(rawPageCount);
   
 
-    // Make book stats section
-    statsContent += '<div id="book-stats"><div class="row"><div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
-    statsContent += '<h3 class="stats-subheading col-xl-8 col-lg-10 col-12">Book Stats</h3><div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
+    // Get book stats row div and make empty string for content
+    let bookStatsRow = document.getElementById("book-stats-row");
+    let bookStatsContent = '';
 
     // Add content to left column for first row of book stats
-    statsContent += '<div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
-    statsContent += '<div class="col-xl-4 col-lg-5 col-md-6 col-12">';
-    statsContent += '<p class="content">Number of Standalone Books:&ensp;' + noOfSingleBooks + '</p>';
-    statsContent += '<p class="content">Number of Series:&ensp;' + noOfSeries + '</p>';
-    statsContent += '<p class="content">Total Number of Books:&ensp;' + noOfBooks + '</p></div>';
+    bookStatsContent += '<div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
+    bookStatsContent += '<div class="col-xl-4 col-lg-5 col-md-6 col-12">';
+    bookStatsContent += '<p class="content stats-content">Number of Standalone Books:&ensp;' + noOfSingleBooks + '</p>';
+    bookStatsContent += '<p class="content stats-content">Number of Series:&ensp;' + noOfSeries + '</p>';
+    bookStatsContent += '<p class="content stats-content">Total Number of Books:&ensp;' + noOfBooks + '</p></div>';
 
     // Add content to right column for first row of book stats
-    statsContent += '<div class="stats-right-column col-xl-4 col-lg-5 col-md-6 col-12">'
-    statsContent += '<p class="content">Total Word Count (Books):&ensp;' + totalBookWordCount + '</p>';
-    statsContent += '<p class="content">Total Page Count:&ensp;' + totalPageCount + '</p>';
-    statsContent += '</div><div class="col-xl-2 col-lg-1 d-md-block d-none"></div></div>';
+    bookStatsContent += '<div class="stats-right-column col-xl-4 col-lg-5 col-md-6 col-12">'
+    bookStatsContent += '<p class="content stats-content">Total Word Count (Books):&ensp;' + totalBookWordCount + '</p>';
+    bookStatsContent += '<p class="content stats-content">Total Page Count:&ensp;' + totalPageCount + '</p>';
+    bookStatsContent += '</div><div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
 
     // Add genres to left column of second row of book stats
-    statsContent += '<div class="row"><div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
-    statsContent += '<div class="col-xl-4 col-lg-5 col-md-6 col-12"><p class="content">Genre Count:&ensp;</p>';
+    bookStatsContent += '<div class="row"><div class="col-xl-2 col-lg-1 d-md-block d-none"></div>';
+    bookStatsContent += '<div class="col-xl-4 col-lg-5 col-md-6 col-12"><p class="content">Genre Count:&ensp;</p>';
     // Make sub-row within genres column and sub-column
-    statsContent += '<div class="row"><div class="col-6">';
+    bookStatsContent += '<div class="row"><div class="col-6">';
     // Split genres into two sub-columns within sub-row
     let genresColumn1 = '';
     for (i = 0; i < 11; i++) {
         genresColumn1 += '<p class="stat-item">' + genreCount[i].genre + ':&ensp;' + genreCount[i].count + '</p>';
     }
-    statsContent += genresColumn1;
-    statsContent += '</div><div class="col-6">';
+    bookStatsContent += genresColumn1;
+    bookStatsContent += '</div><div class="col-6">';
     let genresColumn2 = '';
     for (i = 11; i < genreCount.length; i++) {
         genresColumn2 += '<p class="stat-item">' + genreCount[i].genre + ':&ensp;' + genreCount[i].count + '</p>';
     }
-    statsContent += genresColumn2;
+    bookStatsContent += genresColumn2;
     // Close sub-column, sub-row and column
-    statsContent += '</div></div></div>';
+    bookStatsContent += '</div></div></div>';
 
     // Add audiences and ratings to right column of second row of book stats
-    statsContent += '<div class="col-xl-4 col-lg-5 col-md-6 col-12">';
+    bookStatsContent += '<div class="col-xl-4 col-lg-5 col-md-6 col-12">';
     // Make sub-row within audience/ratings column
     // Then make audience count sub-column
-    statsContent += '<div class="row"><div class="col-6"><p class="content">Audience Count:&ensp;</p>';
+    bookStatsContent += '<div class="row"><div class="col-6"><p class="content">Audience Count:&ensp;</p>';
     let audienceColumn = '';
     audienceCount.forEach((audience) => {
         audienceColumn += '<p class="stat-item">' + audience.audience + ':&ensp;' + audience.count + '</p>';
     })
-    statsContent += audienceColumn;
+    bookStatsContent += audienceColumn;
     // Make rating count sub-column
-    statsContent += '</div><div class="col-6"><p class="content">Rating Count:&ensp;</p>';
+    bookStatsContent += '</div><div class="col-6"><p class="content">Rating Count:&ensp;</p>';
     let ratingColumn = '';
     ratingCount.forEach((rating) => {
         ratingColumn += '<p class="stat-item">' + rating.rating + ':&ensp;' + rating.count + '</p>';
     })
-    statsContent += ratingColumn;
-    // Close sub-column, sub-row and column
-    statsContent += '</div></div></div>';
-    // Add last empty spacer div, then close row, book stats div, and outer row
-    statsContent += '<div class="col-xl-2 col-lg-1 d-md-block d-none"></div></div></div>';
+    bookStatsContent += ratingColumn;
+    // Close sub-column, sub-row and column and add last empty spacer div, then close row
+    bookStatsContent += '</div></div></div><div class="col-xl-2 col-lg-1 d-md-block d-none"></div></div>';
 
 
-    // Add all content to stats div
-    statsDiv.innerHTML = statsContent;
+    // Add book stats content to book stats row HTML
+    bookStatsRow.innerHTML = bookStatsContent;
 
 
     // Add current year to copyright line
