@@ -98,6 +98,7 @@ The live site can be found on two domains, [matt-lloyd-writes.web.app](https://m
 - [Prismic Headless CMS](https://prismic.io/) to store, manage and publish my content
 - [Express JS framework](https://expressjs.com/) to connect to Prismic as well as enable page routing
 - [Google Fonts](https://fonts.google.com/) for the headings, links and other text fonts
+- [Google Material Symbols](https://fonts.google.com/icons) for the navbar menu and dropdown caret icons
 
 ## Known Bugs
 
