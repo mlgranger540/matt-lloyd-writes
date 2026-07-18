@@ -110,23 +110,19 @@ window.onload = async function(){
     let noOfSeries = 0;
     let seriesNames = [];
     
-    // If book has series, push series name to array
+    // If book has series, push series name to array if not already present
     // Otherwise increase standalone book count
-    for (i = 0; i < noOfBooks; i++) {
-        if (allBooks[i].series !== null) {
-            seriesNames.push(allBooks[i].series);
+    allBooks.forEach((book) => {
+        if (book.series !== null) {
+            if (!seriesNames.includes(book.series)) {
+                seriesNames.push(book.series);
+            };
         } else {
             noOfSingleBooks++;
         };
-    }
-    // When new series name is encountered, increase series count
-    for (i = 0; i < seriesNames.length; i++) {
-        if (i > 0) {
-            if (seriesNames[i].localeCompare(seriesNames[i-1]) !== 0) {
-                noOfSeries++;
-            };
-        };
-    }
+    })
+    // Set number of series names from new array length
+    noOfSeries = seriesNames.length;
     
     // Build array of all audiences across all books
     let allAudiences = [];
