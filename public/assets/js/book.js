@@ -128,8 +128,14 @@ window.onload = async function(){
             bookRightContent += '<p class="series">Book ' + bookNumber + ' – ' + series + '</p>';
         };
         bookRightContent += '</div>';
-        bookRightContent += '<p class="synopsis">Synopsis:&ensp;' + synopsis + '</p>';
-        bookRightContent += '<p class="story-details">Archetypes:&ensp;' + archetypes.join(", ") + '</p>';
+        for (i = 0; i < synopsis.length; i++) {
+            if (i < 1) {
+                bookRightContent += '<p class="synopsis">Synopsis:&ensp;' + synopsis[i] + '</p>';
+            } else {
+                bookRightContent += '<p class="synopsis">' + synopsis[i] + '</p>';
+            };
+        }
+        bookRightContent += '</div><p class="story-details">Archetypes:&ensp;' + archetypes.join(", ") + '</p>';
         bookRightContent += '<p class="story-details">Tropes:&ensp;' + tropes.join(", ") + '</p>';
         bookRightContent += '<p class="story-details">Setting:&ensp;' + setting + '</p>';
         bookRightContent += '<p class="story-details">Main Characters:&ensp;' + mainChars + '</p>';
