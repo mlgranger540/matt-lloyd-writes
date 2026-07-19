@@ -4,8 +4,6 @@ window.onload = async function(){
         // You parse the data into a useable format using `.json()`
         return response.json();
     }).then(function(res) {
-        // Sort responses by post number (largest i.e. newest first)
-        res.sort((a,b)=>{return b.data.number-a.data.number});
         // Loop through post data from Prismic and add to post object
         // then add object to posts array
         let allPosts = [];
@@ -154,7 +152,7 @@ window.onload = async function(){
             });
 
             // Add data to article HTML
-            article += '<article id="' + id + '" class="inner-panel">';
+            article += '<article id="' + id + '" class="inner-panel ' + type.replace(' ','-') + '">';
             article += '<h3 class="post-title"><a class="title-link" href="/post/' + id + '">' + title + '</a></h3>';
             article += '<h4 class="entry-date">' + dateWritten;
             if (dateEdited !== '1st Jan 1970'){
@@ -298,6 +296,17 @@ window.onload = async function(){
         // Initial page load 
         displayPage(currentPage); 
         updatePagination();
+
+        // for (i = 0; i < posts.length; i++) {
+        //     let classNames = posts[i].className.split(" ");
+        //     if (classNames.includes("Short-Story")) {
+        //         posts[i].style.display = "block";
+        //     } else {
+        //         posts[i].style.display = "none";
+        //         console.log(posts[i]);
+        //         console.log(posts[i].style.display);
+        //     };
+        // }
     })
 
     // Get sort/filter buttons and dropdowns

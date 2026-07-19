@@ -75,21 +75,67 @@ app.get("/book/:uid", (req, res) => {
 });
 
 // GET Routes for Prismic Data
+// Get all posts sorted alphabetically
 app.get("/getAllPosts", async (req, res) => {
-    const documents = await client.getAllByType("post");
+    const documents = await client.getAllByType("post", {
+        orderings: [
+            {field: "my.post.title"}
+        ]
+    });
     res.send(documents);
 });
 
+// Get all posts sorted by date written (newest first), then title (reverse alphabetical)
+app.get("/getRecentPosts", async (req, res) => {
+    const documents = await client.getAllByType("post", {
+        orderings: [
+            {field: "my.post.date_written", direction: "desc"},
+            {field: "my.post.title", direction: "desc"}
+        ]
+    });
+    res.send(documents);
+});
+
+// Get single post by UID
 app.get("/getPost/post/:uid", async (req, res) => {
     const document = await client.getByUID("post", req.params.uid);
     res.send(document);
 });
 
+// Get all books
 app.get("/getAllBooks", async (req, res) => {
     const documents = await client.getAllByType("book");
     res.send(documents);
 });
 
+// Get all standalone books sorted by title
+app.get("/getAllStandaloneBooks", async (req, res) => {
+    const documents = await client.getAllByType("book", {
+        filters: [
+            prismic.filter.at("my.book.series", "No Series"),
+        ],
+        orderings: [
+            {field: "my.book.book_title"}
+        ]
+    });
+    res.send(documents);
+});
+
+// Get all series sorted by series name and then book number
+app.get("/getAllSeries", async (req, res) => {
+    const documents = await client.getAllByType("book", {
+        filters: [
+            prismic.filter.not("my.book.series", "No Series"),
+        ],
+        orderings: [
+            {field: "my.book.series"},
+            {field: "my.book.book_number"}
+        ]
+    });
+    res.send(documents);
+});
+
+// Get single book by UID
 app.get("/getBook/book/:uid", async (req, res) => {
     const document = await client.getByUID("book", req.params.uid);
     res.send(document);

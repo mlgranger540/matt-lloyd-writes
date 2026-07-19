@@ -4,11 +4,11 @@
     "cleanUrls": true,
     "rewrites": [
       {
-        "source": "/post/**",
-        "destination": "/post.html"
+        "source": "/getAllPosts",
+        "function": "mlw_app"
       },
       {
-        "source": "/getAllPosts",
+        "source": "/getRecentPosts",
         "function": "mlw_app"
       },
       {
@@ -16,16 +16,28 @@
         "function": "mlw_app"
       },
       {
-        "source": "/book/**",
-        "destination": "/book.html"
+        "source": "/post/**",
+        "destination": "/post.html"
       },
       {
         "source": "/getAllBooks",
         "function": "mlw_app"
       },
       {
+        "source": "/getAllStandaloneBooks",
+        "function": "mlw_app"
+      },
+      {
+        "source": "/getAllSeries",
+        "function": "mlw_app"
+      },
+      {
         "source": "/getBook/**",
         "function": "mlw_app"
+      },
+      {
+        "source": "/book/**",
+        "destination": "/book.html"
       },
       {
         "source": "**",

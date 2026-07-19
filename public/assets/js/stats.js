@@ -113,7 +113,7 @@ window.onload = async function(){
     // If book has series, push series name to array if not already present
     // Otherwise increase standalone book count
     allBooks.forEach((book) => {
-        if (book.series !== null) {
+        if (book.series !== "No Series") {
             if (!seriesNames.includes(book.series)) {
                 seriesNames.push(book.series);
             };

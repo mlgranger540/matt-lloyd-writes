@@ -1,47 +1,37 @@
 window.onload = async function(){
-    const bookData = await fetch("/getAllBooks").then(function(response) {
+    const bookData = await fetch("/getAllSeries").then(function(response) {
         // The response is a Response instance.
         // You parse the data into a useable format using `.json()`
         return response.json();
     }).then(function(res) {
+        // Loop through series data from Prismic and add to book object
+        // then add object to array
         let allSeries = [];
         res.forEach((x) => {
-            console.log(x);
-            // If book has a series, add data to book object and add object to array
-            if (x.data.series !== null) {
-                let book = {};
-                let id = x.uid;
-                let coverSrc = x.data.cover.url;
-                let coverAlt = x.data.cover.alt;
-                let title = x.data.book_title;
-                let series = x.data.series;
-                let bookNumber = x.data.book_number;
-                let audience = x.data.audience;
-                let rating = x.data.rating;
-                let genres = x.data.genres;
-                let themes = x.data.themes;
-                let status = x.data.status;
-                book.id = id;
-                book.coverSrc = coverSrc;
-                book.coverAlt = coverAlt;
-                book.title = title;
-                book.series = series;
-                book.bookNumber = bookNumber;
-                book.audience = audience;
-                book.rating = rating;
-                book.genres = genres;
-                book.themes = themes;
-                book.status = status;
-                allSeries.push(book);
-            };
-            // Sort series alphabetically by series name, then by book number
-            allSeries.sort((a,b) => {
-                if (a.series.localeCompare(b.series) === 0) {
-                    return a.bookNumber - b.bookNumber;
-                } else {
-                    return a.series.localeCompare(b.series);
-                };
-            });
+            let book = {};
+            let id = x.uid;
+            let coverSrc = x.data.cover.url;
+            let coverAlt = x.data.cover.alt;
+            let title = x.data.book_title;
+            let series = x.data.series;
+            let bookNumber = x.data.book_number;
+            let audience = x.data.audience;
+            let rating = x.data.rating;
+            let genres = x.data.genres;
+            let themes = x.data.themes;
+            let status = x.data.status;
+            book.id = id;
+            book.coverSrc = coverSrc;
+            book.coverAlt = coverAlt;
+            book.title = title;
+            book.series = series;
+            book.bookNumber = bookNumber;
+            book.audience = audience;
+            book.rating = rating;
+            book.genres = genres;
+            book.themes = themes;
+            book.status = status;
+            allSeries.push(book);
         })
         
         // Add series and their books to series book section
@@ -103,9 +93,7 @@ window.onload = async function(){
             };
             bookTile += '</div>';
             bookTile += '<div class="title-and-series"><h3 class="book-title"><a class="book-title-link" href="/book/' + id + '">' + title + '</a></h3>';
-            if (series !== null) {
-                bookTile += '<p class="series-white">Book ' + bookNumber + ' – ' + series + '</p>';
-            };
+            bookTile += '<p class="series-white">Book ' + bookNumber + ' – ' + series + '</p>';
             bookTile += '</div>';
             bookTile += '<p>Audience & Rating:&ensp;' + audience + ' (' + rating + ')</p>';
             bookTile += '<p>Genres:&ensp;' + genres.join(", ") + '</p>';

@@ -1,41 +1,37 @@
 window.onload = async function(){
-    const bookData = await fetch("/getAllBooks").then(function(response) {
+    const bookData = await fetch("/getAllStandaloneBooks").then(function(response) {
         // The response is a Response instance.
         // You parse the data into a useable format using `.json()`
         return response.json();
     }).then(function(res) {
+        // Loop through standalone book data from Prismic and add to book object
+        // then add object to array
         let allSingleBooks = [];
         res.forEach((x) => {
-            console.log(x);
-            // If book has no series, add data to book object and add object to array
-            if (x.data.series === null) {
-                let book = {};
-                let id = x.uid;
-                let coverSrc = x.data.cover.url;
-                let coverAlt = x.data.cover.alt;
-                let title = x.data.book_title;
-                let series = x.data.series;
-                let bookNumber = x.data.book_number;
-                let audience = x.data.audience;
-                let rating = x.data.rating;
-                let genres = x.data.genres;
-                let themes = x.data.themes;
-                let status = x.data.status;
-                book.id = id;
-                book.coverSrc = coverSrc;
-                book.coverAlt = coverAlt;
-                book.title = title;
-                book.series = series;
-                book.bookNumber = bookNumber;
-                book.audience = audience;
-                book.rating = rating;
-                book.genres = genres;
-                book.themes = themes;
-                book.status = status;
-                allSingleBooks.push(book);
-            };
-            // Sort single books alphabetically by uid
-            allSingleBooks.sort((a,b) => {return a.id.localeCompare(b.id)});
+            let book = {};
+            let id = x.uid;
+            let coverSrc = x.data.cover.url;
+            let coverAlt = x.data.cover.alt;
+            let title = x.data.book_title;
+            let series = x.data.series;
+            let bookNumber = x.data.book_number;
+            let audience = x.data.audience;
+            let rating = x.data.rating;
+            let genres = x.data.genres;
+            let themes = x.data.themes;
+            let status = x.data.status;
+            book.id = id;
+            book.coverSrc = coverSrc;
+            book.coverAlt = coverAlt;
+            book.title = title;
+            book.series = series;
+            book.bookNumber = bookNumber;
+            book.audience = audience;
+            book.rating = rating;
+            book.genres = genres;
+            book.themes = themes;
+            book.status = status;
+            allSingleBooks.push(book);
         })
         
         // Add books to book section
@@ -94,9 +90,6 @@ window.onload = async function(){
             }
             bookTile += '</div>';
             bookTile += '<div class="title-and-series"><h3 class="book-title"><a class="book-title-link" href="/book/' + id + '">' + title + '</a></h3>';
-            if (series !== null) {
-                bookTile += '<p class="series">Book ' + bookNumber + ' – ' + series + '</p>';
-            }
             bookTile += '</div>';
             bookTile += '<p>Audience & Rating:&ensp;' + audience + ' (' + rating + ')</p>';
             bookTile += '<p>Genres:&ensp;' + genres.join(", ") + '</p>';

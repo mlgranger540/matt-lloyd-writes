@@ -1,11 +1,9 @@
 window.onload = async function(){
-    const postData = await fetch("/getAllPosts").then(function(response) {
+    const postData = await fetch("/getRecentPosts").then(function(response) {
         // The response is a Response instance.
         // You parse the data into a useable format using `.json()`
         return response.json();
     }).then(function(res) {
-        // Sort responses by post number (largest i.e. newest first)
-        res.sort((a,b)=>{return b.data.number-a.data.number});
         // Loop through post data from Prismic and add to post object
         // then add object to posts array
         let allPosts = [];
