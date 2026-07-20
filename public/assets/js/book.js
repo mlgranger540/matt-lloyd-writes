@@ -124,7 +124,7 @@ window.onload = async function(){
 
         // Add content to book right column HTML
         bookRightContent += '<div class="title-and-series"><h3 class="book-title-large">' + title + '</h3>';
-        if (series !== null) {
+        if (series !== "No Series") {
             bookRightContent += '<p class="series">Book ' + bookNumber + ' – ' + series + '</p>';
         };
         bookRightContent += '</div>';

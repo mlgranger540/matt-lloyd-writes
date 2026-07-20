@@ -377,7 +377,7 @@ hr {
 
 /* My Books Page */
 
-#info-div {
+.info-div {
     margin-bottom: 0.6rem;
 }
 
@@ -559,13 +559,13 @@ hr {
 
 /* About the Author */
 
-.picture-panel {
-    padding: 2rem;
-    background-color: #19214e;
+.portrait {
+    width: 50%;
+    margin: 0 0 2rem 2rem;
 }
 
-.portrait {
-    width: 100%;
+.subheading {
+    margin-top: 1.8rem;
 }
 
 
@@ -887,12 +887,12 @@ button:disabled {
         line-height: 1.5rem;
     }
 
-    #info-div {
+    .info-div {
         margin-bottom: 0;
     }
 
-    .picture-panel {
-        padding-bottom: 0;
+    .portrait {
+        width: 100%;
     }
 
     .books-button {

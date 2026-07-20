@@ -141,4 +141,10 @@ app.get("/getBook/book/:uid", async (req, res) => {
     res.send(document);
 });
 
+// Get about info
+app.get("/getAboutInfo/about_info/:uid", async (req, res) => {
+    const document = await client.getByUID("about_info", req.params.uid);
+    res.send(document);
+});
+
 exports.mlw_app = functions.https.onRequest(app);

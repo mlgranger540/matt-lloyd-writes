@@ -116,6 +116,8 @@ I used the [Express Routing docs](https://expressjs.com/en/guide/routing.html) a
 
 This [Stack Overflow post](https://stackoverflow.com/questions/62380765/how-to-remove-html-url-endings-and-configure-redirects-in-firebase) helped when trying to remove .html from URLs in the deployed site (`./writing` etc worked in local but not on the live site).
 
+This [Stack Overflow post](https://stackoverflow.com/questions/77685985/getting-data-out-from-prismic-based-on-type-and-value-of-a-field) as well as the Prismic docs [[1](https://prismic.io/docs/technical-reference/prismicio-client/v7), [2](https://prismic.io/docs/content-api)] helped me to learn how to add parameters to the Prismic API queries to sort and/or filter the data server-side, rather than getting all the posts/books and then sorting/filtering the response data in the code myself.
+
 This [Stack Overflow post](https://stackoverflow.com/questions/413439/how-to-dynamically-change-a-web-pages-title) helped with changing the page title dynamically on the single post and book pages.
 
 I used the [W3 Schools guidance](https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp) to create the dropdown in the navbar, as well as this [Stack Overflow post](https://stackoverflow.com/questions/61628295/make-dropdown-menu-same-width-as-button-parent) to help make the dropdown the same width as the parent button.

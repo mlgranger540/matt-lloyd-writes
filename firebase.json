@@ -40,6 +40,10 @@
             "destination": "/book.html"
             },
             {
+            "source": "/getAboutInfo",
+            "function": "mlw_app"
+            },
+            {
             "source": "**",
             "function": "mlw_app"
             }
