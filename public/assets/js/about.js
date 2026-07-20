@@ -4,11 +4,13 @@ window.onload = async function(){
         // You parse the data into a useable format using `.json()`
         return response.json();
     }).then(function(res) {
-        let id = res.uid;
-        let imageSrc = res.data.image.url;
-        let imageAlt = res.data.image.alt;
-        let rawTitle = res.data.page_title;
-        let rawSections = res.data.section;
+        let id = res.document.uid;
+        let imageSrc = res.document.data.image.url;
+        let imageAlt = res.document.data.image.alt;
+        let rawTitle = res.document.data.page_title;
+        let introHTML = res.intro;
+        let rawSubheading1 = res.document.data.subheading_1;
+        let content1HTML = res.content1;
 
         // Loop through title objects
         let title = [];
@@ -16,39 +18,21 @@ window.onload = async function(){
             ttl = ttl.text;
             title.push(ttl);
         });
-        // Loop through sections
-        let sections = [];
-        rawSections.forEach((sect) => {
-            let section = [];
-            let subheadings = sect.subheading;
-            let subheading = [];
-            subheadings.forEach((sub) => {
-                sub = sub.text;
-                subheading.push(sub);
-            });
-            section.push(subheading);
-            let content = sect.content;
-            let contentParas = [];
-            content.forEach((para) => {
-                para = para.text;
-                contentParas.push(para);
-            })
-            section.push(contentParas);
-            sections.push(section);
-        })
-        console.log(sections);
-
+        // Loop through subheading objects
+        let subheading1 = [];
+        rawSubheading1.forEach((sub) => {
+            sub = sub.text;
+            subheading1.push(sub);
+        });
+        
         let aboutDiv = document.getElementById("about-div");
         let aboutContent = '';
         aboutContent += '<div class="bookshelf">';
         aboutContent += `<img class="portrait float-end" src="${imageSrc}" alt="${imageAlt}">`;
         aboutContent += `<h2 class="text-center">${title}</h2>`;
-        sections.forEach((section) => {
-            aboutContent += `<h3 class="subheading">${section[0]}</h3>`;
-            section[1].forEach((para) => {
-                aboutContent += `<p class="content">${para}</p>`;
-            })
-        })
+        aboutContent += `<div class="content">${introHTML}</div>`;
+        aboutContent += `<h3 class="subheading">${subheading1}</h3>`;
+        aboutContent += `<div class="content">${content1HTML}</div>`;
         aboutContent += '</div>';
 
         aboutDiv.innerHTML = aboutContent;

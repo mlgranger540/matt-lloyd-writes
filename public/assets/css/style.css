@@ -235,9 +235,9 @@ h1 {
 }
 
 .content {
-    margin: 1rem 0;
+    margin: 1.2rem 0;
     font-size: 1.1rem;
-    line-height: 1.8rem;
+    line-height: 2.2rem;
     letter-spacing: 0.6px;
 }
 
@@ -774,7 +774,7 @@ button:disabled {
 
     .content {
         font-size: 1rem;
-        line-height: 1.6rem;
+        line-height: 1.8rem;
     }
 
     .text {
@@ -884,7 +884,7 @@ button:disabled {
 
     .content {
         font-size: 0.95rem;
-        line-height: 1.5rem;
+        line-height: 1.7rem;
     }
 
     .info-div {

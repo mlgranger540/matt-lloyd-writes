@@ -118,6 +118,8 @@ This [Stack Overflow post](https://stackoverflow.com/questions/62380765/how-to-r
 
 This [Stack Overflow post](https://stackoverflow.com/questions/77685985/getting-data-out-from-prismic-based-on-type-and-value-of-a-field) as well as the Prismic docs [[1](https://prismic.io/docs/technical-reference/prismicio-client/v7), [2](https://prismic.io/docs/content-api)] helped me to learn how to add parameters to the Prismic API queries to sort and/or filter the data server-side, rather than getting all the posts/books and then sorting/filtering the response data in the code myself.
 
+The Prismic Docs [[1](https://prismic.io/docs/technical-reference/prismicio-helpers/v2), [2](https://prismic.io/docs/prismicio-client-v7-migration-guide)] helped me to get rich text data from Prismic and turn it into HTML before being sent back, in order to keep the formatting features in the text.
+
 This [Stack Overflow post](https://stackoverflow.com/questions/413439/how-to-dynamically-change-a-web-pages-title) helped with changing the page title dynamically on the single post and book pages.
 
 I used the [W3 Schools guidance](https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp) to create the dropdown in the navbar, as well as this [Stack Overflow post](https://stackoverflow.com/questions/61628295/make-dropdown-menu-same-width-as-button-parent) to help make the dropdown the same width as the parent button.
@@ -131,6 +133,8 @@ This [guide](https://www.geeksforgeeks.org/javascript/count-occurrences-of-all-i
 These guides [[1](https://www.w3schools.com/Cssref/css3_pr_overflow-y.php), [2](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scrollbars_styling)] as well as this [Stack Overflow post](https://stackoverflow.com/questions/14732448/how-do-i-make-the-scrollbar-on-a-div-only-visible-when-necessary) helped me with styling my scrollbar and getting it to only show when necessary (with `overflow-y: auto`).
 
 This [guide](https://www.geeksforgeeks.org/javascript/create-a-pagination-using-html-css-and-javascript/) helped me to create the pagination on my pages.
+
+These guides [[1](https://www.geeksforgeeks.org/css/how-to-wrap-the-text-around-an-image-using-html-and-css/), [2](https://www.geeksforgeeks.org/bootstrap/how-to-wrap-text-around-image-in-bootstrap/)] helped me to get text to wrap around an image using Bootstrap's `float-end` class.
 
 These Stack Overflow posts [[1](https://stackoverflow.com/questions/4313841/insert-a-string-at-a-specific-index), [2](https://stackoverflow.com/questions/1798465/remove-last-3-characters-of-a-string)] as well as the [W3 Schools Guidance](https://www.w3schools.com/jsref/jsref_slice_string.asp) helped when I was trying to create a function to add thousand separators to large numbers.
 

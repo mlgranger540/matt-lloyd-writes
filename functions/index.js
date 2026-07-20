@@ -144,7 +144,9 @@ app.get("/getBook/book/:uid", async (req, res) => {
 // Get about info
 app.get("/getAboutInfo/about_info/:uid", async (req, res) => {
     const document = await client.getByUID("about_info", req.params.uid);
-    res.send(document);
+    const intro = prismic.asHTML(document.data.intro);
+    const content1 = prismic.asHTML(document.data.content_1);
+    res.send({document, intro, content1});
 });
 
 exports.mlw_app = functions.https.onRequest(app);
