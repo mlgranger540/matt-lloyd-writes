@@ -4,8 +4,7 @@ window.onload = async function(){
         // You parse the data into a useable format using `.json()`
         return response.json();
     }).then(function(res) {
-        // Add post data from Prismic to post object
-        let post = {};
+        // Get post data from Prismic
         let id = res.uid;
         let rawTitle = res.data.title;
         let type = res.data.type;
@@ -27,55 +26,40 @@ window.onload = async function(){
         let wordCount = commaify(rawWordCount);
         let rawGenres = res.data.genres;
         let rawTags = res.data.tags;
-        post.id = id;
-        post.rawTitle = rawTitle;
-        post.type = type;
-        post.dateWritten = dateWritten;
-        post.dateEdited = dateEdited;
-        post.content = content;
-        post.description = description;
-        post.wordCount = wordCount;
-        post.rawGenres = rawGenres;
-        post.rawTags = rawTags;
 
         // Add post to post section
         let articleDiv = document.getElementById("article-div");
         let article = '';
         // Loop through title objects
-        let titleObjs = post.rawTitle;
         let title = [];
-        titleObjs.forEach((ttl) => {
+        rawTitle.forEach((ttl) => {
             ttl = ttl.text;
             title.push(ttl);
         });
         // Update page title with selected post title
         document.title = title + " | Matt Lloyd Writes";
         // Loop through content objects
-        let contentObjs = post.content;
         let paragraphs = [];
-        contentObjs.forEach((paragraph) => {
+        content.forEach((paragraph) => {
             paragraph = paragraph.text;
             paragraphs.push(paragraph);
         });
         // Loop through description objects
-        let descObjs = post.description;
         let descParas = [];
-        descObjs.forEach((line) => {
+        description.forEach((line) => {
             line = line.text;
             descParas.push(line);
         });
         // Loop through genres and tags, add hash and push to hashtags array
-        let genres = post.rawGenres;
-        let tags = post.rawTags;
         let hashtags = [];
-        genres.forEach((gen) => {
+        rawGenres.forEach((gen) => {
             if (gen.genre !== null) {
                 gen = gen.genre;
                 gen = '#' + gen;
                 hashtags.push(gen);
             };
         });
-        tags.forEach((tag) => {
+        rawTags.forEach((tag) => {
             tag = tag.tag;
             tag = '#' + tag;
             hashtags.push(tag);

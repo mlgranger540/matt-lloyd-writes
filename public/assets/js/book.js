@@ -4,8 +4,7 @@ window.onload = async function(){
         // You parse the data into a useable format using `.json()`
         return response.json();
     }).then(function(x) {
-        // Add book data from Prismic to book object
-        let book = {};
+        // Get book data from Prismic
         let id = x.uid;
         let coverSrc = x.data.cover.url;
         let coverAlt = x.data.cover.alt;
@@ -31,29 +30,6 @@ window.onload = async function(){
         let rawPageCount = x.data.page_count;
         let pageCount = commaify(rawPageCount);
         let status = x.data.status;
-        book.id = id;
-        book.coverSrc = coverSrc;
-        book.coverAlt = coverAlt;
-        book.title = rawTitle;
-        book.series = series;
-        book.bookNumber = bookNumber;
-        book.audience = audience;
-        book.rating = rating;
-        book.genres = rawGenres;
-        book.themes = rawThemes;
-        book.tropes = rawTropes;
-        book.archetypes = rawArchetypes;
-        book.setting = setting;
-        book.mainChars = mainChars;
-        book.majChars = majChars;
-        book.relationships = relationships;
-        book.antagonists = antagonists;
-        book.synopsis = rawSynopsis;
-        book.pov = pov;
-        book.tense = tense;
-        book.wordCount = wordCount;
-        book.pageCount = pageCount;
-        book.status = status;
         
         // Add book to book section
         let bookLeftColumn = document.getElementById("book-left-column");
@@ -61,46 +37,40 @@ window.onload = async function(){
         let bookLeftContent = '';
         let bookRightContent = '';
         // Loop through title objects
-        let titleObjs = book.title;
         let title = [];
-        titleObjs.forEach((ttl) => {
+        rawTitle.forEach((ttl) => {
             ttl = ttl.text;
             title.push(ttl);
         });
         // Update page title with selected book title
         document.title = title + " | Matt Lloyd Writes";
         // Loop through genre objects
-        let genreObjs = book.genres;
         let genres = [];
-        genreObjs.forEach((genre) => {
+        rawGenres.forEach((genre) => {
             genre = genre.genre;
             genres.push(genre);
         });
         // Loop through theme objects
-        let themeObjs = book.themes;
         let themes = [];
-        themeObjs.forEach((theme) => {
+        rawThemes.forEach((theme) => {
             theme = theme.theme;
             themes.push(theme);
         });
         // Loop through trope objects
-        let tropeObjs = book.tropes;
         let tropes = [];
-        tropeObjs.forEach((trope) => {
+        rawTropes.forEach((trope) => {
             trope = trope.trope;
             tropes.push(trope);
         });
         // Loop through archetype objects
-        let archeObjs = book.archetypes;
         let archetypes = [];
-        archeObjs.forEach((arche) => {
+        rawArchetypes.forEach((arche) => {
             arche = arche.story_archetype;
             archetypes.push(arche);
         });
         // Loop through synopsis objects
-        let synopsisObjs = book.synopsis;
         let synopsis = [];
-        synopsisObjs.forEach((syn) => {
+        rawSynopsis.forEach((syn) => {
             syn = syn.text;
             synopsis.push(syn);
         });
