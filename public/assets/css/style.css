@@ -186,6 +186,12 @@ h1 {
     background-color: #0f1432;
 }
 
+#post-sidebar {
+    background-image: url("../images/river.JPG");
+    background-size: cover;
+    /* background-attachment: fixed; */
+}
+
 .side-panel {
     margin-right: 3rem;
     padding: 3.2rem;
@@ -303,6 +309,7 @@ hr {
 
 #sort-filter-section {
     margin-bottom: 0.5rem;
+    display: none;
 }
 
 #sort {
