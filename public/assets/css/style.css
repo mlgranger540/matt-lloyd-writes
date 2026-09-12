@@ -204,13 +204,22 @@ h1 {
     margin-bottom: 2%;
 }
 
+#intro-box {
+    background-image: url("../images/river-full.JPG");
+    background-size: cover;
+}
+
 #welcome-heading {
-    padding-bottom: 0.5rem;
+    padding: 0.5rem 0;
     text-align: center;
+    text-shadow: #0f1432 5px 5px 5px;
+    background: rgba(0, 0, 0, 0.65);
 }
 
 .welcome-text {
     padding: 0 6vw;
+    text-shadow: #0f1432 5px 5px 5px;
+    background: rgba(0, 0, 0, 0.65);
 }
 
 /* Articles */
