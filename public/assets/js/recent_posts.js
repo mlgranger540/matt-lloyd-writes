@@ -121,7 +121,7 @@ window.onload = async function(){
         }
         // Create link to all
         let linkToAll = '';
-        linkToAll += '<div class="row"><a id="link-to-all" class="books-button" href="./writing">More Posts</a></div>';
+        linkToAll += '<div class="row"><a id="link-to-all" class="books-button" href="./writing/1">More Posts</a></div>';
 
         // Add articles and quick nav links to page
         articleDiv.innerHTML = article;

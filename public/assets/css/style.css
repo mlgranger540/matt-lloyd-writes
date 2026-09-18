@@ -80,6 +80,10 @@ h1 {
     border-bottom: #d6f1fd;
 }
 
+.nav-link:focus {
+    color: #a6dff8;
+}
+
 .active {
     --bs-nav-tabs-link-active-bg: #dcf0f9;
     background-color: #dcf0f9;
