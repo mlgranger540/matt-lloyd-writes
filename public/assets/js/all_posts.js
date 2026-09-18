@@ -1,13 +1,17 @@
 window.onload = async function(){
-    const postData = await fetch("/getAllPosts").then(function(response) {
+    const postData = await fetch(`/getAllPosts${window.location.pathname}`).then(function(response) {
         // The response is a Response instance.
         // You parse the data into a useable format using `.json()`
         return response.json();
     }).then(function(res) {
+        // Get posts from paginated response
+        let results = res.results;
+        let totalPages = res.total_pages;
+        let currentPage = res.page;
         // Loop through post data from Prismic and add to post object
         // then add object to posts array
         let allPosts = [];
-        res.forEach((i) => {
+        results.forEach((i) => {
             let post = {};
             let id = i.uid;
             let title = i.data.title;
@@ -187,114 +191,60 @@ window.onload = async function(){
 
         // Create pagination div
         let paginationDiv = '';
-        paginationDiv += '<div id="pagination" class="pagination"><button id="prev" class="pagination-link" type="button" href="#">Previous</button>';
-        paginationDiv += '<div id="page-link-div" class="pagination-link"></div><button id="next" class="pagination-link" type="button" href="#">Next</button>';
-        paginationDiv += '<div class="break"></div><div id="pagination-row-2"><p id="page-numbers"></p></div>';
+        paginationDiv += '<div id="pagination" class="pagination"><button id="prev" class="pagination-link" type="button"></button>';
+        paginationDiv += '<div id="page-link-div" class="pagination-link"></div>';
+        paginationDiv += '<button id="next" class="pagination-link" type="button"></button>';
 
         // Add articles, pagination and quick nav links to page
         articleDiv.innerHTML = article;
         articleDiv.innerHTML += paginationDiv;
         quickNav.innerHTML = quickNavLinks;
 
-        const postsPerPage = 5;
-        const pagination = document.getElementById('pagination');
-        const prevButton = document.getElementById('prev');
-        const nextButton = document.getElementById('next');
-        const pageNumbers = document.getElementById('page-numbers');
-        // Make arrays from posts and quick nav links
-        const posts = Array.from(articleDiv.getElementsByClassName('inner-panel'));
-        const quickNavArray = Array.from(quickNav.getElementsByClassName('quick-nav-link'));
-
-        // Calculate the total number of pages 
-        const totalPages = Math.ceil(posts.length / postsPerPage);
-        let currentPage = 1;
+        let prevButton = document.getElementById('prev');
+        let nextButton = document.getElementById('next');
+        let pageLinkDiv = document.getElementById('page-link-div');
 
         // Add page number links for number of pages
-        let pageLinkDiv = document.getElementById('page-link-div');
         for (let i = 0; i < totalPages; i++) {
-            pageLinkDiv.innerHTML += '<button class="pagination-link page-link" type="button" href="#" data-page="' + (i+1) + '">' + (i+1) + '</button>';
-        }
-        const pageLinks = document.querySelectorAll('.page-link');
-
-        // Function to display posts for a specific page 
-        function displayPage(page) {
-            const startIndex = (page - 1) * postsPerPage;
-            const endIndex = startIndex + postsPerPage;
-            posts.forEach((post, index) => {
-                if (index >= startIndex && index < endIndex) {
-                    post.style.display = 'block';
-                } else {
-                    post.style.display = 'none';
-                };
-            });
-            quickNavArray.forEach((link, index) => {
-                if (index >= startIndex && index < endIndex) {
-                    link.style.display = 'block';
-                } else {
-                    link.style.display = 'none';
-                };
-            });
+            // Add active class to current page number link
+            if (i === (currentPage - 1)) {
+                pageLinkDiv.innerHTML += `<button class="active pagination-link page-link" type="button"><a href="./${i+1}">${i+1}</a></button>`;
+            } else {
+                pageLinkDiv.innerHTML += `<button class="pagination-link page-link" type="button"><a href="./${i+1}">${i+1}</a></button>`;
+            }
         }
 
-        // Function to update pagination buttons and page numbers 
+        // Function to update previous/next buttons based on the current page
         function updatePagination() {
-            pageNumbers.textContent = `Page ${currentPage} of ${totalPages}`;
-            // Toggle Previous/Next buttons disabled when there are no more pages
+            // On homepage, disable previous button
             if (currentPage === 1) {
                 prevButton.disabled = true;
+                nextButton.disabled = false;
+                prevButton.innerHTML = '<a>Previous</a>';
+                // If there's only one page total, disable next button, otherwise enable it
+                if (currentPage === totalPages) {
+                    nextButton.disabled = true;
+                    nextButton.innerHTML = '<a>Next</a>';
+                } else {
+                    nextButton.disabled = false;
+                    nextButton.innerHTML = `<a href="./${currentPage+1}">Next</a>`;
+                }
+            // On the last page, disable next button and enable previous
+            } else if (currentPage === totalPages) {
+                prevButton.disabled = false;
+                nextButton.disabled = true;
+                prevButton.innerHTML = `<a href="./${currentPage-1}">Previous</a>`;
+                nextButton.innerHTML = '<a>Next</a>';
+            // On any other pages, enable both buttons and make them link back/forward one page
             } else {
                 prevButton.disabled = false;
-            }
-            if (currentPage === totalPages) {
-                nextButton.disabled = true;
-            } else {
                 nextButton.disabled = false;
+                prevButton.innerHTML = `<a href="./${currentPage-1}">Previous</a>`;
+                nextButton.innerHTML = `<a href="./${currentPage+1}">Next</a>`;
             };
-            // Make page link show active for current page
-            pageLinks.forEach((link) => {
-                const page = parseInt(link.getAttribute('data-page')); 
-                link.classList.toggle('active', page === currentPage); 
-            });
         }
 
-        let pageTop = document.getElementById("top");
-
-        // Event listener for Previous button
-        prevButton.addEventListener('click', () => {
-            if (currentPage > 1) {
-                currentPage--;
-                displayPage(currentPage);
-                updatePagination();
-                pageTop.scrollIntoView();
-            };
-        })
-
-        // Event listener for Next button
-        nextButton.addEventListener('click', () => {
-            if (currentPage < totalPages) {
-                currentPage++;
-                displayPage(currentPage);
-                updatePagination();
-                pageTop.scrollIntoView();
-            };
-        })
-
-        // Event listener for page number buttons
-        pageLinks.forEach((link) => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const page = parseInt(link.getAttribute('data-page'));
-                if (page !== currentPage) {
-                    currentPage = page;
-                    displayPage(currentPage);
-                    updatePagination();
-                    pageTop.scrollIntoView();
-                };
-            });
-        })
-
         // Initial page load 
-        displayPage(currentPage); 
         updatePagination();
 
         // for (i = 0; i < posts.length; i++) {

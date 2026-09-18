@@ -8,4 +8,4 @@ To serve website locally for testing during development: `firebase serve --only 
 
 To deploy changes to the live website: `firebase deploy` (auto-deploys now when changes are pushed to GitHub, but can still manually deploy)
 
-To set up automatic deploys when pushing to GitHub: `firebase init hosting:github` and follow steps (don't allow automatic builds or something as we don't need that)
+To set up automatic deploys when pushing to GitHub: `firebase init hosting:github` and follow steps (don't need workflow run build script before deploy, or agent skills - just want automatic deployment when change is pushed to GitHub main branch)

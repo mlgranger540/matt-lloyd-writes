@@ -628,6 +628,10 @@ hr {
     color: #a6dff8;
 }
 
+.pagination-link a:hover {
+    color: #fff;
+}
+
 #prev {
     margin: 0.25rem 0.5rem 0.25rem 0;
     background: none;
@@ -636,10 +640,6 @@ hr {
 #next {
     margin: 0.25rem 0 0.25rem 0.5rem;
     background: none;
-}
-
-button:hover {
-    color: #fff;
 }
 
 button:disabled {
@@ -654,8 +654,8 @@ button:disabled {
 .page-link {
     display: inline;
     border: 0;
-    margin: 0 0.15rem;
-    padding: 0.2rem 0.5rem;
+    margin: 0 0.1rem;
+    padding: 0.2rem 0.4rem;
     background: none;
     color: #a6dff8;
 }
@@ -663,11 +663,17 @@ button:disabled {
 .page-link.active {
     border: 0;
     background-color: #dcf0f9;
+}
+
+.page-link.active a {
     color: #0f1432;
 }
 
 .page-link:hover {
     background: none;
+}
+
+.page-link a:hover {
     color: #fff;
 }
 
@@ -676,17 +682,12 @@ button:disabled {
     color: #0f1432;
 }
 
+.page-link.active a:hover {
+    color: #0f1432;
+}
+
 .page-link:focus {
     --bs-pagination-focus-box-shadow: none;
-}
-
-.break {
-    width: 100%;
-}
-
-#page-numbers {
-    margin: 0 auto;
-    margin: 0.25rem 0;
 }
 
 

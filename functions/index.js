@@ -50,7 +50,7 @@ app.get("/", (req, res) => {
     res.sendFile("index.html", {root : __dirname + "/../public/"});
 });
 
-app.get("/writing", (req, res) => {
+app.get("/writing/:page", (req, res) => {
     res.sendFile("writing.html", {root : __dirname + "/../public/"});
 });
 
@@ -85,13 +85,26 @@ app.get("/getAllPosts", async (req, res) => {
     res.send(documents);
 });
 
-// Get all posts sorted by date written (newest first), then title (reverse alphabetical)
+// Get paginated posts sorted alphabetically
+app.get("/getAllPosts/writing/:page", async (req, res) => {
+    const documents = await client.getByType("post", {
+        orderings: [
+            {field: "my.post.title"}
+        ],
+        pageSize: 5,
+        page: req.params.page
+    });
+    res.send(documents);
+});
+
+// Get latest 5 posts sorted by date written (newest first), then title (reverse alphabetical)
 app.get("/getRecentPosts", async (req, res) => {
-    const documents = await client.getAllByType("post", {
+    const documents = await client.getByType("post", {
         orderings: [
             {field: "my.post.date_written", direction: "desc"},
             {field: "my.post.title", direction: "desc"}
-        ]
+        ],
+        pageSize: 5
     });
     res.send(documents);
 });

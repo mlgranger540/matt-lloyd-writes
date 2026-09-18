@@ -4,10 +4,12 @@ window.onload = async function(){
         // You parse the data into a useable format using `.json()`
         return response.json();
     }).then(function(res) {
+        // Get posts from paginated response
+        let results = res.results;
         // Loop through post data from Prismic and add to post object
         // then add object to posts array
         let allPosts = [];
-        res.forEach((i) => {
+        results.forEach((i) => {
             let post = {};
             let id = i.uid;
             let title = i.data.title;
@@ -46,8 +48,8 @@ window.onload = async function(){
         let quickNav = document.getElementById("quick-nav");
         let article = '';
         let quickNavLinks = '';
-        // Loop to add first six posts to page
-        for (let i = 0; i < 6; i++) {
+        // Loop to add posts to page
+        for (let i = 0; i < allPosts.length; i++) {
             let id = allPosts[i].id;
             // Loop through title objects
             let titleObjs = allPosts[i].title;
