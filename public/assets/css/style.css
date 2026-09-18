@@ -559,7 +559,9 @@ hr {
 }
 
 .synopsis {
-    line-height: 1.8rem;
+    line-height: 1.9rem;
+    font-size: 1.05rem;
+    padding-bottom: 1rem;
 }
 
 .story-details {

@@ -109,10 +109,12 @@ app.get("/getRecentPosts", async (req, res) => {
     res.send(documents);
 });
 
-// Get single post by UID
+// Get single post by UID including rich text content as HTML
 app.get("/getPost/post/:uid", async (req, res) => {
     const document = await client.getByUID("post", req.params.uid);
-    res.send(document);
+    const content = prismic.asHTML(document.data.content);
+    const description = prismic.asHTML(document.data.description);
+    res.send({document, content, description});
 });
 
 // Get all books
@@ -148,13 +150,14 @@ app.get("/getAllSeries", async (req, res) => {
     res.send(documents);
 });
 
-// Get single book by UID
+// Get single book by UID including rich text content as HTML
 app.get("/getBook/book/:uid", async (req, res) => {
     const document = await client.getByUID("book", req.params.uid);
-    res.send(document);
+    const synopsis = prismic.asHTML(document.data.synopsis);
+    res.send({document, synopsis});
 });
 
-// Get about info
+// Get about info including rich text content as HTML
 app.get("/getAboutInfo/about_info/:uid", async (req, res) => {
     const document = await client.getByUID("about_info", req.params.uid);
     const intro = prismic.asHTML(document.data.intro);

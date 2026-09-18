@@ -3,33 +3,34 @@ window.onload = async function(){
         // The response is a Response instance.
         // You parse the data into a useable format using `.json()`
         return response.json();
-    }).then(function(x) {
+    }).then(function(res) {
+        let doc = res.document;
         // Get book data from Prismic
-        let id = x.uid;
-        let coverSrc = x.data.cover.url;
-        let coverAlt = x.data.cover.alt;
-        let rawTitle = x.data.book_title;
-        let series = x.data.series;
-        let bookNumber = x.data.book_number;
-        let audience = x.data.audience;
-        let rating = x.data.rating;
-        let rawGenres = x.data.genres;
-        let rawThemes = x.data.themes;
-        let rawTropes = x.data.tropes;
-        let rawArchetypes = x.data.story_archetypes;
-        let setting = x.data.setting;
-        let mainChars = x.data.main_characters;
-        let majChars = x.data.major_characters;
-        let relationships = x.data.relationships;
-        let antagonists = x.data.antagonists;
-        let rawSynopsis = x.data.synopsis;
-        let pov = x.data.pov;
-        let tense = x.data.tense;
-        let rawWordCount = x.data.word_count;
+        let id = doc.uid;
+        let coverSrc = doc.data.cover.url;
+        let coverAlt = doc.data.cover.alt;
+        let rawTitle = doc.data.book_title;
+        let series = doc.data.series;
+        let bookNumber = doc.data.book_number;
+        let audience = doc.data.audience;
+        let rating = doc.data.rating;
+        let rawGenres = doc.data.genres;
+        let rawThemes = doc.data.themes;
+        let rawTropes = doc.data.tropes;
+        let rawArchetypes = doc.data.story_archetypes;
+        let setting = doc.data.setting;
+        let mainChars = doc.data.main_characters;
+        let majChars = doc.data.major_characters;
+        let relationships = doc.data.relationships;
+        let antagonists = doc.data.antagonists;
+        let synopsisHTML = res.synopsis;
+        let pov = doc.data.pov;
+        let tense = doc.data.tense;
+        let rawWordCount = doc.data.word_count;
         let wordCount = commaify(rawWordCount);
-        let rawPageCount = x.data.page_count;
+        let rawPageCount = doc.data.page_count;
         let pageCount = commaify(rawPageCount);
-        let status = x.data.status;
+        let status = doc.data.status;
         
         // Add book to book section
         let bookLeftColumn = document.getElementById("book-left-column");
@@ -43,7 +44,7 @@ window.onload = async function(){
             title.push(ttl);
         });
         // Update page title with selected book title
-        document.title = title + " | Matt Lloyd Writes";
+        document.title = `${title} | Matt Lloyd Writes`;
         // Loop through genre objects
         let genres = [];
         rawGenres.forEach((genre) => {
@@ -68,66 +69,54 @@ window.onload = async function(){
             arche = arche.story_archetype;
             archetypes.push(arche);
         });
-        // Loop through synopsis objects
-        let synopsis = [];
-        rawSynopsis.forEach((syn) => {
-            syn = syn.text;
-            synopsis.push(syn);
-        });
 
         // Add content to book left column HTML
         bookLeftContent += '<div id="cover-container">';
         if (coverSrc === undefined ) {
             bookLeftContent += '<img class="book-cover-thumb" src="../assets/images/book-cover-placeholder.png" alt="Placeholder book cover image"></img>';
         } else {
-            bookLeftContent += '<img class="book-cover-thumb" src="' + coverSrc + '" alt="' + coverAlt + '"></img>';
+            bookLeftContent += `<img class="book-cover-thumb" src="${coverSrc}" alt="${coverAlt}"></img>`;
         };
         bookLeftContent += '</div>';
         bookLeftContent += '<div class="book-detail-column">';
-        bookLeftContent += '<p class="book-details">Audience & Rating:&ensp;' + audience + ' (' + rating + ')</p>';
+        bookLeftContent += `<p class="book-details">Audience & Rating:&ensp;${audience} (${rating})</p>`;
         bookLeftContent += '<p class="book-details">Genres:&ensp;' + genres.join(", ") + '</p>';
         bookLeftContent += '<p class="book-details">Themes:&ensp;' + themes.join(", ") + '</p>';
-        bookLeftContent += '<p class="book-details">POV & Tense:&ensp;' + pov + ' / ' + tense + '</p>';
+        bookLeftContent += `<p class="book-details">POV & Tense:&ensp;${pov} / ${tense}</p>`;
         bookLeftContent += '</div>';
 
         bookLeftColumn.innerHTML = bookLeftContent;
 
         // Add content to book right column HTML
-        bookRightContent += '<div class="title-and-series"><h3 class="book-title-large">' + title + '</h3>';
+        bookRightContent += `<div class="title-and-series"><h3 class="book-title-large">${title}</h3>`;
         if (series !== "No Series") {
-            bookRightContent += '<p class="series">Book ' + bookNumber + ' – ' + series + '</p>';
+            bookRightContent += `<p class="series">Book ${bookNumber} – ${series}</p>`;
         };
-        bookRightContent += '</div>';
-        for (i = 0; i < synopsis.length; i++) {
-            if (i < 1) {
-                bookRightContent += '<p class="synopsis">Synopsis:&ensp;' + synopsis[i] + '</p>';
-            } else {
-                bookRightContent += '<p class="synopsis">' + synopsis[i] + '</p>';
-            };
-        }
-        bookRightContent += '</div><p class="story-details">Archetypes:&ensp;' + archetypes.join(", ") + '</p>';
+        bookRightContent += '</div><div class="synopsis">';
+        bookRightContent += synopsisHTML;
+        bookRightContent += '</div></div><p class="story-details">Archetypes:&ensp;' + archetypes.join(", ") + '</p>';
         bookRightContent += '<p class="story-details">Tropes:&ensp;' + tropes.join(", ") + '</p>';
-        bookRightContent += '<p class="story-details">Setting:&ensp;' + setting + '</p>';
-        bookRightContent += '<p class="story-details">Main Characters:&ensp;' + mainChars + '</p>';
+        bookRightContent += `<p class="story-details">Setting:&ensp;${setting}</p>`;
+        bookRightContent += `<p class="story-details">Main Characters:&ensp;${mainChars}</p>`;
         if (majChars !== null) {
-            bookRightContent += '<p class="story-details">Major Characters:&ensp;' + majChars + '</p>';
+            bookRightContent += `<p class="story-details">Major Characters:&ensp;${majChars}</p>`;
         }
         if (relationships !== null) {
-            bookRightContent += '<p class="story-details">Relationships:&ensp;' + relationships + '</p>';
+            bookRightContent += `<p class="story-details">Relationships:&ensp;${relationships}</p>`;
         }
         if (antagonists !== null) {
-            bookRightContent += '<p class="story-details">Antagonists:&ensp;' + antagonists + '</p>';
+            bookRightContent += `<p class="story-details">Antagonists:&ensp;${antagonists}</p>`;
         }
         // Add hidden detail column that unhides only on mobile
         bookRightContent += '<div id="hidden-detail-column" class="book-detail-column"><hr>';
-        bookRightContent += '<p class="book-details">Audience & Rating:&ensp;' + audience + ' (' + rating + ')</p>';
+        bookRightContent += `<p class="book-details">Audience & Rating:&ensp;${audience} (${rating})</p>`;
         bookRightContent += '<p class="book-details">Genres:&ensp;' + genres.join(", ") + '</p>';
         bookRightContent += '<p class="book-details">Themes:&ensp;' + themes.join(", ") + '</p>';
-        bookRightContent += '<p class="book-details">POV & Tense:&ensp;' + pov + ' / ' + tense + '</p>';
+        bookRightContent += `<p class="book-details">POV & Tense:&ensp;${pov} / ${tense}</p>`;
         bookRightContent += '</div>';
         bookRightContent += '<hr>'
-        bookRightContent += '<p class="book-details stats">Word Count:&ensp;' + wordCount + ' &ensp; | &ensp;Page Count:&ensp;' + pageCount + '</p>';
-        bookRightContent += '<p class="book-details stats">Status:&ensp;' + status + '</p>';
+        bookRightContent += `<p class="book-details stats">Word Count:&ensp;${wordCount} &ensp; | &ensp;Page Count:&ensp;${pageCount}</p>`;
+        bookRightContent += `<p class="book-details stats">Status:&ensp;${status}</p>`;
 
         bookRightColumn.innerHTML = bookRightContent;
     })
